@@ -1,0 +1,59 @@
+#ifndef _Ball_h
+#define _Ball_h
+
+#include "Point.h"
+
+const char BALL_SHAPE = 'O';
+
+class Ball
+{
+	Point p;
+	enum { TOP_BORDER = 4, BOTTOM_BORDER = 24 };	//floor and ceilling borders are constants
+	enum { LEFT_BORDER, RIGHT_BORDER };			
+	int x_borders[2];								//contain the left and the right border of the x cordination .
+	int dir_x, dir_y;
+
+	//private methods:
+
+	void draw() {
+		p.draw();
+	}
+	void setDir(){
+		setDirY();
+		setDirX();
+	}
+	void setDirY(){
+		if (p.getY() + dir_y == TOP_BORDER || p.getY() + dir_y == BOTTOM_BORDER)
+			dir_y *= -1;
+	}
+
+	void setDirX() {
+		if (p.getX() + dir_x == x_borders[LEFT_BORDER] || p.getX() + dir_x == x_borders[RIGHT_BORDER])
+			dir_x *= -1;
+	}
+
+public:
+	Ball(Point p1 = {40,12,BALL_SHAPE}, int dir_x1 =1 , int dir_y1=1 ) : p(p1), dir_x(dir_x1), dir_y(dir_y1) {
+		x_borders[LEFT_BORDER] = 4;
+		x_borders[RIGHT_BORDER] = 76;
+	}
+				
+	//draw the ball when he born . 
+	void drawBall()	
+	{
+		gotoxy(p.getX(), p.getY());
+		draw();
+	}
+
+	void move()
+	{
+		p.erase();
+		setDir();						//case hit the border we need to change the direction
+		p.setX(p.getX() + dir_x);
+		p.setY(p.getY() + dir_y);
+		draw();
+	}
+};
+
+#endif 
+
