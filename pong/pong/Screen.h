@@ -27,13 +27,12 @@ public:
 	static bool isOnYOfThePaddles(Point ball , int dirx)
 	{
 		int ballCoord = ball.getY();
-		bool b;
 		if (dirx == 1)
-			 b = ballCoord >= rightPaddle->getY() && ballCoord<ballCoord+3;
+			 return ballCoord >= rightPaddle->getY() && ballCoord<ballCoord+3;
 		else
-			b = ballCoord >= leftPaddle->getY() && ballCoord < leftPaddle->getY() + 3;
+			return ballCoord >= leftPaddle->getY() && ballCoord < leftPaddle->getY() + 3;
 
-		return b;
+		
 
 	}
 	
