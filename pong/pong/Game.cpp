@@ -15,7 +15,18 @@ void Game ::run()
 
 	while (true)
 	{
-		kbManager.handleKb();	//move paddles
+		int choice = kbManager.handleKb();	//move paddles
+		if (choice == 1)
+		{
+			break;
+		}
+		if (choice == 3)
+		{
+			screen.printBoard();
+			leftPlayer.drawPaddle();
+			rightPlayer.drawPaddle();
+			ball.drawBall();
+		}
 		ball.move();
 		Sleep(120);
 	}

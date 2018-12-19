@@ -11,15 +11,17 @@ class Menu
 {
 public:
 
-	static int firstMenu()
+	static int firstMenu(bool pause)
 	{
 		int choice;
 		cout << "MENU:\n";
 		cout << "Choose one of the following:\n";
 		cout << "1.How to play?\n\n";
 		cout << "2.Start new game\n\n";
-		cout << "3.Set up keys\n\n";
-		cout << "4.Exit\n\n";
+		if (pause == true)
+			cout << "3.to continue\n\n ";
+		cout << "4.Set up keys\n\n";
+		cout << "5.Exit\n\n";
 		cin >> choice;
 		system("cls");
 		return choice;

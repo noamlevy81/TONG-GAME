@@ -29,7 +29,7 @@ public:
 		while (true)
 		{
 			Sleep(100);
-			int option = Menu::firstMenu();
+			int option = Menu::firstMenu(false);
 			switch (option)
 			{
 			case 1:
@@ -38,10 +38,10 @@ public:
 			case 2:
 				run();
 				break;
-			case 3:
+			case 4:
 				Menu::setUpKeys(leftPlayer, rightPlayer);
 				break;
-			case 4:
+			case 5:
 				exit(1);
 				break;
 			}

@@ -5,12 +5,14 @@
 #include <conio.h>
 using namespace std;
 
+
 #include "Paddle.h"
 #include <list>
 
 
 class KeyBoardManager
 {
+	enum { Escape = 27 };
 	enum { NUM_OF_CHARS = 26 };
 	list<Paddle*> objectsKeysMap[NUM_OF_CHARS];
 	int getIndex(char key)
@@ -27,7 +29,7 @@ class KeyBoardManager
 public:
 
 	void registerKeyBoardManager(Paddle* p);
-	void handleKb();
+	int handleKb();
 };
 
 #endif

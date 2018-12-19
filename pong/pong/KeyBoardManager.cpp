@@ -1,4 +1,5 @@
 #include "KeyBoardManager.h"
+#include "Menu.h"
 
 
 void KeyBoardManager ::registerKeyBoardManager(Paddle* p)
@@ -14,11 +15,22 @@ void KeyBoardManager ::registerKeyBoardManager(Paddle* p)
 	}
 }
 
-void KeyBoardManager::handleKb()
+int KeyBoardManager::handleKb()		//cahgne to int 
 {
 	if (_kbhit())
 	{
 		char key = (_getch());
+
+		if (key == Escape)
+		{
+			system("cls");
+			int choice = Menu::firstMenu(true);
+			return choice;
+			//case new game - new game from the begining - void run  - get out from loop .
+			//continue game - statys in the loop draw paddles and ball in their last places . 
+			// instructions - write the instructions and get in back ? 
+			//exit - exit . 
+		}
 		int index = getIndex(key);
 		if (index != -1)
 		
@@ -27,5 +39,6 @@ void KeyBoardManager::handleKb()
 				p->handleKey(key);
 			}
 	}
+		return 1;
 }
 
