@@ -18,7 +18,14 @@ void KeyBoardManager::handleKb()
 {
 	if (_kbhit())
 	{
-
+		char key = (_getch());
+		int index = getIndex(key);
+		if (index != -1)
+		
+			for (auto p : objectsKeysMap[index])
+			{
+				p->handleKey(key);
+			}
 	}
 }
 

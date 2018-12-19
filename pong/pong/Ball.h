@@ -2,14 +2,15 @@
 #define _Ball_h
 
 #include "Point.h"
+#include "Screen.h"
 
 const char BALL_SHAPE = 'O';
 
 class Ball
 {
 	Point p;
-	enum { TOP_BORDER = 4, BOTTOM_BORDER = 24 };	//floor and ceilling borders are constants
-	enum { LEFT_BORDER, RIGHT_BORDER };			
+
+	enum { LEFT_BORDER, RIGHT_BORDER };
 	int x_borders[2];								//contain the left and the right border of the x cordination .
 	int dir_x, dir_y;
 
@@ -17,29 +18,43 @@ class Ball
 
 	void draw() {
 		p.draw();
+		
 	}
-	void setDir(){
+	void setDir() {
 		setDirY();
 		setDirX();
 	}
-	void setDirY(){
-		if (p.getY() + dir_y == TOP_BORDER || p.getY() + dir_y == BOTTOM_BORDER)
+	
+	void setDirX() {
+
+		if (Screen::isOnXBorder(p+dir_x))
+		{
+			if (Screen::isOnYOfThePaddles(p+dir_y))
+				dir_x *= -1;
+			else
+			{
+				Sleep(200);//gameOver()
+				cout << "bye";
+				exit(1);
+			}
+		}
+	}
+
+	void setDirY() {
+		if (p.getY() + dir_y == Screen::TOP_BORDER || p.getY() + dir_y == Screen::BOTTOM_BORDER)
 			dir_y *= -1;
 	}
 
-	void setDirX() {
-		if (p.getX() + dir_x == x_borders[LEFT_BORDER] || p.getX() + dir_x == x_borders[RIGHT_BORDER])
-			dir_x *= -1;
-	}
+	//after calling this function dir x will be ok .
 
 public:
-	Ball(Point p1 = {40,12,BALL_SHAPE}, int dir_x1 =1 , int dir_y1=1 ) : p(p1), dir_x(dir_x1), dir_y(dir_y1) {
+	Ball(Point p1 = { 40,12,BALL_SHAPE }, int dir_x1 = 1, int dir_y1 = 1) : p(p1), dir_x(dir_x1), dir_y(dir_y1) {
 		x_borders[LEFT_BORDER] = 4;
 		x_borders[RIGHT_BORDER] = 76;
 	}
-				
+
 	//draw the ball when he born . 
-	void drawBall()	
+	void drawBall()
 	{
 		gotoxy(p.getX(), p.getY());
 		draw();
@@ -53,6 +68,9 @@ public:
 		p.setY(p.getY() + dir_y);
 		draw();
 	}
+
+	friend class Game;
+	friend class Screen;
 };
 
 #endif 

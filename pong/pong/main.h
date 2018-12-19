@@ -4,7 +4,6 @@
 #include <iostream>
 using namespace std;
 
-#include "Ball.h"
-#include "Paddle.h"
+#include "Game.h"
 
 #endif // !main_h

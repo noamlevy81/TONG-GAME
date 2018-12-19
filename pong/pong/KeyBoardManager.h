@@ -2,6 +2,7 @@
 #define _KeyBoardManager_h
 
 #include <iostream>
+#include <conio.h>
 using namespace std;
 
 #include "Paddle.h"
