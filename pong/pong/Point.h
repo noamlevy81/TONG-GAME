@@ -41,8 +41,7 @@ public:
 
 	Point operator+(int toAdd) const
 	{
-		return Point(x + toAdd,y + toAdd,this->ch);
-	}
+		return Point(x + toAdd,y + toAdd,this->ch);	}
 };
 
 #endif

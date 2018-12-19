@@ -25,8 +25,8 @@ public:
 
 	void start()
 	{
-		leftPlayer.setKeys('q', 'a');				//default keys for left player . 
 		rightPlayer.setKeys('p', 'l');				//default keys for right player .
+		leftPlayer.setKeys('q', 'a');				//default keys for left player . 
 
 		while (true)
 		{
@@ -50,7 +50,6 @@ public:
 	}
 	void run();
 
-	//friend int printMenu();
 };
 
 #endif // ! Game_h
