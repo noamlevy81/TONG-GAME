@@ -26,6 +26,8 @@ class Ball
 	
 	void setDirX() {
 
+
+
 		if (Screen::isOnXBorder(p+dir_x))
 		{
 			if (Screen::isOnYOfThePaddles(p + dir_y , dir_x))

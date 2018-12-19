@@ -17,6 +17,6 @@ void Game ::run()
 	{
 		kbManager.handleKb();	//move paddles
 		ball.move();
-		Sleep(75);
+		Sleep(120);
 	}
 }
