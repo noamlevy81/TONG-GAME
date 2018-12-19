@@ -26,11 +26,9 @@ class Ball
 	
 	void setDirX() {
 
-
-
-		if (Screen::isOnXBorder(p+dir_x))
+		if (Screen::isOnXBorder(p.getX()+dir_x))
 		{
-			if (Screen::isOnYOfThePaddles(p + dir_y , dir_x))
+			if (Screen::isOnYOfThePaddles(p.getY() , dir_x)) 
 				dir_x *= -1;
 			else
 			{
@@ -41,6 +39,7 @@ class Ball
 		}
 	}
 
+
 	void setDirY() {
 		if (p.getY() + dir_y == Screen::TOP_BORDER || p.getY() + dir_y == Screen::BOTTOM_BORDER)
 			dir_y *= -1;
@@ -49,7 +48,7 @@ class Ball
 	//after calling this function dir x will be ok .
 
 public:
-	Ball(Point p1 = { 40,12,BALL_SHAPE }, int dir_x1 = 1, int dir_y1 =1) : p(p1), dir_x(dir_x1), dir_y(dir_y1) {
+	Ball(Point p1 = { 40,12,BALL_SHAPE }, int dir_x1 = -1, int dir_y1 =1) : p(p1), dir_x(dir_x1), dir_y(dir_y1) {
 		x_borders[LEFT_BORDER] = 4;
 		x_borders[RIGHT_BORDER] = 76;
 	}
@@ -66,7 +65,7 @@ public:
 		p.erase();
 		setDir();						//case hit the border we need to change the direction
 		p.setX(p.getX() + dir_x);
-		p.setY(p.getY()+dir_y); 
+		p.setY(p.getY()+dir_y);//----------------------------------dir y----------------------------- 
 		draw();
 	}
 

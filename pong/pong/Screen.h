@@ -18,20 +18,18 @@ public:
 		rightPaddle = second;
 	}
 
-	static bool isOnXBorder(Point  ball)
+	static bool isOnXBorder(int ballx)
 	{
-		return ball.getX() == leftPaddle->getX() || ball.getX() == rightPaddle->getX();
+		return ballx == leftPaddle->getX() || ballx == rightPaddle->getX();
 	}
 
-	static bool isOnYOfThePaddles(Point ball , int dirx)
+	static bool isOnYOfThePaddles(int ball_y , int dirx)
 	{
-		int ballCoord = ball.getY();
 		if (dirx == 1)
-			 return ballCoord >= rightPaddle->getY() && ballCoord<ballCoord+3;
+			 return ball_y-1 >= rightPaddle->getY() && rightPaddle->getY() <= ball_y +3;
 		else
-			return ballCoord >= leftPaddle->getY() && ballCoord < leftPaddle->getY() + 3;
+			return ball_y-1 >= leftPaddle->getY() && ball_y <= leftPaddle->getY() + 3;
 
-		
 
 	}
 	
