@@ -21,8 +21,6 @@ public:
 		, Paddle rplayer = { { 76,11 ,PADDLE_SHAPE }, { 76,13,PADDLE_SHAPE } })
 		:leftPlayer(lplayer), rightPlayer(rplayer) {}
 
-
-
 	void start()
 	{
 		rightPlayer.setKeys('p', 'l');				//default keys for right player .
@@ -30,6 +28,7 @@ public:
 
 		while (true)
 		{
+			Sleep(100);
 			int option = Menu::firstMenu();
 			switch (option)
 			{
@@ -48,6 +47,7 @@ public:
 			}
 		}
 	}
+
 	void run();
 
 };

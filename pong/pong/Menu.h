@@ -2,6 +2,8 @@
 #define Menu_h
 
 #include <iostream>
+#include <conio.h>
+
 using namespace std;
 #include "Paddle.h"
 
@@ -25,7 +27,12 @@ public:
 
 	static void instructions()
 	{
-		cout << "some instructions...";
+		cout << "welcome to pong-tetris game ,\n this is two players game , you should .... ";
+		cout << "\n enjoy - good luck .\n";
+		cout << "pres any key to continue\n";
+		char k = (_getch());
+		system("cls");
+
 	}
 
 	static void setUpKeys(Paddle& l, Paddle& r)
@@ -55,6 +62,9 @@ public:
 			cin >> temp[1];
 			r.setKeys(temp[0], temp[1]);
 		}
+		cout << "keys changed succesfully ";
+		Sleep(250);
+		system("cls");
 	}
 };
 

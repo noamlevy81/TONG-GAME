@@ -7,6 +7,7 @@ void Game ::run()
 	leftPlayer.drawPaddle();
 	rightPlayer.drawPaddle();
 	ball.drawBall();
+
 	kbManager.registerKeyBoardManager(&leftPlayer);
 	kbManager.registerKeyBoardManager(&rightPlayer);
 

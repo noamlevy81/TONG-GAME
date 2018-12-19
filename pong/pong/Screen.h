@@ -11,7 +11,6 @@ private :
 	static Point* leftPaddle;
 	static Point* rightPaddle;
 public:
-	//Screen(Point* first, Point* second): paddles[0](first ) , paddles[1](second) {} 
 
 	static void setPaddles(Point* first, Point* second)
 	{
