@@ -1,6 +1,6 @@
 #include "Game.h"
 
-void Game ::run()
+void Game::run()
 {
 	screen.printBoard();
 
@@ -16,18 +16,36 @@ void Game ::run()
 	while (true)
 	{
 		int choice = kbManager.handleKb();	//move paddles
-		if (choice == 1)
+		if (choice >=1 && choice <= 5 )
 		{
-			break;
-		}
-		if (choice == 3)
-		{
-			screen.printBoard();
-			leftPlayer.drawPaddle();
-			rightPlayer.drawPaddle();
-			ball.drawBall();
+			if (choice == 1)	//how to play .
+			{
+				Menu::instructions();
+			}
+			if (choice == 2)
+			{
+				initializeGame();
+			}
+			if (choice == 4)// set keys and continue 
+			{
+				Menu::setUpKeys(leftPlayer, rightPlayer);
+				updateKbManager();
+			}
+			if (choice == 5)	//exit . 
+			{
+				kbManager.clearKeysHistory();
+				exit(1);
+			}
+			drawGame();
 		}
 		ball.move();
-		Sleep(120);
+		Sleep(220);
 	}
 }
+
+
+
+
+
+
+		  

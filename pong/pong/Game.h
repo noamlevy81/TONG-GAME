@@ -10,6 +10,9 @@
 
 class Game
 {
+	enum rightPaddle { RIGHT_X = 76, RIGHT_UP_Y = 11, RIGHT_DOWN_Y = 13 };	//floor and ceilling borders
+	enum leftPaddle { LEFT_X = 4, LEFT_UP_Y = 10, LEFT_DOWN_Y = 12 };
+
 	Paddle leftPlayer;
 	Paddle rightPlayer;
 	Ball ball;
@@ -17,8 +20,8 @@ class Game
 	Screen screen;
 
 public:
-	Game(Paddle lplayer = { { 4,10,PADDLE_SHAPE }, { 4,12,PADDLE_SHAPE } }
-		, Paddle rplayer = { { 76,11 ,PADDLE_SHAPE }, { 76,13,PADDLE_SHAPE } })
+	Game(Paddle lplayer = { { LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,12,PADDLE_SHAPE } }
+		, Paddle rplayer = { { RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, {RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE } })
 		:leftPlayer(lplayer), rightPlayer(rplayer) {}
 
 	void start()
@@ -28,7 +31,6 @@ public:
 
 		while (true)
 		{
-			Sleep(100);
 			int option = Menu::firstMenu(false);
 			switch (option)
 			{
@@ -48,7 +50,30 @@ public:
 		}
 	}
 
+	void initializeGame()
+	{
+		rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
+		leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,12,PADDLE_SHAPE });
+
+		rightPlayer.setKeys('p', 'l');				//default keys for right player .
+		leftPlayer.setKeys('q', 'a');
+
+		ball = Ball();
+	}
 	void run();
+	void drawGame()
+	{
+		screen.printBoard();
+		leftPlayer.drawPaddle();
+		rightPlayer.drawPaddle();
+		ball.drawBall();
+	}
+	void updateKbManager()
+	{
+		kbManager.clearKeysHistory();
+		kbManager.registerKeyBoardManager(&leftPlayer);
+		kbManager.registerKeyBoardManager(&rightPlayer);
+	}
 
 };
 

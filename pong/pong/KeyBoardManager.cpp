@@ -15,21 +15,16 @@ void KeyBoardManager ::registerKeyBoardManager(Paddle* p)
 	}
 }
 
-int KeyBoardManager::handleKb()		//cahgne to int 
+int KeyBoardManager::handleKb()		
 {
 	if (_kbhit())
 	{
 		char key = (_getch());
-
 		if (key == Escape)
 		{
 			system("cls");
 			int choice = Menu::firstMenu(true);
 			return choice;
-			//case new game - new game from the begining - void run  - get out from loop .
-			//continue game - statys in the loop draw paddles and ball in their last places . 
-			// instructions - write the instructions and get in back ? 
-			//exit - exit . 
 		}
 		int index = getIndex(key);
 		if (index != -1)
@@ -39,6 +34,13 @@ int KeyBoardManager::handleKb()		//cahgne to int
 				p->handleKey(key);
 			}
 	}
-		return 1;
+		return 10;
+}
+
+void KeyBoardManager::clearKeysHistory(){
+	for(int i=0;i< NUM_OF_CHARS;i++)
+	{
+		objectsKeysMap[i].clear();
+	}
 }
 

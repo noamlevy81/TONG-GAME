@@ -30,6 +30,8 @@ public:
 
 	void registerKeyBoardManager(Paddle* p);
 	int handleKb();
+	void clearKeysHistory();
+
 };
 
 #endif

@@ -64,6 +64,9 @@ public:
 			cin >> temp[1];
 			r.setKeys(temp[0], temp[1]);
 		}
+
+		//update the list of the kbManager with the new keys . 
+
 		cout << "keys changed succesfully ";
 		Sleep(250);
 		system("cls");
