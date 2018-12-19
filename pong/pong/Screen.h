@@ -23,15 +23,20 @@ public:
 	{
 		return ball.getX() == leftPaddle->getX() || ball.getX() == rightPaddle->getX();
 	}
+
 	static bool isOnYOfThePaddles(Point ball , int dirx)
 	{
-		if (dirx = 1)
-		{
-			return (ball.getY() >= rightPaddle->getY() && ball.getY() <= (rightPaddle->getY() + 3));
-		}
+		int ballCoord = ball.getY();
+		bool b;
+		if (dirx == 1)
+			 b = ballCoord >= rightPaddle->getY() && ballCoord<ballCoord+3;
 		else
-			return (ball.getY() >= leftPaddle->getY() && ball.getY() <= (leftPaddle->getY() + 3));
+			b = ballCoord >= leftPaddle->getY() && ballCoord < leftPaddle->getY() + 3;
+
+		return b;
+
 	}
+	
 
 	void printBoard();
 
