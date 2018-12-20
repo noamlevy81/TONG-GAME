@@ -2,7 +2,6 @@
 #define Paddle_h 
 
 #include "Point.h"
-#include "Screen.h"
 
 const char PADDLE_SHAPE = '#';
 
@@ -12,15 +11,7 @@ class Paddle
 	Point down, up;
 	int dir_y = 1 ;
 	
-	void movePad(Point &first, Point & second)
-	{
-		if (up.getY() + dir_y != Screen::TOP_BORDER && down.getY() + dir_y != Screen::BOTTOM_BORDER){
-			first.erase();
-			first.move(0, dir_y);
-			second.move(0, dir_y);
-			second.draw();
-		}
-	}
+	void movePad(Point &first, Point & second);
 	
 public:
 	Paddle(Point up1, Point down1) :  up(up1),down(down1) {};
@@ -69,5 +60,7 @@ public:
 	}
 
 	friend class Game; 
+	friend class Screen;
+
 };
 #endif // !Paddle_h

@@ -32,9 +32,11 @@ class Ball
 				dir_x *= -1;
 			else
 			{
+				Screen::pushPaddle(dir_x);
+				Screen::setPointLost(true);
 				Sleep(75);//gameOver()
-				cout << "bye";
-				exit(1);
+				
+				
 			}
 		}
 	}
@@ -48,7 +50,7 @@ class Ball
 	//after calling this function dir x will be ok .
 
 public:
-	Ball(Point p1 = { 40,12,BALL_SHAPE }, int dir_x1 = -1, int dir_y1 =1) : p(p1), dir_x(dir_x1), dir_y(dir_y1) {
+	Ball(Point p1 = { 8,12,BALL_SHAPE }, int dir_x1 = -1, int dir_y1 =1) : p(p1), dir_x(dir_x1), dir_y(dir_y1) {//40
 		x_borders[LEFT_BORDER] = 4;
 		x_borders[RIGHT_BORDER] = 76;
 	}
@@ -65,7 +67,7 @@ public:
 		p.erase();
 		setDir();						//case hit the border we need to change the direction
 		p.setX(p.getX() + dir_x);
-		p.setY(p.getY()+dir_y);//----------------------------------dir y----------------------------- 
+		p.setY(p.getY()+dir_y);
 		draw();
 	}
 

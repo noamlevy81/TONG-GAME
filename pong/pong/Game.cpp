@@ -11,11 +11,13 @@ void Game::run()
 	kbManager.registerKeyBoardManager(&leftPlayer);
 	kbManager.registerKeyBoardManager(&rightPlayer);
 
-	screen.setPaddles(&(leftPlayer.up), &(rightPlayer.up));
+	screen.setPaddles(&(leftPlayer), &(rightPlayer));
 
 	while (true)
 	{
 		int choice = kbManager.handleKb();	//move paddles
+		if (Screen::ispointLost())
+			choice = 2;
 		if (choice >=1 && choice <= 5 )
 		{
 			if (choice == 1)	//how to play .
@@ -24,6 +26,7 @@ void Game::run()
 			}
 			if (choice == 2)
 			{
+				Screen::setPointLost(false);
 				initializeGame();
 			}
 			if (choice == 4)// set keys and continue 

@@ -1,18 +1,11 @@
 #include "Screen.h"
 
-Point* Screen::leftPaddle = nullptr;
-Point* Screen::rightPaddle = nullptr;
+Paddle* Screen::leftPaddle = nullptr;
+Paddle* Screen::rightPaddle = nullptr;
+bool Screen::pointLost = false;
 
 void Screen::printBoard()
 {
-	/*gotoxy(1, 4);
-		for (int i = 0; i < 80; i++)
-			cout << '-';
-
-	gotoxy(1, 24);
-	for (int i = 0; i < 80; i++)
-		cout << '-';*/
-
 	int x = 1;
 	int y = 4;
     //prints horizonal game borders
