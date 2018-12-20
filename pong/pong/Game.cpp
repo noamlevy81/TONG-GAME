@@ -2,23 +2,17 @@
 
 void Game::run()
 {
-	screen.printBoard();
-
-	leftPlayer.drawPaddle();
-	rightPlayer.drawPaddle();
-	ball.drawBall();
-
-	kbManager.registerKeyBoardManager(&leftPlayer);
-	kbManager.registerKeyBoardManager(&rightPlayer);
-
+	drawGame();
+	updateKbManager();
+	
 	screen.setPaddles(&(leftPlayer), &(rightPlayer));
 
 	while (true)
 	{
 		int choice = kbManager.handleKb();	//move paddles
 		if (Screen::ispointLost())
-			choice = 2;
-		if (choice >=1 && choice <= 5 )
+			choice = 6; 
+		if (choice >=1 && choice <= 6 )
 		{
 			if (choice == 1)	//how to play .
 			{
@@ -26,7 +20,6 @@ void Game::run()
 			}
 			if (choice == 2)
 			{
-				Screen::setPointLost(false);
 				initializeGame();
 			}
 			if (choice == 4)// set keys and continue 
@@ -39,9 +32,13 @@ void Game::run()
 				kbManager.clearKeysHistory();
 				exit(1);
 			}
+			if (choice == 6)
+			{
+				LoseOnePoint();
+			}
 			drawGame();
 		}
-		ball.move();
+		ball.move();		//in this function we could know about miss . 
 		Sleep(220);
 	}
 }

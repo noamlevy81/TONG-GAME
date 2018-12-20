@@ -10,3 +10,4 @@ void Paddle:: movePad(Point &first, Point & second)
 		second.draw();
 	}
 }
+

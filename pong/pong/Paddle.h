@@ -16,8 +16,16 @@ class Paddle
 public:
 	Paddle(Point up1, Point down1) :  up(up1),down(down1) {};
 
+	void erase() {
+		drawPaddle(' ');
+		/*
+		up.erase();
+		down.erase();
+		Point p = {up.getX(),up.getY()+1,PADDLE_SHAPE};		
+		p.erase();*/
+}
 	//this method draw the paddle at the first time . 
-	void drawPaddle() {
+	void drawPaddle(char figure=PADDLE_SHAPE) {
 
 		int times = down.getY() - up.getY()+1;
 
@@ -27,7 +35,7 @@ public:
 		for (int i = 0; i < times; i++)
 		{
 			gotoxy(indexX , indexY + i);
-			cout << PADDLE_SHAPE;
+			cout << figure;
 		}
 	}
 	void setKeys(char up, char down)
@@ -51,6 +59,7 @@ public:
 	{
 		return keys;
 	}
+
 	void handleKey(char key){
 		if (key == keys[0])				//move up 
 			dir_y = -1;
