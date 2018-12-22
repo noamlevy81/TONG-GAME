@@ -34,7 +34,6 @@ class Ball
 			{
 				Screen::pushPaddle(dir_x);
 				Screen::setPointLost(true);
-				Sleep(75);//gameOver()
 			}
 		}
 	}
@@ -48,7 +47,7 @@ class Ball
 	//after calling this function dir x will be ok .
 
 public:
-	Ball(Point p1 = { 40,12,BALL_SHAPE }, int dir_x1 = -1, int dir_y1 = 1) : p(p1), dir_x(dir_x1), dir_y(dir_y1) {
+	Ball(Point p1 = { 60,5,BALL_SHAPE }, int dir_x1 = 1, int dir_y1 = 1) : p(p1), dir_x(dir_x1), dir_y(dir_y1) {//40  5
 		x_borders[LEFT_BORDER] = 4;
 		x_borders[RIGHT_BORDER] = 76;
 	}

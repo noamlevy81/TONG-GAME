@@ -2,12 +2,11 @@
 #define Game_h
 
 #include "windows.h"
-
 #include "Paddle.h"
 #include "Ball.h"
 #include "KeyBoardManager.h"
 #include "Menu.h"
-
+#include "Tetris.h"
 
 class Game
 {
@@ -17,7 +16,7 @@ class Game
 	Ball ball;
 	KeyBoardManager kbManager;
 	Screen screen;
-
+	
 public:
 	Game(Paddle lplayer = { { LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,12,PADDLE_SHAPE } }
 		, Paddle rplayer = { { RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, {RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE } })
@@ -53,7 +52,7 @@ public:
 	{
 		rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
 		leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,12,PADDLE_SHAPE });
-
+		Tetris left, right;
 		rightPlayer.setKeys('p', 'l');				//default keys for right player .
 		leftPlayer.setKeys('q', 'a');
 
