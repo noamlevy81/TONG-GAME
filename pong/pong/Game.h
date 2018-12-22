@@ -75,7 +75,7 @@ public:
 
 	void LoseOnePoint()
 	{
-		ball.erase();
+		ball.eraseBall();
 		ball = Ball();
 
 		Screen::setPointLost(false);

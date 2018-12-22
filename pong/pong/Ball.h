@@ -38,14 +38,13 @@ class Ball {
 	{
 		if (dir_x == 1)
 		{
-			if (Screen::isOnXBorder(ballPoints.at(5).getX() + dir_x))
+			if (Screen::isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))
 			{
-				if (Screen::isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x))
+				if (Screen::isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))
 					dir_x *= -1;
-
 				else if (dir_y == 1)
 				{
-					if (Screen::isOnYCornerofTheRightPaddlesComeFromUp(ballPoints.at(7).getY(), dir_y))
+					if (Screen::isOnYCornerofTheRightPaddlesComeFromUp(ballPoints.at(7).getY() +dir_y, dir_y))
 					{
 						dir_x *= -1;
 						dir_y *= -1;
@@ -56,7 +55,7 @@ class Ball {
 						Screen::setPointLost(true);
 					}
 				}
-				else if (Screen::isOnYCornerofTheRightPaddlesComeFromDown(ballPoints.at(1).getY(), dir_y))
+				else if (Screen::isOnYCornerofTheRightPaddlesComeFromDown(ballPoints.at(1).getY()+dir_y, dir_y))
 				{
 					dir_x *= -1;
 					dir_y *= -1;
@@ -71,14 +70,14 @@ class Ball {
 
 		else                       //dir_x is -1 means that we goes left . 
 		{
-			if (Screen::isOnXBorder(ballPoints.at(2).getX() + dir_x))
+			if (Screen::isOnXBorder(ballPoints.at(2).getX() + dir_x, dir_x))
 			{
-				if (Screen::isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x))		// if on y just dir_x *= -1 .
+				if (Screen::isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x, dir_y))		// if on y just dir_x *= -1 .
 					dir_x *= -1;
 
 				else if (dir_y == 1)					//check corner come from up
 				{
-					if (Screen::isOnYCornerofTheLeftPaddlesComeFromUp(ballPoints.at(6).getY(), dir_y))
+					if (Screen::isOnYCornerofTheLeftPaddlesComeFromUp(ballPoints.at(6).getY()+dir_y, dir_y))
 					{
 						dir_x *= -1;
 						dir_y *= -1;
@@ -89,7 +88,7 @@ class Ball {
 						Screen::setPointLost(true);
 					}
 				}
-				else if (Screen::isOnYCornerofTheLeftPaddlesComeFromUp(ballPoints.at(6).getY(), dir_y)) // (dir_y == -1) // means come from down 
+				else if (Screen::isOnYCornerofTheLeftPaddlesComeFromDown(ballPoints.at(0).getY()+ dir_y, dir_y)) // (dir_y == -1) // means come from down 
 				{
 					dir_x *= -1;
 					dir_y *= -1;

@@ -1,38 +1,8 @@
 #include "Tetris.h"
-//
-//void Tetris::addToTetris(Paddle toAdd,int to)
-//{
-//	int begin_x = toAdd.up.getX();	//gets the first x val when player lost
-//	int arrIndex;					//will get the value of the indices in the array
-//	int x_limit;					//gets the value of the x border
-//	int change_x = -1;
-//	
-//	bool added = false;
-//	for(int loopIndex = begin_x-1;loopIndex>=0;loopIndex--)
-//	{
-//		for(auto p : boards_history[loopIndex])
-//			if (colisionMade(toAdd.up.getY(), p.up.getY()))
-//			{
-//				boards_history[arrIndex - loopIndex].push_back(toAdd);
-//				lists_sizes[arrIndex - loopIndex]++;
-//				break;
-//			}
-//
-//		toAdd.erase();
-//		toAdd.down.setX(toAdd.down.getX() + change_x);
-//		toAdd.up.setX(toAdd.up.getX() + change_x);
-//		toAdd.drawPaddle();
-//		Sleep(50);
-//	
-//	}
-//	if (toAdd.up.getX() + change_x == x_limit) {
-//		boards_history[arrIndex - loopIndex].push_back(toAdd);
-//		lists_sizes[arrIndex - loopIndex]++;
-//	}
-//}
+
 void Tetris::addToRightTetris(Paddle toAdd)
 {
-	while (toAdd.up.getX() < 62) //arr[0] is on x = 62
+	while (toAdd.up.getX() < 62)				//arr[0] is on x = 62
 	{
 		movePaddleBack(toAdd, 1);
 		Sleep(50);
