@@ -1,44 +1,14 @@
 #include "Tetris.h"
-//
-//void Tetris::addToTetris(Paddle toAdd,int to)
-//{
-//	int begin_x = toAdd.up.getX();	//gets the first x val when player lost
-//	int arrIndex;					//will get the value of the indices in the array
-//	int x_limit;					//gets the value of the x border
-//	int change_x = -1;
-//	
-//	bool added = false;
-//	for(int loopIndex = begin_x-1;loopIndex>=0;loopIndex--)
-//	{
-//		for(auto p : boards_history[loopIndex])
-//			if (colisionMade(toAdd.up.getY(), p.up.getY()))
-//			{
-//				boards_history[arrIndex - loopIndex].push_back(toAdd);
-//				lists_sizes[arrIndex - loopIndex]++;
-//				break;
-//			}
-//
-//		toAdd.erase();
-//		toAdd.down.setX(toAdd.down.getX() + change_x);
-//		toAdd.up.setX(toAdd.up.getX() + change_x);
-//		toAdd.drawPaddle();
-//		Sleep(50);
-//	
-//	}
-//	if (toAdd.up.getX() + change_x == x_limit) {
-//		boards_history[arrIndex - loopIndex].push_back(toAdd);
-//		lists_sizes[arrIndex - loopIndex]++;
-//	}
-//}
+
 void Tetris::addToRightTetris(Paddle toAdd)
 {
-	while (toAdd.up.getX() < 62) //arr[0] is on x = 62
+	while (toAdd.up.getX() < 63) //arr[0] is on x = 63
 	{
 		movePaddleBack(toAdd, 1);
 		Sleep(50);
-	}//x >=62 when exit loop
+	}//x >=63 when exit loop
 
-	int i = toAdd.up.getX() - 62;
+	int i = toAdd.up.getX() - 63;
 
 	for (i; i < 16; i++)
 	{
@@ -54,18 +24,20 @@ void Tetris::addToRightTetris(Paddle toAdd)
 	{
 		boards_history[15].push_back(toAdd);
 	}
+	if (boards_history[i - 1].size() == 7)
+		deleteLineRight(i - 1);
 }
 void Tetris::addToLeftTetris(Paddle toAdd)
 {
 
-	while (toAdd.up.getX() > MAX_LOSES + 2)
-	//arr[15] is on x = 17 = MAX_LOSES+1 so we want to check colisions only when the paddle x is on this position
+	while (toAdd.up.getX() > MAX_LOSES + 1)
+	//arr[15] is on x = 16 = MAX_LOSES+1 so we want to check colisions only when the paddle x is on this position
 	{
 		movePaddleBack(toAdd, -1);
 		Sleep(50);
-	}//x <=18 when exit loop
+	}//x <=17 when exit loop
 
-	int i = toAdd.up.getX()-3;				// x = i+2 and we want to check the paddle next step which is x-3
+	int i = toAdd.up.getX()-2;				// x = i+1 and we want to check the paddle next step which is x-2
 	for (i; i >= 0; i--)
 	{
 		if (collisionMade(i,toAdd.up.getY()))
@@ -80,6 +52,10 @@ void Tetris::addToLeftTetris(Paddle toAdd)
 	//case was no collision add to arr[0]
 	if (i == -1)
 		boards_history[0].push_back(toAdd);
+
+	if (boards_history[i + 1].size() == 7)
+		deleteLineLeft(i + 1);
+
 }
 
 
@@ -90,9 +66,40 @@ bool Tetris::collisionMade(int index,int toAdd_y_val) {
 
 	return false;
 }
-//-------------------------needs to be added to the resume part--------------------------
 void Tetris::printTetris() {
 	for (int arrInd=0; arrInd <MAX_LOSES; arrInd++)
 		for (auto listIt : boards_history[arrInd])
 			listIt.drawPaddle();
+}
+
+void Tetris::deleteLineLeft(int ind)
+{
+	for (auto iterator : boards_history[ind])
+	{
+		iterator.erase();
+	}
+	boards_history[ind].clear();
+	for (int i = ind; i < 15; i++) {
+		boards_history[i] = boards_history[i + 1];
+		for (auto iterator : boards_history[i])
+		{
+			movePaddleBack(iterator, -1);
+		}
+	}
+}
+
+void Tetris::deleteLineRight(int ind)
+{
+	for (auto iterator : boards_history[ind])
+	{
+		iterator.erase();
+	}
+	boards_history[ind].clear();
+	for (int i = ind; i >0; i--) {
+		boards_history[i] = boards_history[i - 1];
+		for (auto iterator : boards_history[i])
+		{
+			movePaddleBack(iterator, 1);
+		}
+	}
 }

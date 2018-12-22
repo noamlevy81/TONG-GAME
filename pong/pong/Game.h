@@ -62,6 +62,7 @@ public:
 	void drawGame()
 	{
 		screen.printBoard();
+		screen.printTetris();
 		leftPlayer.drawPaddle();
 		rightPlayer.drawPaddle();
 		ball.drawBall();
@@ -75,7 +76,7 @@ public:
 
 	void LoseOnePoint()
 	{
-		ball.erase();
+		ball.eraseBall();
 		ball = Ball();
 
 		Screen::setPointLost(false);

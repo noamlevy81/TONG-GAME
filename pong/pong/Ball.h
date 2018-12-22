@@ -85,6 +85,7 @@ class Ball {
 					}
 					else
 					{
+						
 						Screen::pushPaddle(dir_x);
 						Screen::setPointLost(true);
 					}

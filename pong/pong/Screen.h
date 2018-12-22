@@ -17,7 +17,7 @@ private :
 	static Paddle* leftPaddle;
 	static Paddle* rightPaddle;
 	static bool pointLost;
-	static Tetris left;//---------------------------added for check--------------------------------
+	static Tetris left,right;
 public:
 
 	static void setPaddles(Paddle* first, Paddle* second)
@@ -27,7 +27,13 @@ public:
 	}
 	static void pushPaddle(int ballDirX)					// this method update the x value of the paddle in case of lose one point 
 	{	
-		left.addToRightTetris(*rightPaddle); //------------------------------added for check-----------------------------
+		if (ballDirX == 1)
+			right.addToRightTetris(*rightPaddle);
+		else
+			left.addToLeftTetris(*leftPaddle);
+
+
+
 		leftPaddle->erase();
 		rightPaddle->erase();
 
@@ -98,9 +104,14 @@ public:
 	}
 
 	void printBoard();	
+	void printTetris()
+	{
+		left.printTetris();
+		right.printTetris();
 
-	enum yLimints { TOP_BORDER = 4, BOTTOM_BORDER = 24 };	//floor and ceilling borders
-	enum xLimits { LEFT_BORDER = 1, RIGHT_BORDER = 79 };
+	}
+	enum yLimints { TOP_BORDER = 3, BOTTOM_BORDER = 25 };	//floor and ceilling borders
+	enum xLimits { LEFT_BORDER = 0, RIGHT_BORDER = 80 };
 		
 };
 
