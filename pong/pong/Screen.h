@@ -7,6 +7,9 @@ using namespace std;
 #include "Point.h"
 #include "Paddle.h"
 #include "Utils.h"
+#include <iostream>
+#include "Tetris.h"
+using namespace std;
 
 class Screen
 {
@@ -14,6 +17,7 @@ private :
 	static Paddle* leftPaddle;
 	static Paddle* rightPaddle;
 	static bool pointLost;
+	static Tetris left;//---------------------------added for check--------------------------------
 public:
 
 	static void setPaddles(Paddle* first, Paddle* second)
@@ -23,6 +27,7 @@ public:
 	}
 	static void pushPaddle(int ballDirX)					// this method update the x value of the paddle in case of lose one point 
 	{	
+		left.addToRightTetris(*rightPaddle); //------------------------------added for check-----------------------------
 		leftPaddle->erase();
 		rightPaddle->erase();
 
@@ -37,6 +42,7 @@ public:
 			leftPaddle->up.setX(leftPaddle->up.getX() + 1);
 			leftPaddle->down.setX(leftPaddle->down.getX() + 1);
 		}
+		returnYPaddlesToDeafult();
 	}
 
 	static void returnYPaddlesToDeafult()

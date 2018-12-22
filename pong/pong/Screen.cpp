@@ -2,6 +2,9 @@
 
 Paddle* Screen::leftPaddle = nullptr;
 Paddle* Screen::rightPaddle = nullptr;
+
+Tetris Screen::left = Tetris();//--------------------------added for check-----------------------
+
 bool Screen::pointLost = false;
 
 void Screen::printBoard()

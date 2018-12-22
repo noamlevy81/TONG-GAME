@@ -65,6 +65,7 @@ public:
 
 	friend class Game;
 	friend class Screen;
+	friend class Tetris;
 
 };
 #endif // !Paddle_h

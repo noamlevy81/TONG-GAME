@@ -123,6 +123,7 @@
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Tetris.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +135,7 @@
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Tetris.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
