@@ -1,17 +1,15 @@
 #ifndef  Game_h
 #define Game_h
 
+#include "Screen.h"
 #include "windows.h"
-
 #include "Paddle.h"
 #include "Ball.h"
 #include "KeyBoardManager.h"
 #include "Menu.h"
 
-
 class Game
 {
-
 	Paddle leftPlayer;
 	Paddle rightPlayer;
 	Ball ball;
@@ -76,7 +74,7 @@ public:
 
 	void LoseOnePoint()
 	{
-		ball.erase();
+		ball.eraseBall();
 		ball = Ball();
 
 		Screen::setPointLost(false);
