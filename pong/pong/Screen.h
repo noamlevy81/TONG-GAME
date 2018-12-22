@@ -17,7 +17,7 @@ private:
 	static Paddle* leftPaddle;
 	static Paddle* rightPaddle;
 	static bool pointLost;
-	static Tetris left;						//---------------------------added for check--------------------------------
+	static Tetris left,right;						//---------------------------added for check--------------------------------
 public:
 
 	static void setPaddles(Paddle* first, Paddle* second)
@@ -25,9 +25,14 @@ public:
 		leftPaddle = first;
 		rightPaddle = second;
 	}
+
 	static void pushPaddle(int ballDirX)					// this method update the x value of the paddle in case of lose one point 
 	{
-		left.addToRightTetris(*rightPaddle); //------------------------------added for check-----------------------------
+		if (ballDirX == 1)
+			right.addToRightTetris(*rightPaddle);
+		else
+			left.addToLeftTetris(*leftPaddle);
+
 		leftPaddle->erase();
 		rightPaddle->erase();
 
@@ -35,14 +40,33 @@ public:
 		{
 			rightPaddle->up.setX(rightPaddle->up.getX() - 1);
 			rightPaddle->down.setX(rightPaddle->down.getX() - 1);
-
+			
 		}
 		else
 		{
 			leftPaddle->up.setX(leftPaddle->up.getX() + 1);
 			leftPaddle->down.setX(leftPaddle->down.getX() + 1);
+			
+
 		}
+
 		returnYPaddlesToDeafult();
+	}
+
+	static void pushFiveSteps (int to)
+	{
+		if (to == 1 )
+		{
+			rightPaddle->erase();
+			rightPaddle->up.setX(rightPaddle->up.getX() + 5);
+			rightPaddle->down.setX(rightPaddle->down.getX() + 5);
+		}
+		else
+		{
+			leftPaddle->erase();
+			leftPaddle->up.setX(leftPaddle->up.getX() -5);
+			leftPaddle->down.setX(leftPaddle->down.getX() -5);
+		}
 	}
 
 	static void returnYPaddlesToDeafult()
@@ -72,11 +96,11 @@ public:
 	}
 
 	//get the dirx for knows with which paddle to check and the dir y for add it to the ball coordinate .
-	static bool isOnYOfThePaddles(int ball_y, int dirx ,int diry)			{
+	static bool isOnYOfThePaddles(int ball_y, int dirx, int diry) {
 		if (dirx == 1)
-			return ball_y+diry >= rightPaddle->up.getY() && ball_y + diry <= rightPaddle->up.getY()+2  ;
+			return ball_y + diry >= rightPaddle->up.getY() && ball_y + diry <= rightPaddle->up.getY() + 2;
 		else
-			return ball_y+diry >= leftPaddle->up.getY() && ball_y+diry <= leftPaddle->up.getY() + 2;
+			return ball_y + diry >= leftPaddle->up.getY() && ball_y + diry <= leftPaddle->up.getY() + 2;
 	}
 
 	//------------check corner of the right player --------//
@@ -92,7 +116,6 @@ public:
 	//------------check corner of the left paddle --------//
 	static bool isOnYCornerofTheLeftPaddlesComeFromUp(int ball_y, int dirx)	//that check the case that we are going right and if on corner we get the right down point
 	{
-
 		return (ball_y == leftPaddle->up.getY() || ball_y + 1 == leftPaddle->up.getY());
 	}
 	static bool isOnYCornerofTheLeftPaddlesComeFromDown(int ball_y, int dirx)
@@ -100,11 +123,22 @@ public:
 		return (ball_y == leftPaddle->down.getY() || ball_y - 1 == leftPaddle->down.getY());
 	}
 
+	void printTetris()
+	{
+		left.printTetris();
+		right.printTetris();
+	}
+	static void freeTetris()
+	{
+		left.free();
+		right.free();
+	}
 	void printBoard();
 
-	enum yLimints { TOP_BORDER = 4, BOTTOM_BORDER = 24 };	//floor and ceilling borders
-	enum xLimits { LEFT_BORDER = 1, RIGHT_BORDER = 79 };
+	enum yLimints { TOP_BORDER = 3, BOTTOM_BORDER = 25 };	//floor and ceilling borders
+	enum xLimits { LEFT_BORDER = 0, RIGHT_BORDER = 80 };
 
 };
 
 #endif // !Screen_h
+

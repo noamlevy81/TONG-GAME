@@ -25,6 +25,7 @@ class Ball {
 		ballPoints.push_back({ 39,13,'O' });
 		ballPoints.push_back({ 40,13,'O' });
 	}
+
 	void draw() {
 		for (int i = 0; i < NUM_POINTS; i++)
 			ballPoints.at(i).draw();
@@ -84,6 +85,7 @@ class Ball {
 					}
 					else
 					{
+						
 						Screen::pushPaddle(dir_x);
 						Screen::setPointLost(true);
 					}
@@ -120,6 +122,7 @@ public:
 		initalizeBall();
 		draw();
 	}
+
 	void move()
 	{
 		eraseBall();

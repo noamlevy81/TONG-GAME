@@ -13,6 +13,7 @@ public:
 
 	static int firstMenu(bool pause)
 	{
+		system("cls"); 
 		int choice;
 		cout << "MENU:\n";
 		cout << "Choose one of the following:\n";
@@ -34,6 +35,23 @@ public:
 		cout << "pres any key to continue\n";
 		char k = (_getch());
 		system("cls");
+
+	}
+
+	static void gameOver(int side)
+	{
+		system("cls");
+		if (side == LEFT)
+		{
+			cout << "right player win !! ";
+		}
+		else
+		{
+			cout << "left player win !! ";
+		}
+		cout << endl; 
+		cout << "press any key to continue ";
+		char ch = _getch();
 
 	}
 

@@ -4,22 +4,25 @@
 #include "Paddle.h"
 #include "Point.h"
 #include <iostream>
+#include "Utils.h"
+
 using namespace std;
 class Tetris
 {
 	enum {MAX_LOSES=16};
-	enum {LEFT,RIGHT};
 	list<Paddle> boards_history[MAX_LOSES];
-	int lists_sizes[MAX_LOSES] = { 0 };
 
 public:
-	//void addToTetris(Paddle toAdd, int to);
 	void addToLeftTetris(Paddle toAdd);
 	void addToRightTetris(Paddle toAdd);
+	void deleteLineLeft(int ind);
+	void deleteLineRight(int ind);
+
 
 	bool collisionMade(int index, int toAdd_y_val);
 	void printTetris();
-	
+	void free();
+
 	void movePaddleBack(Paddle& toAdd,int dir)
 	{
 		toAdd.erase();
@@ -28,8 +31,6 @@ public:
 		toAdd.drawPaddle();
 		Sleep(50);
 	}
-
-	
 
 
 };

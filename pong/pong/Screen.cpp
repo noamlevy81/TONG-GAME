@@ -5,7 +5,8 @@ using namespace std ;
 Paddle* Screen::leftPaddle = nullptr;
 Paddle* Screen::rightPaddle = nullptr;
 
-Tetris Screen::left = Tetris();//--------------------------added for check-----------------------
+Tetris Screen::left = Tetris();
+Tetris Screen::right = Tetris();
 
 bool Screen::pointLost = false;
 
@@ -25,15 +26,15 @@ void Screen::printBoard()
 		cout << "-";
 	}
 
-	x = 1;
-	y = 5;
+	x = 0;
+	y = 4;
     //prints vertical game borders
-	for (int i = 0; i < 38; i++)
+	for (int i = 0; i < 42; i++)
 	{
-		if (i == 19)
+		if (i == 21)
 		{
-			x = 79;
-			y -= 19;
+			x = 80;
+			y -= 21;
 		}
 		gotoxy(x, y + i);
 		cout << '|';

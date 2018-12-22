@@ -4,7 +4,6 @@ void Game::run()
 {
 	drawGame();
 	updateKbManager();
-	
 	screen.setPaddles(&(leftPlayer), &(rightPlayer));
 
 	while (true)
@@ -34,12 +33,17 @@ void Game::run()
 			}
 			if (choice == 6)
 			{
-				LoseOnePoint();
+				if (LoseOnePoint())
+				{
+					initializeGame();
+					break;
+				}
 			}
+
 			drawGame();
 		}
 		ball.move();		//in this function we could know about miss . 
-		Sleep(80);
+		Sleep(10);
 	}
 }
 
