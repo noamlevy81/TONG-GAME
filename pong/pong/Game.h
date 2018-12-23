@@ -7,6 +7,7 @@
 #include "KeyBoardManager.h"
 #include "Menu.h"
 #include "Tetris.h"
+#include "Utils.h"
 
 class Game
 {
@@ -25,8 +26,9 @@ public:
 	void start()
 	{
 		rightPlayer.setKeys('p', 'l');				//default keys for right player .
-		leftPlayer.setKeys('q', 'a');				//default keys for left player . 
-
+		leftPlayer.setKeys('q', 'a');	//default keys for left player . 
+	
+		ShowConsoleCursor(false);
 		while (true)
 		{
 			int option = Menu::firstMenu(false);
@@ -109,5 +111,6 @@ public:
 		return false;
 	}
 };
+
 
 #endif // ! Game_h

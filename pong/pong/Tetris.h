@@ -29,7 +29,7 @@ public:
 		toAdd.down.setX(toAdd.down.getX() + dir);
 		toAdd.up.setX(toAdd.up.getX() + dir);
 		toAdd.drawPaddle();
-		Sleep(50);
+		Sleep(10);
 	}
 
 

@@ -6,7 +6,7 @@ void Tetris::addToRightTetris(Paddle toAdd)
 	while (toAdd.up.getX() < 63) //arr[0] is on x = 63
 	{
 		movePaddleBack(toAdd, 1);
-		Sleep(50);
+		
 	}//x >=63 when exit loop
 
 	int i = toAdd.up.getX() - 63;
@@ -19,7 +19,7 @@ void Tetris::addToRightTetris(Paddle toAdd)
 			break;
 		}
 		movePaddleBack(toAdd, 1);
-		Sleep(50);
+	
 	}
 	if (i == 16)
 	{
