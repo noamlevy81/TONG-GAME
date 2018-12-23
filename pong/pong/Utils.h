@@ -8,14 +8,8 @@ BOOL gotoxy(const WORD x, const WORD y);
 	enum leftPaddle { LEFT_X = 4, LEFT_UP_Y = 10, LEFT_DOWN_Y = 12 };
 	enum Sides{LEFT , RIGHT};
 
-void ShowConsoleCursor(bool showFlag)
-{
-	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	CONSOLE_CURSOR_INFO     cursorInfo;
 
-	GetConsoleCursorInfo(out, &cursorInfo);
-	cursorInfo.bVisible = showFlag;
-	SetConsoleCursorInfo(out, &cursorInfo);
-}
+	void ShowConsoleCursor(bool showFlag);
+
 #endif // ! Utils+h

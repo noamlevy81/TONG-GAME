@@ -44,10 +44,10 @@ void Screen::printBoard()
 	}
 
 	gotoxy(10, 2);
-	cout << scoreLeft;
+	cout << "live " << scoreLeft;
 
 	gotoxy(50, 2);
-	cout << scoreRight;
+	cout << "live " << scoreRight;
 
 
 }

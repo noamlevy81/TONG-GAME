@@ -3,10 +3,13 @@
 
 void Tetris::addToRightTetris(Paddle toAdd)
 {
+
 	while (toAdd.up.getX() < 63) //arr[0] is on x = 63
 	{
+
 		movePaddleBack(toAdd, 1);
 		
+
 	}//x >=63 when exit loop
 
 	int i = toAdd.up.getX() - 63;

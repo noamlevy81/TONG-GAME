@@ -23,7 +23,7 @@ public:
 	void drawPaddle(char figure = PADDLE_SHAPE) {
 
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleTextAttribute(h, FOREGROUND_RED);
+		SetConsoleTextAttribute(h, FOREGROUND_BLUE);
 
 		int times = down.getY() - up.getY() + 1;
 
@@ -45,7 +45,7 @@ public:
 	void move()
 	{
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleTextAttribute(h, FOREGROUND_RED);
+		SetConsoleTextAttribute(h, FOREGROUND_BLUE);
 
 		if (dir_y == 1)
 		{
@@ -53,7 +53,11 @@ public:
 		}
 		else
 		{
+			HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+			SetConsoleTextAttribute(h, FOREGROUND_BLUE);
+
 			movePad(down, up);
+
 		}
 		SetConsoleTextAttribute(h, 15);
 	}

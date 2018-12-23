@@ -5,7 +5,7 @@
 #include "Screen.h"
 #include "Point.h"
 #include <vector>
-
+#include <math.h>
 
 enum { NUM_POINTS = 8 };
 const char BALL_SHAPE = 'O';
@@ -34,7 +34,7 @@ class Ball {
 		for (int i = 0; i < NUM_POINTS; i++)
 			ballPoints.at(i).draw();
 
-		SetConsoleTextAttribute(h,15);
+		SetConsoleTextAttribute(h, 15);
 
 	}
 	void setDir() {
@@ -50,20 +50,8 @@ class Ball {
 			{
 				if (Screen::isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))
 					dir_x *= -1;
-				else if (dir_y == 1)
-				{
-					if (Screen::isOnYCornerofTheRightPaddlesComeFromUp(ballPoints.at(7).getY() +dir_y, dir_y))
-					{
-						dir_x *= -1;
-						dir_y *= -1;
-					}
-					else
-					{
-						Screen::pushPaddle(dir_x);
-						Screen::setPointLost(true);
-					}
-				}
-				else if (Screen::isOnYCornerofTheRightPaddlesComeFromDown(ballPoints.at(1).getY()+dir_y, dir_y))
+
+				else if (Screen::isOnYCornerofTheRightPaddle(ballPoints.at(5).getY() + dir_y, dir_y))
 				{
 					dir_x *= -1;
 					dir_y *= -1;
@@ -80,24 +68,12 @@ class Ball {
 		{
 			if (Screen::isOnXBorder(ballPoints.at(2).getX() + dir_x, dir_x))
 			{
-				if (Screen::isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x, dir_y))		// if on y just dir_x *= -1 .
-					dir_x *= -1;
-
-				else if (dir_y == 1)					//check corner come from up
+				// if on y just dir_x *= -1 .
+				if (Screen::isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x, dir_y))
 				{
-					if (Screen::isOnYCornerofTheLeftPaddlesComeFromUp(ballPoints.at(6).getY()+dir_y, dir_y))
-					{
-						dir_x *= -1;
-						dir_y *= -1;
-					}
-					else
-					{
-						
-						Screen::pushPaddle(dir_x);
-						Screen::setPointLost(true);
-					}
+					dir_x *= -1;
 				}
-				else if (Screen::isOnYCornerofTheLeftPaddlesComeFromDown(ballPoints.at(0).getY()+ dir_y, dir_y)) // (dir_y == -1) // means come from down 
+				else if (Screen::isOnYCornerofTheLeftPaddle(ballPoints.at(2).getY() + dir_y, dir_y))
 				{
 					dir_x *= -1;
 					dir_y *= -1;
@@ -118,7 +94,7 @@ class Ball {
 	}
 
 public:
-	Ball(int dir_x1 = -1, int dir_y1 = 1) : dir_x(dir_x1), dir_y(dir_y1)
+	Ball(int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) : dir_x(dir_x1), dir_y(dir_y1)
 	{
 		initalizeBall();
 	}

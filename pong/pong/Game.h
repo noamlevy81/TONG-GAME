@@ -29,6 +29,7 @@ public:
 		leftPlayer.setKeys('q', 'a');	//default keys for left player . 
 	
 		ShowConsoleCursor(false);
+
 		while (true)
 		{
 			int option = Menu::firstMenu(false);
