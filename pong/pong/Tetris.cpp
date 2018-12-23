@@ -97,9 +97,11 @@ void Tetris::deleteLineLeft(int ind)
 	boards_history[ind].clear();
 	for (int i = ind; i < 15; i++) {
 		boards_history[i] = boards_history[i + 1];
-		for (auto iterator : boards_history[i])
+		boards_history[i+1].clear();
+		for (auto& iterator : boards_history[i])
 		{
 			movePaddleBack(iterator, -1);
+			iterator.erase();
 		}
 	}
 }
@@ -113,9 +115,11 @@ void Tetris::deleteLineRight(int ind)
 	boards_history[ind].clear();
 	for (int i = ind; i >0; i--) {
 		boards_history[i] = boards_history[i - 1];
-		for (auto iterator : boards_history[i])
+		boards_history[i - 1].clear();
+		for (auto& iterator : boards_history[i])
 		{
 			movePaddleBack(iterator, 1);
+			
 		}
 	}
 }
