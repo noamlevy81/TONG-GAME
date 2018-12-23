@@ -22,6 +22,9 @@ public:
 
 	void drawPaddle(char figure = PADDLE_SHAPE) {
 
+		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(h, FOREGROUND_RED);
+
 		int times = down.getY() - up.getY() + 1;
 
 		int indexX = up.getX();
@@ -32,6 +35,7 @@ public:
 			gotoxy(indexX, indexY + i);
 			cout << figure;
 		}
+		SetConsoleTextAttribute(h, 15);
 	}
 	void setKeys(char up, char down)
 	{
@@ -40,6 +44,9 @@ public:
 	}
 	void move()
 	{
+		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(h, FOREGROUND_RED);
+
 		if (dir_y == 1)
 		{
 			movePad(up, down);
@@ -48,6 +55,7 @@ public:
 		{
 			movePad(down, up);
 		}
+		SetConsoleTextAttribute(h, 15);
 	}
 
 	const char* getChars()

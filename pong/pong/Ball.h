@@ -1,9 +1,11 @@
 #ifndef _Ball_h
 #define _Ball_h
 
+#include "windows.h"
 #include "Screen.h"
 #include "Point.h"
 #include <vector>
+
 
 enum { NUM_POINTS = 8 };
 const char BALL_SHAPE = 'O';
@@ -27,8 +29,13 @@ class Ball {
 	}
 
 	void draw() {
+		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleTextAttribute(h, FOREGROUND_RED);
 		for (int i = 0; i < NUM_POINTS; i++)
 			ballPoints.at(i).draw();
+
+		SetConsoleTextAttribute(h,15);
+
 	}
 	void setDir() {
 		setDirY();

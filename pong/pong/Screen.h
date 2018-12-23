@@ -14,10 +14,13 @@ using namespace std;
 class Screen
 {
 private:
+
+	static int scoreLeft;
+	static int scoreRight;
 	static Paddle* leftPaddle;
 	static Paddle* rightPaddle;
 	static bool pointLost;
-	static Tetris left,right;						//---------------------------added for check--------------------------------
+	static Tetris left, right;						//---------------------------added for check--------------------------------
 public:
 
 	static void setPaddles(Paddle* first, Paddle* second)
@@ -40,22 +43,21 @@ public:
 		{
 			rightPaddle->up.setX(rightPaddle->up.getX() - 1);
 			rightPaddle->down.setX(rightPaddle->down.getX() - 1);
-			
+			scoreRight--;
 		}
 		else
 		{
 			leftPaddle->up.setX(leftPaddle->up.getX() + 1);
 			leftPaddle->down.setX(leftPaddle->down.getX() + 1);
-			
-
+			scoreLeft--;
 		}
 
 		returnYPaddlesToDeafult();
 	}
-
-	static void pushFiveSteps (int to)
+	
+	static void pushFiveSteps(int to)
 	{
-		if (to == 1 )
+		if (to == 1)
 		{
 			rightPaddle->erase();
 			rightPaddle->up.setX(rightPaddle->up.getX() + 5);
@@ -64,8 +66,8 @@ public:
 		else
 		{
 			leftPaddle->erase();
-			leftPaddle->up.setX(leftPaddle->up.getX() -5);
-			leftPaddle->down.setX(leftPaddle->down.getX() -5);
+			leftPaddle->up.setX(leftPaddle->up.getX() - 5);
+			leftPaddle->down.setX(leftPaddle->down.getX() - 5);
 		}
 	}
 
