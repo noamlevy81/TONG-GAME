@@ -23,7 +23,7 @@ int KeyBoardManager::handleKb()
 		if (key == Escape)
 		{
 			system("cls");
-			int choice = Menu::firstMenu(true);
+			int choice = Menu::printMenu(true);
 			return choice;
 		}
 		int index = getIndex(key);
@@ -34,7 +34,7 @@ int KeyBoardManager::handleKb()
 				p->handleKey(key);
 			}
 	}
-		return 10;
+		return 10;			//return 10 for do nothing in run loop . 
 }
 
 void KeyBoardManager::clearKeysHistory(){

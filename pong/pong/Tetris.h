@@ -1,9 +1,11 @@
 #ifndef Tetris_h
 #define Tetris_h
+
+#include <iostream>
+
 #include <list>
 #include "Paddle.h"
 #include "Point.h"
-#include <iostream>
 #include "Utils.h"
 
 using namespace std;
@@ -18,7 +20,6 @@ public:
 	void deleteLineLeft(int ind);
 	void deleteLineRight(int ind);
 
-
 	bool collisionMade(int index, int toAdd_y_val);
 	void printTetris();
 	void free();
@@ -29,9 +30,8 @@ public:
 		toAdd.down.setX(toAdd.down.getX() + dir);
 		toAdd.up.setX(toAdd.up.getX() + dir);
 		toAdd.drawPaddle();
-		Sleep(10);
+		Sleep(50);
 	}
-
 
 };
 

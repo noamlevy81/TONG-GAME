@@ -11,18 +11,19 @@ class Menu
 {
 public:
 
-	static int firstMenu(bool pause)
+	static int printMenu(bool pause)
 	{
 		system("cls"); 
 		int choice;
 		cout << "MENU:\n";
 		cout << "Choose one of the following:\n";
-		cout << "1.How to play?\n\n";
-		cout << "2.Start new game\n\n";
+
+		cout << "1.Start new game\n\n";
 		if (pause == true)
-			cout << "3.to continue\n\n ";
-		cout << "4.Set up keys\n\n";
-		cout << "5.Exit\n\n";
+			cout << "2.to continue\n\n";
+		cout << "3.Set up keys\n\n";
+		cout << "8.How to play?\n\n";
+		cout << "9.Exit\n\n";
 		cin >> choice;
 		system("cls");
 		return choice;
@@ -38,6 +39,40 @@ public:
 
 	}
 
+	static void setUpKeys(Paddle& l, Paddle& r)
+	{
+		char temp[2];
+		int wantL;
+		int wantR;
+
+		cout << "if you want to change key for the left player press 1 else press 0 ";
+		cin >> wantL;
+
+		if (wantL == 1) {
+			cout << "Enter key to move up:\n\n";
+			cin >> temp[0];
+			cout << "Enter key to move down:\n\n";
+			cin >> temp[1];
+			l.setKeys(temp[0], temp[1]);
+		}
+
+		cout << "if you want to change key for the right player press 1 else press 0 ";
+		cin >> wantR;
+
+		if (wantR == 1) {
+			cout << "Enter key to move up:\n\n";
+			cin >> temp[0];
+			cout << "Enter key to move down:\n\n";
+			cin >> temp[1];
+			r.setKeys(temp[0], temp[1]);
+		}
+
+
+		cout << "keys changed succesfully ";
+		Sleep(250);
+		system("cls");
+	}
+
 	static void gameOver(int side)
 	{
 		system("cls");
@@ -51,46 +86,11 @@ public:
 			gotoxy(10, 10);
 			cout << "left player win !! ";
 		}
-		cout << endl; 
+		cout << endl;
 		cout << "press any key to continue ";
 		char ch = _getch();
-
 	}
 
-	static void setUpKeys(Paddle& l, Paddle& r)
-	{
-		char temp[2];
-		int wantL;
-		int wantR;
-
-		cout << "if you want to change key for the left player press 1 else press 0 ";
-		cin >> wantL;
-
-		if (wantL == 1){
-			cout << "Enter key to move up:\n\n";
-			cin >> temp[0];
-			cout << "Enter key to move down:\n\n";
-			cin >> temp[1];
-			l.setKeys(temp[0], temp[1]);
-		}
-
-		cout << "if you want to change key for the right player press 1 else press 0 ";
-		cin >> wantR;
-
-		if (wantR == 1){
-			cout << "Enter key to move up:\n\n";
-			cin >> temp[0];
-			cout << "Enter key to move down:\n\n";
-			cin >> temp[1];
-			r.setKeys(temp[0], temp[1]);
-		}
-
-		//update the list of the kbManager with the new keys . 
-
-		cout << "keys changed succesfully ";
-		Sleep(250);
-		system("cls");
-	}
 };
 
 #endif

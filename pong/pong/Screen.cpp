@@ -5,7 +5,6 @@ using namespace std ;
 Paddle* Screen::leftPaddle = nullptr;
 Paddle* Screen::rightPaddle = nullptr;
 
-
 int Screen::scoreLeft = 16;
 int Screen::scoreRight = 16;
 

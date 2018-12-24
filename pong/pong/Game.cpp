@@ -7,19 +7,19 @@ void Game::start()
 
 	while (true)
 	{
-		int option = Menu::firstMenu(false);
+		int option = Menu::printMenu(false);
 		switch (option)
 		{
 		case 1:
-			Menu::instructions();
-			break;
-		case 2:
 			run();
 			break;
-		case 4:
+		case 3:
 			Menu::setUpKeys(leftPlayer, rightPlayer);
 			break;
-		case 5:
+		case 8:
+			Menu::instructions();
+			break;
+		case 9:
 			exit(1);
 			break;
 		}
@@ -39,25 +39,16 @@ void Game::run()
 
 		if (Screen::ispointLost())
 			choice = 6; 
-		if (choice >=1 && choice <= 6 )
+		if (choice >=1 && choice <= 9 )
 		{
-			if (choice == 1)	//how to play .
-			{
-				Menu::instructions();
-			}
-			if (choice == 2)
+			if (choice == 1)
 			{
 				initializeGame();
 			}
-			if (choice == 4)// set keys and continue 
+			if (choice == 3)// set keys and continue 
 			{
 				Menu::setUpKeys(leftPlayer, rightPlayer);
 				updateKbManager();
-			}
-			if (choice == 5)	//exit . 
-			{
-				kbManager.clearKeysHistory();
-				exit(1);
 			}
 			if (choice == 6)
 			{
@@ -67,6 +58,15 @@ void Game::run()
 					kbManager.clearKeysHistory();
 					break;
 				}
+			}
+			if (choice == 8)	//how to play .
+			{
+				Menu::instructions();
+			}
+			if (choice == 9)	//exit . 
+			{
+				kbManager.clearKeysHistory();
+				exit(1);
 			}
 			drawGame();
 		}

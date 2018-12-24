@@ -15,6 +15,7 @@ class KeyBoardManager
 	enum { Escape = 27 };
 	enum { NUM_OF_CHARS = 26 };
 	list<Paddle*> objectsKeysMap[NUM_OF_CHARS];
+
 	int getIndex(char key)
 	{
 		key = tolower(key);
