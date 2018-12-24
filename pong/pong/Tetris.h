@@ -19,10 +19,13 @@ class Tetris
 public:
 	Tetris(Screen *screen):theScreen(screen){}
 
-	void addToLeftTetris(Paddle toAdd);
-	void addToRightTetris(Paddle toAdd);
-	void deleteLineLeft(int ind);
-	void deleteLineRight(int ind);
+	void addToTetris(Paddle toAdd, int dir_x);
+	void deleteLine(int ind,int dirX);
+
+	//void addToLeftTetris(Paddle toAdd);
+	//void addToRightTetris(Paddle toAdd);
+	//void deleteLineLeft(int ind);
+	//void deleteLineRight(int ind);
 
 	bool collisionMade(int index, int toAdd_y_val);
 	void printTetris();

@@ -11,7 +11,7 @@ class Menu
 {
 public:
 
-	static int printMenu(bool pause)
+	int printMenu(bool pause)
 	{
 		system("cls"); 
 		int choice;
@@ -29,7 +29,7 @@ public:
 		return choice;
 	}
 
-	static void instructions()
+	void instructions()
 	{
 		cout << "welcome to pong-tetris game ,\n this is two players game , you should .... ";
 		cout << "\n enjoy - good luck .\n";
@@ -39,7 +39,7 @@ public:
 
 	}
 
-	static void setUpKeys(Paddle& l, Paddle& r)
+	void setUpKeys(Paddle& l, Paddle& r)
 	{
 		char temp[2];
 		int wantL;
@@ -73,7 +73,7 @@ public:
 		system("cls");
 	}
 
-	static void gameOver(int side)
+	void gameOver(int side)
 	{
 		system("cls");
 		if (side == LEFT)

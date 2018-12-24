@@ -17,7 +17,8 @@ class Game
 	Ball ball;
 	KeyBoardManager kbManager;
 	Tetris left, right;					
-	Screen screen;					
+	Screen screen;
+	Menu menu;
 	
 public:
 	Game(Paddle lplayer = { { LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } }
@@ -52,7 +53,7 @@ public:
 
 	void gameOver(int side)
 	{
-		Menu::gameOver(side);
+		menu.gameOver(side);
 	}
 
 	// this function check if game over ,and set the flag that says that one player miss the ball . 

@@ -7,17 +7,17 @@ void Game::start()
 
 	while (true)
 	{
-		int option = Menu::printMenu(false);
+		int option = menu.printMenu(false);
 		switch (option)
 		{
 		case 1:
 			run();
 			break;
 		case 3:
-			Menu::setUpKeys(leftPlayer, rightPlayer);
+			menu.setUpKeys(leftPlayer, rightPlayer);
 			break;
 		case 8:
-			Menu::instructions();
+			menu.instructions();
 			break;
 		case 9:
 			exit(1);
@@ -34,7 +34,7 @@ void Game::run()
 
 	while (true)
 	{
-		int choice = kbManager.handleKb();	//move paddles
+		int choice = kbManager.handleKb(menu);	//move paddles
 
 		if (screen.ispointLost())
 			choice = 6; 
@@ -46,7 +46,7 @@ void Game::run()
 			}
 			if (choice == 3)// set keys and continue 
 			{
-				Menu::setUpKeys(leftPlayer, rightPlayer);
+				menu.setUpKeys(leftPlayer, rightPlayer);
 				updateKbManager();
 			}
 			if (choice == 6)
@@ -60,7 +60,7 @@ void Game::run()
 			}
 			if (choice == 8)	//how to play .
 			{
-				Menu::instructions();
+				menu.instructions();
 			}
 			if (choice == 9)	//exit . 
 			{
@@ -70,7 +70,7 @@ void Game::run()
 			drawGame();
 		}
 		ball.move();		//in this function we could know about miss . 
-		Sleep(70);
+		Sleep(50);
 
 	}
 }
@@ -85,7 +85,6 @@ void Game::initializeGame()
 	leftPlayer.setKeys('q', 'a');
 	ball = Ball(&screen);
 	updateKbManager();
-	screen.setLife();
 }
 
 // this function set the flag that says that one player miss the ball , and check if game over ,and

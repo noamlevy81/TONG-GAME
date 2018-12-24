@@ -41,9 +41,11 @@ public:
 	void pushPaddle(int ballDirX)					// this method update the x value of the paddle in case of lose one point 
 	{
 		if (ballDirX == 1)
-			rightTetris.addToRightTetris(*rightPaddle);
+			this->rightTetris.addToTetris(*rightPaddle, ballDirX);//rightTetris.addToRightTetris(*rightPaddle);
 		else
-			leftTetris.addToLeftTetris(*leftPaddle);
+			this->leftTetris.addToTetris(*leftPaddle, ballDirX);//rightTetris.addToRightTetris(*rightPaddle);
+
+			//leftTetris.addToLeftTetris(*leftPaddle);
 
 		leftPaddle->erase();
 		rightPaddle->erase();

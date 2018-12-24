@@ -5,7 +5,7 @@
 #include <conio.h>
 using namespace std;
 
-
+#include "Menu.h"
 #include "Paddle.h"
 #include <list>
 
@@ -30,7 +30,7 @@ class KeyBoardManager
 public:
 
 	void registerKeyBoardManager(Paddle* p);
-	int handleKb();
+	int handleKb(Menu& menu);
 	void clearKeysHistory();
 
 };
