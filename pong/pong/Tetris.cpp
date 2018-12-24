@@ -28,7 +28,7 @@ void Tetris::addToRightTetris(Paddle toAdd)
 	if (boards_history[i - 1].size() == 7)
 	{
 		deleteLineRight(i - 1);
-		Screen::pushFiveSteps(RIGHT);
+		theScreen->pushFiveSteps(RIGHT);
 	}
 }
 
@@ -57,7 +57,7 @@ void Tetris::addToLeftTetris(Paddle toAdd)
 
 	if (boards_history[i + 1].size() == 7)
 	{
-		Screen::pushFiveSteps(LEFT);
+		theScreen->pushFiveSteps(LEFT);
 		deleteLineLeft(i + 1);
 	}
 }

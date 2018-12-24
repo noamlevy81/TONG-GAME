@@ -8,13 +8,17 @@
 #include "Point.h"
 #include "Utils.h"
 
+class Screen;
 using namespace std;
 class Tetris
 {
 	enum {MAX_LOSES=16};
 	list<Paddle> boards_history[MAX_LOSES];
+	Screen* theScreen;
 
 public:
+	Tetris(Screen *screen):theScreen(screen){}
+
 	void addToLeftTetris(Paddle toAdd);
 	void addToRightTetris(Paddle toAdd);
 	void deleteLineLeft(int ind);

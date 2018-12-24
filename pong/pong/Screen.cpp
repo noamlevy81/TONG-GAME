@@ -2,17 +2,6 @@
 
 using namespace std ;
 
-Paddle* Screen::leftPaddle = nullptr;
-Paddle* Screen::rightPaddle = nullptr;
-
-int Screen::scoreLeft = 16;
-int Screen::scoreRight = 16;
-
-Tetris Screen::left = Tetris();
-Tetris Screen::right = Tetris();
-
-bool Screen::pointLost = false;
-
 void Screen::printBoard()
 {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -49,13 +38,14 @@ void Screen::printBoard()
 	SetConsoleTextAttribute(h, 15); 
 
 	gotoxy(10, 2);
-	if (scoreLeft >= 10)
-		cout << "life " << scoreLeft;
-	else
-		cout << "life " << scoreLeft << " ";
+
+	cout << "life " << lifeLeft;
+	lifeLeft == 9 ? cout << " " : cout << "";
 
 	gotoxy(50, 2);
-	cout << "life " << scoreRight;
+
+	cout << "life " << lifeRight;
+	lifeRight == 9 ? cout << " " : cout << "";
 
 
 }

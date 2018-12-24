@@ -16,12 +16,13 @@ class Game
 	Paddle rightPlayer;
 	Ball ball;
 	KeyBoardManager kbManager;
-	Screen screen;					//check about the scrreen chagne static functions to regular . 
+	Tetris left, right;					
+	Screen screen;					
 	
 public:
 	Game(Paddle lplayer = { { LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } }
 		, Paddle rplayer = { { RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, {RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE } })
-		:leftPlayer(lplayer), rightPlayer(rplayer) {}
+		:leftPlayer(lplayer), rightPlayer(rplayer), screen(&leftPlayer ,&rightPlayer,left ,right ) , ball(&screen) ,left(&screen),right(&screen) {}
 
 
 	void start();

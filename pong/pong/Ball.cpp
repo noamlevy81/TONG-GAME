@@ -16,9 +16,9 @@ void Ball:: setDirX()
 {
 	if (dir_x == 1)
 	{
-		if (Screen::isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))
+		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))
 		{
-			if (Screen::isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))//goes right and hit the board dirx = 1 diry = 1 or -1 . 
+			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))//goes right and hit the board dirx = 1 diry = 1 or -1 . 
 			{
 				int temp = dir_y;
 				animationHitPaddleRight();
@@ -26,7 +26,7 @@ void Ball:: setDirX()
 				dir_x = -1;
 			}
 
-			else if (Screen::isOnYCornerofTheRightPaddle(ballPoints.at(5).getY() + dir_y, dir_y))
+			else if (theScreen->isOnYCornerofTheRightPaddle(ballPoints.at(5).getY() + dir_y, dir_y))
 			{
 				animationHitCornerPaddleRight();
 				dir_x *= -1;
@@ -34,30 +34,30 @@ void Ball:: setDirX()
 			}
 			else
 			{
-				Screen::pushPaddle(dir_x);
-				Screen::setPointLost(true);
+				theScreen->pushPaddle(dir_x);
+				theScreen->setPointLost(true);
 			}
 		}
 	}
 
 	else      //dir_x is -1 means that we goes left . 
 	{
-		if (Screen::isOnXBorder(ballPoints.at(2).getX() + dir_x, dir_x))
+		if (theScreen->isOnXBorder(ballPoints.at(2).getX() + dir_x, dir_x))
 		{
 			// if on y just dir_x *= -1 .
-			if (Screen::isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x, dir_y))
+			if (theScreen->isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x, dir_y))
 			{
 				dir_x *= -1;
 			}
-			else if (Screen::isOnYCornerofTheLeftPaddle(ballPoints.at(2).getY() + dir_y, dir_y))
+			else if (theScreen->isOnYCornerofTheLeftPaddle(ballPoints.at(2).getY() + dir_y, dir_y))
 			{
 				dir_x *= -1;
 				dir_y *= -1;
 			}
 			else
 			{
-				Screen::pushPaddle(dir_x);
-				Screen::setPointLost(true);
+				theScreen->pushPaddle(dir_x);
+				theScreen->setPointLost(true);
 			}
 		}
 	}

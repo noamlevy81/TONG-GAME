@@ -12,6 +12,7 @@ enum { NUM_POINTS = 8 };
 const char BALL_SHAPE = 'O';
 
 class Ball {
+	Screen *theScreen;						//we hold a reference to screen, because we want to call screen functions inside ball functions
 	vector <Point> ballPoints;				//save points for all the ball points .
 	int dir_x, dir_y;
 
@@ -48,9 +49,8 @@ class Ball {
 	{
 
 	}
-
 public:
-	Ball(int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) : dir_x(dir_x1), dir_y(dir_y1)
+	Ball(Screen *the_screen , int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) :theScreen(the_screen), dir_x(dir_x1), dir_y(dir_y1)
 	{
 		initalizeBall();
 	}

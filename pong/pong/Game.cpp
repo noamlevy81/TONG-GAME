@@ -31,13 +31,12 @@ void Game::run()
 {
 	initializeGame();
 	drawGame();
-	screen.setPaddles(&(leftPlayer), &(rightPlayer));
 
 	while (true)
 	{
 		int choice = kbManager.handleKb();	//move paddles
 
-		if (Screen::ispointLost())
+		if (screen.ispointLost())
 			choice = 6; 
 		if (choice >=1 && choice <= 9 )
 		{
@@ -54,7 +53,7 @@ void Game::run()
 			{
 				if (LoseOnePoint())
 				{
-					Screen::freeTetris();
+					screen.freeTetris();
 					kbManager.clearKeysHistory();
 					break;
 				}
@@ -71,7 +70,7 @@ void Game::run()
 			drawGame();
 		}
 		ball.move();		//in this function we could know about miss . 
-		Sleep(10);
+		Sleep(80);
 
 	}
 }
@@ -79,12 +78,12 @@ void Game::run()
 //this fucntion initalize all the game objects to their default . 
 void Game::initializeGame()
 {
-	Screen::freeTetris();
+	screen.freeTetris();
 	rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
 	leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
 	rightPlayer.setKeys('p', 'l');				//default keys for right player .
 	leftPlayer.setKeys('q', 'a');
-	ball = Ball();
+	ball = Ball(&screen);
 	updateKbManager();
 }
 
@@ -103,9 +102,10 @@ bool Game:: LoseOnePoint()
 	}
 
 	ball.eraseBall();
-	ball = Ball();
 
-	Screen::setPointLost(false);
+	ball = Ball(&screen);
+
+	screen.setPointLost(false);
 
 	return false;
 }
