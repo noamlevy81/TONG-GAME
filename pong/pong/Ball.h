@@ -43,7 +43,8 @@ class Ball {
 	}
 
 	void animationHitPaddleRight();
-	
+	void animationHitPaddleLeft();
+
 	//need to implement . 
 	void animationHitCornerPaddleRight()
 	{
