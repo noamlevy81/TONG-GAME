@@ -49,12 +49,11 @@ void Screen::printBoard()
 
 	SetConsoleTextAttribute(h, 15); 
 
-	if (scoreLeft == 10)
-	{
-		cout << "hey";
-	}
 	gotoxy(10, 2);
-	cout << "life " << scoreLeft;
+	if (scoreLeft >= 10)
+		cout << "life " << scoreLeft;
+	else
+		cout << "life " << scoreLeft << " ";
 
 	gotoxy(50, 2);
 	cout << "life " << scoreRight;

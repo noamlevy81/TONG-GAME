@@ -23,21 +23,15 @@ public:
 		, Paddle rplayer = { { RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, {RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE } })
 		:leftPlayer(lplayer), rightPlayer(rplayer) {}
 
-	void start();
 
-	//this method initailzie the default paramater of the objects 
-	void initializeGame()
-	{
-		Screen::freeTetris();
-		rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
-		leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,12,PADDLE_SHAPE });
-		rightPlayer.setKeys('p', 'l');				//default keys for right player .
-		leftPlayer.setKeys('q', 'a');
-		ball = Ball();
-	}
+	void start();
 
 	void run();
 
+	//this method initailzie the default paramater of the objects 
+	void initializeGame();
+	
+	//draw all objects
 	void drawGame()
 	{
 		screen.printBoard();
@@ -46,6 +40,8 @@ public:
 		rightPlayer.drawPaddle();
 		ball.drawBall();
 	}
+
+	//update players keys
 	void updateKbManager()
 	{
 		kbManager.clearKeysHistory();
@@ -55,36 +51,12 @@ public:
 
 	void gameOver(int side)
 	{
-		if (side == LEFT)
-		{
-			cout << "right win";
-			
-		}
-		else
-		{
-			cout << "left win ";
-		}
+		Menu::gameOver(side);
 	}
-	bool LoseOnePoint()
-	{
-		if (leftPlayer.up.getX() == 20)
-		{
-			Menu::gameOver(LEFT) ;
-			return true;
-		}
-		else if (rightPlayer.up.getX() == 60)
-		{
-			Menu::gameOver(RIGHT);
-			return true;
-		}
 
-		ball.eraseBall();
-		ball = Ball();
+	// this function check if game over ,and set the flag that says that one player miss the ball . 
+	bool LoseOnePoint();
 
-		Screen::setPointLost(false);
-
-		return false;
-	}
 };
 
 

@@ -43,6 +43,7 @@ public:
 	{
 		return Point(x + toAdd,y + toAdd,this->ch);	
 	}
+
 };
 
 #endif

@@ -9,8 +9,7 @@ BOOL gotoxy(const WORD x, const WORD y);
 	enum leftPaddle { LEFT_X = 4, LEFT_UP_Y = 10, LEFT_DOWN_Y = 12 };
 	enum Sides{LEFT , RIGHT};
 
-
-
+	//hide cursor
 	void ShowConsoleCursor(bool showFlag);
 
 #endif // ! Utils+h

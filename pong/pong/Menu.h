@@ -2,10 +2,10 @@
 #define Menu_h
 
 #include <iostream>
-#include <conio.h>
-
-using namespace std;
 #include "Paddle.h"
+
+#include <conio.h>
+using namespace std;
 
 class Menu
 {
@@ -43,10 +43,12 @@ public:
 		system("cls");
 		if (side == LEFT)
 		{
+			gotoxy(10, 10);
 			cout << "right player win !! ";
 		}
 		else
 		{
+			gotoxy(10, 10);
 			cout << "left player win !! ";
 		}
 		cout << endl; 

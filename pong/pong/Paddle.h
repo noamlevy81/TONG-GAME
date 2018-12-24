@@ -14,34 +14,23 @@ class Paddle
 	void movePad(Point &first, Point & second);
 
 public:
-	Paddle(Point up1, Point down1) : up(up1), down(down1) {};
+	Paddle(const Point& up1,const Point& down1) : up(up1), down(down1) {};
 
+	//erase the paddle .
 	void erase() {
 		drawPaddle(' ');
 	}
 
-	void drawPaddle(char figure = PADDLE_SHAPE) {
+	void drawPaddle(char figure = PADDLE_SHAPE);
 
-		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleTextAttribute(h, FOREGROUND_BLUE);
 
-		int times = down.getY() - up.getY() + 1;
-
-		int indexX = up.getX();
-		int indexY = up.getY();
-
-		for (int i = 0; i < times; i++)
-		{
-			gotoxy(indexX, indexY + i);
-			cout << figure;
-		}
-		SetConsoleTextAttribute(h, 15);
-	}
+	//this function set the keys of the player . 
 	void setKeys(char up, char down)
 	{
 		keys[0] = up;
 		keys[1] = down;
 	}
+
 	void move()
 	{
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -53,11 +42,7 @@ public:
 		}
 		else
 		{
-			HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-			SetConsoleTextAttribute(h, FOREGROUND_BLUE);
-
 			movePad(down, up);
-
 		}
 		SetConsoleTextAttribute(h, 15);
 	}
@@ -67,6 +52,7 @@ public:
 		return keys;
 	}
 
+	//translate keyboard input to action
 	void handleKey(char key) {
 		if (key == keys[0])				//move up 
 			dir_y = -1;
