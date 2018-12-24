@@ -1,7 +1,6 @@
 #ifndef  Game_h
 #define Game_h
 
-#include "windows.h"
 #include "Paddle.h"
 #include "Ball.h"
 #include "KeyBoardManager.h"
@@ -9,47 +8,23 @@
 #include "Tetris.h"
 #include "Utils.h"
 
+#include <windows.h>				// check if need . 
+
 class Game
 {
-
 	Paddle leftPlayer;
 	Paddle rightPlayer;
 	Ball ball;
 	KeyBoardManager kbManager;
-	Screen screen;
+	Screen screen;					//check about the scrreen chagne static functions to regular . 
 	
 public:
-	Game(Paddle lplayer = { { LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,12,PADDLE_SHAPE } }
+	Game(Paddle lplayer = { { LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } }
 		, Paddle rplayer = { { RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, {RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE } })
 		:leftPlayer(lplayer), rightPlayer(rplayer) {}
 
-	void start()
-	{
-		rightPlayer.setKeys('p', 'l');				//default keys for right player .
-		leftPlayer.setKeys('q', 'a');	//default keys for left player . 
-	
-		ShowConsoleCursor(false);
+	void start();
 
-		while (true)
-		{
-			int option = Menu::firstMenu(false);
-			switch (option)
-			{
-			case 1:
-				Menu::instructions();
-				break;
-			case 2:
-				run();
-				break;
-			case 4:
-				Menu::setUpKeys(leftPlayer, rightPlayer);
-				break;
-			case 5:
-				exit(1);
-				break;
-			}
-		}
-	}
 	//this method initailzie the default paramater of the objects 
 	void initializeGame()
 	{
@@ -58,10 +33,9 @@ public:
 		leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,12,PADDLE_SHAPE });
 		rightPlayer.setKeys('p', 'l');				//default keys for right player .
 		leftPlayer.setKeys('q', 'a');
-
-
 		ball = Ball();
 	}
+
 	void run();
 
 	void drawGame()

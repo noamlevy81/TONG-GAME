@@ -90,7 +90,7 @@ void Tetris:: free()
 
 void Tetris::deleteLineLeft(int ind)
 {
-	for (auto iterator : boards_history[ind])
+	for (auto& iterator : boards_history[ind])
 	{
 		iterator.erase();
 	}
@@ -108,7 +108,7 @@ void Tetris::deleteLineLeft(int ind)
 
 void Tetris::deleteLineRight(int ind)
 {
-	for (auto iterator : boards_history[ind])
+	for (auto& iterator : boards_history[ind])
 	{
 		iterator.erase();
 	}

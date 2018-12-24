@@ -2,6 +2,7 @@
 
 void Game::run()
 {
+	initializeGame();
 	drawGame();
 	updateKbManager();
 	screen.setPaddles(&(leftPlayer), &(rightPlayer));
@@ -44,6 +45,31 @@ void Game::run()
 		}
 		ball.move();		//in this function we could know about miss . 
 		Sleep(120);
+	}
+}
+
+void Game::start()
+{
+	ShowConsoleCursor(false);
+
+	while (true)
+	{
+		int option = Menu::firstMenu(false);
+		switch (option)
+		{
+		case 1:
+			Menu::instructions();
+			break;
+		case 2:
+			run();
+			break;
+		case 4:
+			Menu::setUpKeys(leftPlayer, rightPlayer);
+			break;
+		case 5:
+			exit(1);
+			break;
+		}
 	}
 }
 
