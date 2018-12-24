@@ -15,7 +15,7 @@ void KeyBoardManager ::registerKeyBoardManager(Paddle* p)
 	}
 }
 
-int KeyBoardManager::handleKb()		
+int KeyBoardManager::handleKb(Menu& menu)		
 {
 	if (_kbhit())
 	{
@@ -23,7 +23,7 @@ int KeyBoardManager::handleKb()
 		if (key == Escape)
 		{
 			system("cls");
-			int choice = Menu::printMenu(true);
+			int choice = menu.printMenu(true);
 			return choice;
 		}
 		int index = getIndex(key);
