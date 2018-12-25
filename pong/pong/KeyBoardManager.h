@@ -29,6 +29,10 @@ class KeyBoardManager
 
 public:
 
+	~KeyBoardManager()
+	{
+		clearKeysHistory();
+	}
 	void registerKeyBoardManager(Paddle* p);
 	void clearKeysHistory();
 	int handleKb(Menu& menu);

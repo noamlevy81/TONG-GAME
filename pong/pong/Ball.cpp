@@ -18,7 +18,7 @@ void Ball:: setDirX()
 	{
 		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))
 		{
-			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))//goes right and hit the board dirx = 1 diry = 1 or -1 . 
+			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))
 			{
 				int temp = dir_y;
 				animationHitPaddleRight();
@@ -43,7 +43,6 @@ void Ball:: setDirX()
 	{
 		if (theScreen->isOnXBorder(ballPoints.at(2).getX() + dir_x, dir_x))
 		{
-			// if on y just dir_x *= -1 .
 			if (theScreen->isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x, dir_y))
 			{
 				int temp = dir_y;
