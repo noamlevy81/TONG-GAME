@@ -4,7 +4,7 @@
 
 void Ball::draw() {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h, FOREGROUND_RED);
+	SetConsoleTextAttribute(h, FOREGROUND_BLUE);
 
 	for (int i = 0; i < NUM_POINTS; i++)
 		ballPoints.at(i).draw();
@@ -72,7 +72,7 @@ void Ball::animationHitPaddleLeft()
 	eraseBall();
 
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h, FOREGROUND_RED);
+	SetConsoleTextAttribute(h, FOREGROUND_BLUE);
 
 	//this block take the ball one step to the paddle . 
 	dir_x = -1;
@@ -153,7 +153,7 @@ void Ball:: animationHitPaddleRight()
 	eraseBall();
 
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h, FOREGROUND_RED);
+	SetConsoleTextAttribute(h, FOREGROUND_BLUE);
 
 	//this block take the ball one step to the paddle . 
 	dir_x = 1;

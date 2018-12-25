@@ -40,7 +40,7 @@ public:
 		screen.printTetris();
 		leftPlayer.drawPaddle();
 		rightPlayer.drawPaddle();
-		ball.drawBall();
+		
 	}
 
 	//update players keys

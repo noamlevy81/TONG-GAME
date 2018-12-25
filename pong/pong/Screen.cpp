@@ -2,10 +2,10 @@
 
 using namespace std ;
 
-void Screen::printBoard()
+void Screen::printBoard() const 
 {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h , BACKGROUND_GREEN);
+	SetConsoleTextAttribute(h , BACKGROUND_INTENSITY);
 
 	int x = 0;
 	int y = 3;
@@ -37,15 +37,17 @@ void Screen::printBoard()
 
 	SetConsoleTextAttribute(h, 15);
 
-	gotoxy(10, 2);
+	gotoxy(10, 1);
+
+	SetConsoleTextAttribute(h, FOREGROUND_RED);
 
 	cout << "life " << lifeLeft;
 	lifeLeft == 9 ? cout << " " : cout << "";
 
-	gotoxy(50, 2);
+	gotoxy(50, 1);
 
 	cout << "life " << lifeRight;
 	lifeRight == 9 ? cout << " " : cout << "";
 
-
+	SetConsoleTextAttribute(h, 15);
 }

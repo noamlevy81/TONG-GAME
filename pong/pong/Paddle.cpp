@@ -12,10 +12,10 @@ void Paddle:: movePad(Point &first, Point & second)
 	}
 }
 
-void Paddle::drawPaddle(char figure )
+void Paddle::drawPaddle  (char figure ) const 
 {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h, FOREGROUND_BLUE);
+	SetConsoleTextAttribute(h, 14);
 
 	int times = down.getY() - up.getY() + 1;
 

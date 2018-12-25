@@ -30,7 +30,6 @@ class Ball {
 		ballPoints.push_back({ 40,13,BALL_SHAPE });
 	}
 
-	void draw(); 
 
 	void setDir() {
 		setDirY();
@@ -59,6 +58,7 @@ public:
 		initalizeBall();
 		draw();
 	}
+	void draw(); 
 
 	void move()
 	{

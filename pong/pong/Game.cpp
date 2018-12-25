@@ -31,6 +31,7 @@ void Game::run()
 {
 	initializeGame();
 	drawGame();
+	ball.drawBall();
 
 	while (true)
 	{
@@ -68,6 +69,7 @@ void Game::run()
 				exit(1);
 			}
 			drawGame();
+			ball.draw();
 		}
 		ball.move();		//in this function we could know about miss . 
 		Sleep(80);

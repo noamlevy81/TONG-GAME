@@ -129,7 +129,7 @@ public:
 			return (ball_y >= leftPaddle->down.getY() && ball_y <= leftPaddle->down.getY() + 2);
 	}
 
-	void printTetris() 
+	void printTetris() const 
 	{
 		leftTetris.printTetris();
 		rightTetris.printTetris();
@@ -141,7 +141,7 @@ public:
 		rightTetris.free();
 	}
 
-	void printBoard();
+	void printBoard() const ;
 
 	enum yLimints { TOP_BORDER = 3, BOTTOM_BORDER = 25 };	//floor and ceilling borders
 	enum xLimits { LEFT_BORDER = 0, RIGHT_BORDER = 80 };

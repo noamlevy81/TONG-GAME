@@ -21,7 +21,7 @@ public:
 		drawPaddle(' ');
 	}
 
-	void drawPaddle(char figure = PADDLE_SHAPE);
+	void drawPaddle(char figure = PADDLE_SHAPE) const ;
 
 
 	//this function set the keys of the player . 
@@ -34,7 +34,7 @@ public:
 	void move()
 	{
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleTextAttribute(h, FOREGROUND_BLUE);
+		SetConsoleTextAttribute(h, 14);
 
 		if (dir_y == 1)
 		{

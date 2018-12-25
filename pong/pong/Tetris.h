@@ -28,7 +28,7 @@ public:
 	//void deleteLineRight(int ind);
 
 	bool collisionMade(int index, int toAdd_y_val);
-	void printTetris();
+	void printTetris()	const ;
 	void free();
 
 	void movePaddleBack(Paddle& toAdd,int dir)
