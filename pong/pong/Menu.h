@@ -14,8 +14,9 @@ public:
 	int printMenu(bool pause)
 	{
 		int x = 30;
-		int y = 7;
+		int y = 12;
 		system("cls"); 
+		printHeader();
 		int choice;
 		gotoxy(x, y);
 		cout << "MENU:";
@@ -34,6 +35,8 @@ public:
 		cout << "8.How to play?";
 		gotoxy(x, y+10);
 		cout << "9.Exit";
+		gotoxy(x, y + 12);
+
 		cin >> choice;
 		system("cls");
 		return choice;
@@ -175,8 +178,33 @@ public:
 	}
 
 	
+	void printHeader()
+	{
+		int x = 0, y = 2;
+		gotoxy(x, y++);
+		
+		
+		cout<<" ######  ####### #     #  #####     ####### ####### ####### ######  ###  #####";  
+		gotoxy(x, y++);
+		cout<<" #     # #     # ##    # #     #       #    #          #    #     #  #  #     # ";
+		gotoxy(x, y++);
 
+		cout<<" #     # #     # # #   # #             #    #          #    #     #  #  #";
+		gotoxy(x, y++);
 
+		cout<<" ######  #     # #  #  # #  #### ###   #    #####      #    ######   #   #####";
+		gotoxy(x, y++);
+
+		cout<<" #       #     # #   # # #     #       #    #          #    #   #    #        #";
+		gotoxy(x, y++);
+
+		cout<<" #       #     # #    ## #     #       #    #          #    #    #   #  #     #";
+		gotoxy(x, y++);
+
+		cout<<" #       ####### #     #  #####        #    #######    #    #     # ###  #####";
+
+	}
+	
 	
 	
 };
