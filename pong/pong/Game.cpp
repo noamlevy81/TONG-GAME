@@ -70,7 +70,7 @@ void Game::run()
 			drawGame();
 		}
 		ball.move();		//in this function we could know about miss . 
-		Sleep(150);
+		Sleep(80);
 
 	}
 }
