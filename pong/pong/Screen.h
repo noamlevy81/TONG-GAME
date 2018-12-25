@@ -30,6 +30,7 @@ class Screen
 	}
 
 public:
+	
 	Screen(Paddle *left , Paddle*right ,Tetris& left_tetris , Tetris& right_tetris ) : leftPaddle(left ), rightPaddle(right) ,
 	leftTetris(left_tetris) , rightTetris(right_tetris) {}
 
@@ -38,6 +39,7 @@ public:
 		lifeLeft = 16;
 		lifeRight = 16;
 	}
+
 	void pushPaddle(int ballDirX)					// this method update the x value of the paddle in case of lose one point 
 	{
 		if (ballDirX == 1)
@@ -104,9 +106,9 @@ public:
 	//get the dirx for knows with which paddle to check and the dir y for add it to the ball coordinate .
 	bool isOnYOfThePaddles(int ball_y, int dirx, int diry) {
 		if (dirx == 1)
-			return ball_y + diry > rightPaddle->up.getY() && ball_y + diry <= rightPaddle->down.getY();
+			return ball_y + diry >= rightPaddle->up.getY() && ball_y + diry <= rightPaddle->down.getY();
 		else
-			return ball_y + diry > leftPaddle->up.getY() && ball_y + diry <= leftPaddle->down.getY();
+			return ball_y + diry >= leftPaddle->up.getY() && ball_y + diry <= leftPaddle->down.getY();
 	}
 
 	//------------check corner of the right player --------//

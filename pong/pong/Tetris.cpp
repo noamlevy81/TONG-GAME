@@ -150,7 +150,10 @@ void Tetris::addToTetris(Paddle toAdd, int dir_x)
 	if (arrInd == MAX_LOSES)
 		boards_history[MAX_LOSES - 1].push_back(toAdd);
 	if (boards_history[arrInd - 1].size() == 7)
+	{
 		deleteLine(arrInd - 1,dir_x);
+		theScreen->pushFiveSteps(dir_x);
+	}
 }
 
 void Tetris::deleteLine(int ind,int dirX) {

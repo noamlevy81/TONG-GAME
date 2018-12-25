@@ -30,8 +30,8 @@ class KeyBoardManager
 public:
 
 	void registerKeyBoardManager(Paddle* p);
-	int handleKb(Menu& menu);
 	void clearKeysHistory();
+	int handleKb(Menu& menu);
 
 };
 

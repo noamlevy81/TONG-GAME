@@ -28,7 +28,6 @@ void Ball:: setDirX()
 
 			else if (theScreen->isOnYCornerofTheRightPaddle(ballPoints.at(5).getY() + dir_y, dir_y))
 			{
-				animationHitCornerPaddleRight();
 				dir_x *= -1;
 				dir_y *= -1;
 			}
@@ -178,15 +177,15 @@ void Ball:: animationHitPaddleRight()
 	////////////////////////////////////////////
 
 	if (direction != 1)
-		ballPoints.at(0).draw();
+		ballPoints.at(0).erase();
 	else
-		ballPoints.at(6).draw();
+		ballPoints.at(6).erase();
 
-	ballPoints.at(1).draw();
-	ballPoints.at(2).draw();
-	ballPoints.at(3).draw();
-	ballPoints.at(4).draw();
-	ballPoints.at(7).draw();
+	ballPoints.at(1).erase();
+	ballPoints.at(2).erase();
+	ballPoints.at(3).erase();
+	ballPoints.at(4).erase();
+	ballPoints.at(7).erase();
 
 	dir_y = direction;
 	dir_x = -1;

@@ -20,7 +20,7 @@ void Screen::printBoard()
 		gotoxy(x + i, y);
 		cout << "=";
 	}
-	
+
 	x = 0;
 	y = 4;
 	//prints vertical game borders
@@ -35,7 +35,7 @@ void Screen::printBoard()
 		cout << "|";
 	}
 
-	SetConsoleTextAttribute(h, 15); 
+	SetConsoleTextAttribute(h, 15);
 
 	gotoxy(10, 2);
 

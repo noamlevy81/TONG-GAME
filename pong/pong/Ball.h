@@ -46,10 +46,7 @@ class Ball {
 	void animationHitPaddleLeft();
 
 	//need to implement . 
-	void animationHitCornerPaddleRight()
-	{
-
-	}
+	
 public:
 	Ball(Screen *the_screen , int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) :theScreen(the_screen), dir_x(dir_x1), dir_y(dir_y1)
 	{
