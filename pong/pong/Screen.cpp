@@ -5,7 +5,7 @@ using namespace std ;
 void Screen::printBoard()
 {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h, FOREGROUND_GREEN);
+	SetConsoleTextAttribute(h , BACKGROUND_GREEN);
 
 	int x = 0;
 	int y = 3;
@@ -18,7 +18,7 @@ void Screen::printBoard()
 			x -= 81;
 		}
 		gotoxy(x + i, y);
-		cout << "=";
+		cout << " ";
 	}
 
 	x = 0;
@@ -32,7 +32,7 @@ void Screen::printBoard()
 			y -= 21;
 		}
 		gotoxy(x, y + i);
-		cout << "|";
+		cout << " ";
 	}
 
 	SetConsoleTextAttribute(h, 15);
