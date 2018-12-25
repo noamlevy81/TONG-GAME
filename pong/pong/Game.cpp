@@ -85,6 +85,7 @@ void Game::initializeGame()
 	leftPlayer.setKeys('q', 'a');
 	ball = Ball(&screen);
 	updateKbManager();
+	screen.setLife();
 }
 
 // this function set the flag that says that one player miss the ball , and check if game over ,and
