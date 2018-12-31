@@ -35,6 +35,10 @@ void Game::run()
 
 	while (true)
 	{
+		//PAddlesMoves ()	
+		//left->move
+		//right->move
+
 		int choice = kbManager.handleKb(menu);	//move paddles
 
 		if (screen.ispointLost())
@@ -83,8 +87,8 @@ void Game::initializeGame()
 	screen.freeTetris();
 	rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
 	leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
-	rightPlayer.setKeys('p', 'l');				//default keys for right player .
 	leftPlayer.setKeys('q', 'a');
+	rightPlayer.setKeys('p', 'l');				//default keys for right player .
 	ball = Ball(&screen);
 	updateKbManager();
 	screen.setLife();
