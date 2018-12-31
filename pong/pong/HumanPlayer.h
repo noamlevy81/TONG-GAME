@@ -18,11 +18,10 @@ private:
 			setDirY(-1);					//make consts !!!!!!!!!#!@#
 		else if (currentKey == keys[1])
 			setDirY(1);
-		currentKey = 0;
 	}
 
 public:
-	HumanPlayer(const Point& up1, const Point& down1) : Paddle(up1, down1) 
+	HumanPlayer(const Point& up1, const Point& down1) : Paddle(up1, down1)
 	{
 		keys[0] = 'q';
 		keys[1] = 'a';
@@ -46,10 +45,14 @@ public:
 	}
 
 	//translate keyboard input to action
-	virtual void move()
+	virtual void move() override
 	{
 		handleKey();
-		Paddle::move();
+		if(currentKey)
+			Paddle::move();
+
+		currentKey = 0;
+
 	}
 
 };

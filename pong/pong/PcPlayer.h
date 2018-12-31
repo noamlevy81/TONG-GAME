@@ -12,7 +12,7 @@ class PcPlayer : public Paddle
 public:
 	PcPlayer(const Point& up1, const Point& down1,Ball * theBall) : Paddle(up1,down1), balling(theBall) {}
 
-	virtual void move()
+	virtual void move() override
 	{
 		setDirY(balling->getY());
 		Paddle::move();

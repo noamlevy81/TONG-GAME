@@ -55,6 +55,7 @@ bool Game::run()
 	initializeGame();				///asjdhasjkdhasjkhdjkashdjkash
 	drawGame();
 	ball.drawBall();
+	screen.setPaddles(leftPlayer, rightPlayer);
 
 	while (true)
 	{
@@ -111,6 +112,7 @@ void Game::initializeGame()
 	//leftPlayer->setKeys('q', 'a');
 	//rightPlayer.setKeys('p', 'l');				//default keys for right player .
 	//initalize the paddles whatever they are .			//TODODODODOODOD
+	//screen = Screen(rightPlayer, leftPlayer, left, right);
 	ball = Ball(&screen);
 	updateKbManager();
 	screen.setLife();

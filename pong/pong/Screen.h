@@ -31,8 +31,7 @@ class Screen
 
 public:
 	
-	Screen(Paddle *left , Paddle*right ,Tetris& left_tetris , Tetris& right_tetris ) : leftPaddle(left ), rightPaddle(right) ,
-	leftTetris(left_tetris) , rightTetris(right_tetris) {}
+	Screen(Tetris& left_tetris , Tetris& right_tetris ) : leftTetris(left_tetris) , rightTetris(right_tetris) {}
 
 	void setLife()
 	{
@@ -40,6 +39,11 @@ public:
 		lifeRight = 16;
 	}
 
+	void setPaddles(Paddle *left, Paddle*right)
+	{
+		leftPaddle = left;
+		rightPaddle = right; 
+	}
 	void pushPaddle(int ballDirX)					// this method update the x value of the paddle in case of lose one point 
 	{
 		if (ballDirX == 1)

@@ -16,7 +16,7 @@
 
 class Game
 {
-	Paddle* leftPlayer;
+	Paddle* leftPlayer ;
 	Paddle* rightPlayer;
 	Ball ball;
 	KeyBoardManager kbManager;
@@ -25,7 +25,7 @@ class Game
 	Menu menu;
 	
 public:
-	Game(): screen(leftPlayer ,rightPlayer,left ,right ) , ball(&screen) ,left(&screen),right(&screen) {}
+	Game():screen(left ,right ) , ball(&screen) ,left(&screen),right(&screen) {}
 
 	void start();
 
@@ -48,9 +48,9 @@ public:
 	{
 		kbManager.clearKeysHistory();
 		if (!strcmp(typeid(*leftPlayer).name(), typeid(HumanPlayer).name()))
-			kbManager.registerKeyBoardManager((kbListener*)leftPlayer);
+			kbManager.registerKeyBoardManager((HumanPlayer*)leftPlayer);						
 		if (!strcmp(typeid(*rightPlayer).name(), typeid(HumanPlayer).name()))
-			kbManager.registerKeyBoardManager((kbListener*)rightPlayer);
+			kbManager.registerKeyBoardManager((HumanPlayer*)rightPlayer);				//why if we make casting to kblisttener its crash ? 
 	}
 
 	void moveManager()
