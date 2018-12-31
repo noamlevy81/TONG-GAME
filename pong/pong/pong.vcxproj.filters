@@ -42,6 +42,15 @@
     <ClCompile Include="Tetris.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PcPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HumanPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kbListener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h">
@@ -72,6 +81,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tetris.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PcPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kbListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

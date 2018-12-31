@@ -1,8 +1,8 @@
 #include "KeyBoardManager.h"
 #include "Menu.h"
+#include "kbListener.h"
 
-
-void KeyBoardManager ::registerKeyBoardManager(Paddle* p)
+void KeyBoardManager ::registerKeyBoardManager(kbListener * p)
 {
 	const char * keys = p->getChars();
 	size_t numChars = strlen(keys);
@@ -14,7 +14,6 @@ void KeyBoardManager ::registerKeyBoardManager(Paddle* p)
 			objectsKeysMap[index].push_back(p);
 	}
 }
-
 int KeyBoardManager::handleKb(Menu& menu)		
 {
 	if (_kbhit())
@@ -31,7 +30,7 @@ int KeyBoardManager::handleKb(Menu& menu)
 		
 			for (auto p : objectsKeysMap[index])
 			{
-				p->handleKey(key);
+				p->changeCurrentKey(key);
 			}
 	}
 		return 10;			//return 10 for do nothing in run loop . 

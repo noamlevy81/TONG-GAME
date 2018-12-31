@@ -1,19 +1,23 @@
 #ifndef  Game_h
 #define Game_h
 
-#include "Paddle.h"
+//#include "Paddle.h"
+
 #include "Ball.h"
 #include "KeyBoardManager.h"
 #include "Menu.h"
 #include "Tetris.h"
 #include "Utils.h"
-
+#include "HumanPlayer.h"
+#include "PcPlayer.h"
 #include <windows.h>				// check if need . 
+//using namespace std;
+#include <typeinfo.h>
 
 class Game
 {
-	Paddle leftPlayer;
-	Paddle rightPlayer;
+	Paddle* leftPlayer;
+	Paddle* rightPlayer;
 	Ball ball;
 	KeyBoardManager kbManager;
 	Tetris left, right;					
@@ -21,10 +25,7 @@ class Game
 	Menu menu;
 	
 public:
-	Game(Paddle lplayer = { { LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } }
-		, Paddle rplayer = { { RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, {RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE } })
-		:leftPlayer(lplayer), rightPlayer(rplayer), screen(&leftPlayer ,&rightPlayer,left ,right ) , ball(&screen) ,left(&screen),right(&screen) {}
-
+	Game(): screen(leftPlayer ,rightPlayer,left ,right ) , ball(&screen) ,left(&screen),right(&screen) {}
 
 	void start();
 
@@ -38,19 +39,25 @@ public:
 	{
 		screen.printBoard();
 		screen.printTetris();
-		leftPlayer.drawPaddle();
-		rightPlayer.drawPaddle();
-		
+		leftPlayer->drawPaddle();
+		rightPlayer->drawPaddle();
 	}
 
 	//update players keys
 	void updateKbManager()
 	{
 		kbManager.clearKeysHistory();
-		kbManager.registerKeyBoardManager(&leftPlayer);
-		kbManager.registerKeyBoardManager(&rightPlayer);
+		if (!strcmp(typeid(*leftPlayer).name(), typeid(HumanPlayer).name()))
+			kbManager.registerKeyBoardManager((kbListener*)leftPlayer);
+		if (!strcmp(typeid(*rightPlayer).name(), typeid(HumanPlayer).name()))
+			kbManager.registerKeyBoardManager((kbListener*)rightPlayer);
 	}
 
+	void moveManager()
+	{
+		leftPlayer->move();
+		rightPlayer->move();
+	}
 	void gameOver(int side)
 	{
 		menu.gameOver(side);

@@ -30,7 +30,6 @@ class Ball {
 		ballPoints.push_back({ 40,13,BALL_SHAPE });
 	}
 
-
 	void setDir() {
 		setDirY();
 		setDirX();
@@ -52,6 +51,10 @@ public:
 		initalizeBall();
 	}
 
+	int getY()
+	{
+		return dir_y;
+	}
 	//draw the ball for the first time . 
 	void drawBall()
 	{

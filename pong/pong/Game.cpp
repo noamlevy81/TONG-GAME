@@ -3,18 +3,39 @@
 //this function let the player choose before start a game 
 void Game::start()
 {
-	ShowConsoleCursor(false);
+	HumanPlayer hplayerLeft({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
+	HumanPlayer hplayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
 
+	PcPlayer pcPlayerLeft({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } ,&ball);
+	PcPlayer pcPlayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE },&ball);
+
+	ShowConsoleCursor(false);
+	int option;
 	while (true)
 	{
-		int option = menu.printMenu(false);
+		option = menu.printMenu(false);
+
 		switch (option)
 		{
 		case 1:
-			run();
+			leftPlayer = &hplayerLeft;
+			rightPlayer = &hplayerRight;
+			option = 6;
 			break;
-		case 3:
+		case 2:
+			
+			leftPlayer = &hplayerLeft;
+			rightPlayer = &pcPlayerRight;
+			option = 6;
+		case 3 :
+			leftPlayer = &pcPlayerLeft;
+			rightPlayer = &pcPlayerRight;
+			option = 6;
+		/*case 5:
 			menu.setUpKeys(leftPlayer, rightPlayer);
+			break;*/
+		case 6:
+			run();
 			break;
 		case 8:
 			menu.instructions();
@@ -23,23 +44,23 @@ void Game::start()
 			exit(1);
 			break;
 		}
+		if (option ==6 )
+			run();
 	}
 }
 
 //this function mange the game . 
 void Game::run()
 {
-	initializeGame();
+	initializeGame();				///asjdhasjkdhasjkhdjkashdjkash
 	drawGame();
 	ball.drawBall();
 
 	while (true)
 	{
-		//PAddlesMoves ()	
-		//left->move
-		//right->move
-
+		
 		int choice = kbManager.handleKb(menu);	//move paddles
+		moveManager();				/////asjdhasjkdhasjkhdjkashdjkash
 
 		if (screen.ispointLost())
 			choice = 6; 
@@ -49,11 +70,11 @@ void Game::run()
 			{
 				initializeGame();
 			}
-			if (choice == 3)// set keys and continue 
-			{
-				menu.setUpKeys(leftPlayer, rightPlayer);
-				updateKbManager();
-			}
+			//if (choice == 3)// set keys and continue 
+			//{
+			//	menu.setUpKeys(leftPlayer, rightPlayer);
+			//	updateKbManager();
+			//}
 			if (choice == 6)
 			{
 				if (LoseOnePoint())
@@ -85,10 +106,11 @@ void Game::run()
 void Game::initializeGame()
 {
 	screen.freeTetris();
-	rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
-	leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
-	leftPlayer.setKeys('q', 'a');
-	rightPlayer.setKeys('p', 'l');				//default keys for right player .
+	*rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
+	*leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
+	//leftPlayer->setKeys('q', 'a');
+	//rightPlayer.setKeys('p', 'l');				//default keys for right player .
+	//initalize the paddles whatever they are .			//TODODODODOODOD
 	ball = Ball(&screen);
 	updateKbManager();
 	screen.setLife();
@@ -97,12 +119,12 @@ void Game::initializeGame()
 // this function set the flag that says that one player miss the ball , and check if game over ,and
 bool Game:: LoseOnePoint()
 {
-	if (leftPlayer.up.getX() == 20)
+	if (leftPlayer->up.getX() == 20)
 	{
 		gameOver(LEFT);
 		return true;
 	}
-	else if (rightPlayer.up.getX() == 60)
+	else if (rightPlayer->up.getX() == 60)
 	{
 		gameOver(RIGHT);
 		return true;

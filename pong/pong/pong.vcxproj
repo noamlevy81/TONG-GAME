@@ -117,10 +117,13 @@
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HumanPlayer.cpp" />
+    <ClCompile Include="kbListener.cpp" />
     <ClCompile Include="KeyBoardManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="PcPlayer.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Tetris.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -128,10 +131,13 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HumanPlayer.h" />
+    <ClInclude Include="kbListener.h" />
     <ClInclude Include="KeyBoardManager.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Paddle.h" />
+    <ClInclude Include="PcPlayer.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Tetris.h" />

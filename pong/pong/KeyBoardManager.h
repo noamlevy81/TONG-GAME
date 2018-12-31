@@ -8,13 +8,13 @@ using namespace std;
 #include "Menu.h"
 #include "Paddle.h"
 #include <list>
-
+#include "kbListener.h"
 
 class KeyBoardManager
 {
 	enum { Escape = 27 };
 	enum { NUM_OF_CHARS = 26 };
-	list<Paddle*> objectsKeysMap[NUM_OF_CHARS];
+	list<kbListener*> objectsKeysMap[NUM_OF_CHARS];
 
 	int getIndex(char key)
 	{
@@ -33,7 +33,7 @@ public:
 	{
 		clearKeysHistory();
 	}
-	void registerKeyBoardManager(Paddle* p);
+	void registerKeyBoardManager(kbListener* p);
 	void clearKeysHistory();
 	int handleKb(Menu& menu);
 

@@ -16,7 +16,7 @@ void Ball:: setDirX()
 {
 	if (dir_x == 1)
 	{
-		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))
+		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))			//bomb
 		{
 			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))
 			{

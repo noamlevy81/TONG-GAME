@@ -29,38 +29,39 @@ void Menu ::instructions()
 }
 
 void Menu:: setUpKeys(Paddle& l, Paddle& r)
-{
-	char temp[2];
-	int wantL;
-	int wantR;
-
-	cout << "if you want to change key for the left player press 1 else press 0 ";
-	cin >> wantL;
-
-	if (wantL == 1) {
-		cout << "Enter key to move up:\n\n";
-		cin >> temp[0];
-		cout << "Enter key to move down:\n\n";
-		cin >> temp[1];
-		l.setKeys(temp[0], temp[1]);
-	}
-
-	cout << "if you want to change key for the right player press 1 else press 0 ";
-	cin >> wantR;
-
-	if (wantR == 1) {
-		cout << "Enter key to move up:\n\n";
-		cin >> temp[0];
-		cout << "Enter key to move down:\n\n";
-		cin >> temp[1];
-		r.setKeys(temp[0], temp[1]);
-	}
-
-
-	cout << "keys changed succesfully ";
-	Sleep(250);
-	system("cls");
-}
+{}
+//{
+//	char temp[2];
+//	int wantL;
+//	int wantR;
+//
+//	cout << "if you want to change key for the left player press 1 else press 0 ";
+//	cin >> wantL;
+//
+//	if (wantL == 1) {
+//		cout << "Enter key to move up:\n\n";
+//		cin >> temp[0];
+//		cout << "Enter key to move down:\n\n";
+//		cin >> temp[1];
+//		l.setKeys(temp[0], temp[1]);
+//	}
+//
+//	cout << "if you want to change key for the right player press 1 else press 0 ";
+//	cin >> wantR;
+//
+//	if (wantR == 1) {
+//		cout << "Enter key to move up:\n\n";
+//		cin >> temp[0];
+//		cout << "Enter key to move down:\n\n";
+//		cin >> temp[1];
+//		r.setKeys(temp[0], temp[1]);
+//	}
+//
+//
+//	cout << "keys changed succesfully ";
+//	Sleep(250);
+//	system("cls");
+//}
 
 void Menu :: printFace() {
 	int x = 2, y = 7;
