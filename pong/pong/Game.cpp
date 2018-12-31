@@ -41,7 +41,7 @@ void Game::start()
 			menu.instructions();
 			break;
 		case 9:
-			exit(1);
+			return;
 			break;
 		}
 		if (option ==6 )
@@ -50,7 +50,7 @@ void Game::start()
 }
 
 //this function mange the game . 
-void Game::run()
+bool Game::run()
 {
 	initializeGame();				///asjdhasjkdhasjkhdjkashdjkash
 	drawGame();
@@ -81,7 +81,7 @@ void Game::run()
 				{
 					screen.freeTetris();
 					kbManager.clearKeysHistory();
-					break;
+					return true;
 				}
 			}
 			if (choice == 8)	//how to play .
@@ -89,9 +89,9 @@ void Game::run()
 				menu.instructions();
 			}
 			if (choice == 9)	//exit . 
-			{
+			{	
 				kbManager.clearKeysHistory();
-				exit(1);
+				return false;
 			}
 			drawGame();
 			ball.draw();
