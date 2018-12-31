@@ -29,7 +29,7 @@ public:
 
 	void start();
 
-	void run();
+	bool run();
 
 	//this method initailzie the default paramater of the objects 
 	void initializeGame();
