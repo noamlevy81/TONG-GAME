@@ -13,10 +13,7 @@ class Paddle
 	void movePad(Point &first, Point & second);
 
 protected:
-	void setDirY(int diry)
-	{
-		dir_y = diry;
-	}
+	void setDirY(int diry){	dir_y = diry;}
 public:
 	Paddle(const Point& up1,const Point& down1) : up(up1), down(down1) {};
 
@@ -25,8 +22,11 @@ public:
 		drawPaddle(' ');
 	}
 
-	void drawPaddle(char figure = PADDLE_SHAPE) const ;
 
+	void drawPaddle(char figure = PADDLE_SHAPE) const ;
+	
+
+	
 	virtual void move()
 	{
 		HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);

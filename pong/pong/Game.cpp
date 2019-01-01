@@ -5,7 +5,8 @@ void Game::start()
 {
 	HumanPlayer hplayerLeft({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
 	HumanPlayer hplayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
-
+		hplayerLeft.setKeys('q', 'a');
+		hplayerRight.setKeys('p', 'l');
 	PcPlayer pcPlayerLeft({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } ,&ball);
 	PcPlayer pcPlayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE },&ball);
 
@@ -20,39 +21,33 @@ void Game::start()
 		case 1:
 			leftPlayer = &hplayerLeft;
 			rightPlayer = &hplayerRight;
-			option = 6;
+			run();
 			break;
 		case 2:
 			
 			leftPlayer = &hplayerLeft;
 			rightPlayer = &pcPlayerRight;
-			option = 6;
+			run();
+			break;
 		case 3 :
 			leftPlayer = &pcPlayerLeft;
 			rightPlayer = &pcPlayerRight;
-			option = 6;
-		/*case 5:
-			menu.setUpKeys(leftPlayer, rightPlayer);
-			break;*/
-		case 6:
 			run();
 			break;
+	
 		case 8:
 			menu.instructions();
 			break;
 		case 9:
 			return;
-			break;
 		}
-		if (option ==6 )
-			run();
 	}
 }
 
 //this function mange the game . 
 bool Game::run()
 {
-	initializeGame();				///asjdhasjkdhasjkhdjkashdjkash
+	initializeGame();				
 	drawGame();
 	ball.drawBall();
 	screen.setPaddles(leftPlayer, rightPlayer);
@@ -60,8 +55,8 @@ bool Game::run()
 	while (true)
 	{
 		
-		int choice = kbManager.handleKb(menu);	//move paddles
-		moveManager();				/////asjdhasjkdhasjkhdjkashdjkash
+		int choice = kbManager.handleKb(menu);	
+		moveManager();				
 
 		if (screen.ispointLost())
 			choice = 6; 
@@ -107,17 +102,17 @@ bool Game::run()
 void Game::initializeGame()
 {
 	screen.freeTetris();
-	*rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
-	*leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
-	//leftPlayer->setKeys('q', 'a');
-	//rightPlayer.setKeys('p', 'l');				//default keys for right player .
-	//initalize the paddles whatever they are .			//TODODODODOODOD
-	//screen = Screen(rightPlayer, leftPlayer, left, right);
+	returnToDefault();
 	ball = Ball(&screen);
 	updateKbManager();
 	screen.setLife();
 }
-
+void Game::returnToDefault()
+{
+	*rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
+	*leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
+	
+}
 // this function set the flag that says that one player miss the ball , and check if game over ,and
 bool Game:: LoseOnePoint()
 {

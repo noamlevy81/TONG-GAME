@@ -26,7 +26,7 @@ public:
 		keys[0] = 'q';
 		keys[1] = 'a';
 	}
-
+	
 	//this function set the keys of the player . 
 	void setKeys(char up, char down)
 	{

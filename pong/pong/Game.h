@@ -11,7 +11,6 @@
 #include "HumanPlayer.h"
 #include "PcPlayer.h"
 #include <windows.h>				// check if need . 
-//using namespace std;
 #include <typeinfo.h>
 
 class Game
@@ -23,7 +22,7 @@ class Game
 	Tetris left, right;					
 	Screen screen;
 	Menu menu;
-	
+	void returnToDefault();
 public:
 	Game():screen(left ,right ) , ball(&screen) ,left(&screen),right(&screen) {}
 
