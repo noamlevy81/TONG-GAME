@@ -25,3 +25,8 @@ void BecomingAbombState::hitCorner() {
 	ball.setTheState(ball.getRegular());
 	ball.getCurrState().hitCorner();
 }
+
+void BecomingAbombState::timeEvent() {
+	if (ball.getLoopGameCounter() == 8)
+		ball.setTheState(ball.getBomb());
+}

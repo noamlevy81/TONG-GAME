@@ -1,5 +1,5 @@
-#ifndef __BecomingAbombStater
-#define __BecomingAbombStater
+#ifndef __BecomingAbombStater_h
+#define __BecomingAbombStater_h
 
 #include "BallState.h"
 class BecomingAbombState:public BallState
@@ -14,7 +14,7 @@ public:
 	virtual void bombKeyPressed() override;
 	virtual void hitBorder()override;
 	virtual void hitTetris() override;
-
+	virtual void timeEvent()override;
 };
 
 #endif

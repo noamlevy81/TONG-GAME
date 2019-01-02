@@ -5,7 +5,7 @@
 
 void Ball::draw() {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h, FOREGROUND_BLUE);
+	SetConsoleTextAttribute(h, 8);
 
 	for (int i = 0; i < NUM_POINTS; i++)
 		ballPoints.at(i).draw();
@@ -13,13 +13,13 @@ void Ball::draw() {
 	SetConsoleTextAttribute(h, 15);
 }
 
-void Ball:: setDirX()
+void Ball::setDirX()
 {
 	if (dir_x == 1)
 	{
-		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))			
+		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))
 		{
-			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))	 
+			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))
 			{
 				theState->hitPaddle();
 			}
@@ -30,18 +30,18 @@ void Ball:: setDirX()
 			}
 			else                            //miss paddle 
 			{
-				theState->missedPaddle();		
+				theState->missedPaddle();
 			}
 		}
 		else if (theScreen->isOnXAfterDeath(ballPoints.at(5).getX() + dir_x, dir_x))
-			{
-				//check border collision 
-				if (ballPoints.at(0).getY() + dir_y <= Screen::TOP_BORDER || ballPoints.at(7).getY() + dir_y >= Screen::BOTTOM_BORDER)
-					theState->hitBorder();
-				//check tetris collision
-				if(theScreen->ballHitTetris(dir_x,dir_y, ballPoints.at(5).getX(), ballPoints.at(5).getY()))
-					theState->hitTetris();
-			}
+		{
+			//check border collision 
+			if (ballPoints.at(0).getY() + dir_y <= Screen::TOP_BORDER || ballPoints.at(7).getY() + dir_y >= Screen::BOTTOM_BORDER)
+				theState->hitBorder();
+			//check tetris collision
+			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(5).getX(), ballPoints.at(5).getY()))
+				theState->hitTetris();
+		}
 	}
 
 	else      //dir_x is -1 means that we goes left . 
@@ -54,14 +54,22 @@ void Ball:: setDirX()
 			}
 			else if (theScreen->isOnYCornerofTheLeftPaddle(ballPoints.at(2).getY() + dir_y, dir_y))
 			{
-				dir_x *= -1;
-				dir_y *= -1;
+				theState->hitCorner();
 			}
 			else                      //miss paddle
 			{
 				theState->missedPaddle();
 
 			}
+		}
+		else if (theScreen->isOnXAfterDeath(ballPoints.at(2).getX() + dir_x, dir_x))
+		{
+			//check border collision 
+			if (ballPoints.at(0).getY() + dir_y <= Screen::TOP_BORDER || ballPoints.at(7).getY() + dir_y >= Screen::BOTTOM_BORDER)
+				theState->hitBorder();
+			//check tetris collision
+			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(2).getX(), ballPoints.at(2).getY()))
+				theState->hitTetris();
 		}
 	}
 }
@@ -137,7 +145,7 @@ void Ball::animationHitPaddleLeft()
 
 	eraseBall();
 
-	ballPoints.at(point1).setX(ballPoints.at(point1).getX() -1);
+	ballPoints.at(point1).setX(ballPoints.at(point1).getX() - 1);
 	ballPoints.at(point2).setX(ballPoints.at(point2).getX() - 1);
 
 	Sleep(20);
@@ -147,7 +155,7 @@ void Ball::animationHitPaddleLeft()
 
 	dir_x = 1;
 }
-void Ball:: animationHitPaddleRight()
+void Ball::animationHitPaddleRight()
 {
 	int direction = dir_y;
 
@@ -238,10 +246,10 @@ void Ball::changePointsByDir()
 }
 
 void Ball::eraseBall()
-	{
-		for (int i = 0; i < NUM_POINTS; i++)
-			ballPoints.at(i).erase();
-	}
+{
+	for (int i = 0; i < NUM_POINTS; i++)
+		ballPoints.at(i).erase();
+}
 
 //states methods
 RegularState& Ball::getRegular()
@@ -250,10 +258,10 @@ RegularState& Ball::getRegular()
 }
 
 BecomingAbombState& Ball::getBcomingBomb()
-	{
-		return BecomingABomb_s;
-	}
-	/*BombState& getBomb() 
-	{
-		return bomb_s;
-	}*/
+{
+	return BecomingABomb_s;
+}
+BombState& Ball::getBomb()
+{
+	return bomb_s;
+}

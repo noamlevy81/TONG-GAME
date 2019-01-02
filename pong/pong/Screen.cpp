@@ -72,9 +72,7 @@ bool Screen::ballHitTetris(int dirx,int diry,int ballx,int bally)//ball x holds 
 		if (arrInd == 15)
 			return true;
 		return leftTetris.collisionMade(arrInd, bally + diry);
-		
 	}
-	
 }
 
 

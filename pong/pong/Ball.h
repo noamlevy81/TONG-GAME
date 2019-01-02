@@ -20,9 +20,9 @@ class Ball : public kbListener {
 	vector <Point> ballPoints;				//save points for all the ball points .
 	int dir_x, dir_y;
 
-	size_t gameLoopCount;
+	size_t gameLoopCount; 
 
-	//BombState bomb_s;
+	BombState bomb_s;
 	BecomingAbombState BecomingABomb_s;
 	RegularState regular_s;
 	BallState* theState;
@@ -61,7 +61,7 @@ public:
 		regular_s(*this, *the_screen), BecomingABomb_s(*this, *the_screen),bomb_s(*this,*the_screen)
 	{
 		initalizeBall();
-		theState = &regular_s;
+		setTheState(regular_s);
 
 	}
 
@@ -92,6 +92,8 @@ public:
 		setDir();						//case hit the border we need to change the direction
 		changePointsByDir();
 		draw();
+		gameLoopCount++;
+		theState->timeEvent();
 	}
 
 	void eraseBall();
@@ -101,11 +103,17 @@ public:
 		initalizeBall();
 		dir_x = dir_x1;
 		dir_y = dir_y1;
-		theState = &regular_s;
-
+		setTheState(regular_s);
 	}
 	void draw();
-
+	int getCenterX()
+	{
+		return ballPoints.at(3).getX();
+	}
+	size_t getLoopGameCounter()
+	{
+		return gameLoopCount;
+	}
 	const char * getChars()
 	{
 		return bombKeys;
@@ -123,14 +131,20 @@ public:
 			gameLoopCount = 0;
 	}
 	BallState& getCurrState() { return *theState; }
+
 	void setTheState(BallState& newState)
 	{
 		theState = &newState;
-		setGameLoopCounter(1);
+		setGameLoopCounter();
+		gotoxy(10, 10);
+		std::cout << typeid(*theState).name() <<" "<< gameLoopCount;
 	}
 
 	BecomingAbombState& getBcomingBomb();
 	RegularState& getRegular();
+	BombState& getBomb();
+
+	
 
 	friend class Screen;
 };

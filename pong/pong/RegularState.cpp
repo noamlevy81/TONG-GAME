@@ -1,6 +1,7 @@
 #include "RegularState.h"
 #include "Ball.h"
 #include "Screen.h"
+
 void RegularState::hitPaddle()
 {
 	int temp = ball.getDirY();
@@ -16,7 +17,8 @@ void RegularState::hitCorner()
 }
 void RegularState::missedPaddle()
 {
-	screen.pushPaddle(ball.getDirX());
+	screen.addToTetris(ball.getDirX());
+	screen.pushPaddle(ball.getDirX(),ONE_POINT);
 	screen.setPointLost(true);
 }
 void RegularState::bombKeyPressed()

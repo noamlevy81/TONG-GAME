@@ -1,9 +1,10 @@
-#ifndef __BallState
-#define __BallState
+#ifndef __BallState_h
+#define __BallState_h
 
 class Ball;
 class Screen;
 
+enum { ONE_POINT = 1 };
 class BallState
 {
 protected :
@@ -19,7 +20,7 @@ public:
 	virtual void hitCorner() {}
 	virtual void bombKeyPressed() {}
 	virtual void hitTetris() {}
-
+	virtual void timeEvent(){}
 	friend class Ball;
 };
 
