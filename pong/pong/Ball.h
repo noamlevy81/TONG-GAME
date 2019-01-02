@@ -106,9 +106,9 @@ public:
 		setTheState(regular_s);
 	}
 	void draw();
-	int getCenterX()
+	int getXFromArr(int x) const
 	{
-		return ballPoints.at(3).getX();
+		return ballPoints.at(x).getX();
 	}
 	size_t getLoopGameCounter()
 	{
