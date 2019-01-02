@@ -93,6 +93,8 @@ bool Game::run()
 			ball.draw();
 		}
 		ball.move();		//in this function we could know about miss . 
+		//what  could be here ??
+
 		Sleep(80);
 
 	}

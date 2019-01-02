@@ -7,5 +7,8 @@ using namespace std;
 #include "Game.h"
 
 #endif // !main_h
-
+/*
+TODO:
+ball getDirX and Y change name
+*/
 

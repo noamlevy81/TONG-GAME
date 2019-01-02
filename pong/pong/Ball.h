@@ -6,35 +6,31 @@
 #include "Point.h"
 #include <vector>
 #include <math.h>
-
+#include "kbListener.h"
 #include "RegularState.h"
 //#include "bombState.h"
-//#include "BecomingAbombState.h"
+#include "BecomingAbombState.h"
 //#include "BallState.h"
-
-//class bombState;
-//class BecomingAbombState;
-class BallState;
-
-
-enum { NUM_POINTS = 8 };
 const char BALL_SHAPE = 'O';
+enum { NUM_POINTS = 8 };
 
-class Ball {
+class Ball : public kbListener {
 	Screen *theScreen;						//we hold a reference to screen, because we want to call screen functions inside ball functions
 	vector <Point> ballPoints;				//save points for all the ball points .
 	int dir_x, dir_y;
-	
+
+	size_t gameLoopCount;
 	//BombState bomb_s;
-	//BecomingAbombState BecomingABomb_s;
-
+	BecomingAbombState BecomingABomb_s;
 	RegularState regular_s;
+	BallState* theState;
 
-	BallState* theState; 
-
+	char bombKeys[MAX_KEYS] = { 's','k' };
+	bool bombPressed;
 	//private methods:
 	void initalizeBall()
 	{
+		gameLoopCount = 0;
 		ballPoints.clear();
 		ballPoints.push_back({ 39,11,BALL_SHAPE });
 		ballPoints.push_back({ 40,11,BALL_SHAPE });
@@ -46,9 +42,6 @@ class Ball {
 		ballPoints.push_back({ 40,13,BALL_SHAPE });
 
 	}
-
-	
-
 	void setDir() {
 		setDirY();
 		setDirX();
@@ -59,22 +52,23 @@ class Ball {
 			dir_y *= -1;
 	}
 
-	
+
 public:
-	Ball(Screen *the_screen , int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) :theScreen(the_screen), dir_x(dir_x1), dir_y(dir_y1),
-		regular_s(*this, *the_screen)				//,BecomingABomb_s(*this, *the_screen) bomb_s(*this,*the_screen)
+	Ball(Screen *the_screen, int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) :theScreen(the_screen), dir_x(dir_x1), dir_y(dir_y1),
+		regular_s(*this, *the_screen), BecomingABomb_s(*this, *the_screen) //bomb_s(*this,*the_screen)
 	{
 		initalizeBall();
 		theState = &regular_s;
 
 	}
+
 	void animationHitPaddleRight();
 	void animationHitPaddleLeft();
 
 	void setDirY(int y) { dir_y = y; }
 	void setDirX(int x) { dir_x = x; }
 
-	int getY() 
+	int getY()
 	{
 		return dir_y;
 	}
@@ -88,8 +82,8 @@ public:
 		initalizeBall();
 		draw();
 	}
-	void draw(); 
-	RegularState* getRegular();
+	void draw();
+
 	void move()
 	{
 		eraseBall();
@@ -101,25 +95,33 @@ public:
 	void changePointsByDir();
 
 	void eraseBall();
-
-	//BecomingAbombState& getBcomingBomb()
-	//{
-	//	return BecomingABomb_s;
-	//}
-//	BombState& getBomb() 
-	//{
-	//	return bomb_s;
-	//}
-	
 	void returnToDefault(int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2))
 	{
 		dir_x = dir_x1;
 		dir_y = dir_y1;
 		initalizeBall();
-		theState =&regular_s;
+		theState = &regular_s;
 
 	}
+
+	const char * getChars()
+	{
+		return bombKeys;
+	}
+	//one of the players press bomb key 
+	void changeCurrentKey(char key)
+	{
+		bombPressed = true;
+	}
+	void setGameLoopCounter(int x = 0) {
+		if (x)
+			gameLoopCount++;
+		else
+			gameLoopCount = 0;
+	}
 	BallState& getCurrState() { return *theState; }
+	BecomingAbombState& getBcomingBomb();
+	RegularState& getRegular();
 	void setTheState(BallState& newState)
 	{
 		theState = &newState;

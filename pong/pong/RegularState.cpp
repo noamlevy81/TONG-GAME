@@ -13,7 +13,11 @@ void RegularState::hitPaddle()
 	ball.setDirY(temp);
 	ball.setDirX(-1);
 }
-
+void RegularState::bombKeyPressed()
+{
+	ball.setTheState(ball.getBcomingBomb());
+	ball.setGameLoopCounter();
+}
 void RegularState::hitCorner()
 {
 	ball.setDirX(ball.getX()*-1);

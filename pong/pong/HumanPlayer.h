@@ -7,7 +7,7 @@
 class HumanPlayer : public Paddle, public kbListener
 {
 private:
-	char  keys[3];
+	char  keys[MAX_KEYS];
 	char currentKey = 0;
 
 	void handleKey()

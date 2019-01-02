@@ -33,6 +33,15 @@ void Ball:: setDirX()
 				theState->missedPaddle();		
 			}
 		}
+		else if (theScreen->isOnXAfterDeath(ballPoints.at(5).getX() + dir_x, dir_x))
+			{
+				//check border collision 
+				if (ballPoints.at(0).getY() + dir_y <= Screen::TOP_BORDER || ballPoints.at(7).getY() + dir_y >= Screen::BOTTOM_BORDER)
+					theState->hitBorder();
+				//check tetris collision
+				if(theScreen->ballHitTetris(dir_x,dir_y, ballPoints.at(5).getX(), ballPoints.at(5).getY()))
+					theState->hitTetris();
+			}
 	}
 
 	else      //dir_x is -1 means that we goes left . 
@@ -235,7 +244,16 @@ void Ball::eraseBall()
 	}
 
 //states methods
-RegularState* Ball::getRegular()
+RegularState& Ball::getRegular()
 {
-	return &regular_s;
+	return regular_s;
 }
+
+BecomingAbombState& Ball::getBcomingBomb()
+	{
+		return BecomingABomb_s;
+	}
+	/*BombState& getBomb() 
+	{
+		return bomb_s;
+	}*/

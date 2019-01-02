@@ -2,7 +2,8 @@
 
 using namespace std ;
 
-void Screen::printBoard() const 
+void Screen::printBoard() const
+
 {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(h , BACKGROUND_INTENSITY);
@@ -35,6 +36,7 @@ void Screen::printBoard() const
 		cout << " ";
 	}
 
+
 	SetConsoleTextAttribute(h, 15);
 
 	gotoxy(10, 1);
@@ -51,3 +53,24 @@ void Screen::printBoard() const
 
 	SetConsoleTextAttribute(h, 15);
 }
+
+bool Screen::ballHitTetris(int dirx,int diry,int ballx,int bally)//ball x holds the leftest/rightest x val
+{
+	int arrInd;
+	if (dirx == 1)//right side of the screen
+	{
+		arrInd = 79 - ballx;
+		arrInd = 15 - arrInd + 1;
+		return rightTetris.collisionMade(arrInd, bally + diry);
+	}
+	else
+	{
+		arrInd =ballx-1;
+		arrInd = 15 - arrInd + 1;
+		return leftTetris.collisionMade(arrInd, bally + diry);
+		
+	}
+	
+}
+
+

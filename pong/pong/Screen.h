@@ -30,7 +30,7 @@ class Screen
 	}
 
 public:
-	
+	bool ballHitTetris(int dirx, int diry, int ballx, int bally);
 	Screen(Tetris& left_tetris , Tetris& right_tetris ) : leftTetris(left_tetris) , rightTetris(right_tetris) {}
 
 	void setLife()
@@ -104,7 +104,13 @@ public:
 		else
 			return ballx == leftPaddle->up.getX();
 	}
-
+	bool isOnXAfterDeath(int ballx, int dirx)
+	{
+		if (dirx == 1)
+			return  ballx >= rightPaddle->up.getX();
+		else
+			return ballx <= leftPaddle->up.getX();
+	}
 	//get the dirx for knows with which paddle to check and the dir y for add it to the ball coordinate .
 	bool isOnYOfThePaddles(int ball_y, int dirx, int diry) {
 		if (dirx == 1)

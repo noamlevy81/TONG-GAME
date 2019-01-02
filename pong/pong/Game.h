@@ -46,6 +46,7 @@ public:
 	void updateKbManager()
 	{
 		kbManager.clearKeysHistory();
+		kbManager.registerKeyBoardManager(&ball);
 		if (!strcmp(typeid(*leftPlayer).name(), typeid(HumanPlayer).name()))
 			kbManager.registerKeyBoardManager((HumanPlayer*)leftPlayer);						
 		if (!strcmp(typeid(*rightPlayer).name(), typeid(HumanPlayer).name()))

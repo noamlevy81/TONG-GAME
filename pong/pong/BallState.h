@@ -17,7 +17,8 @@ public:
 	virtual void hitPaddle() {}
 	virtual void hitBorder() {}
 	virtual void hitCorner() {}
-
+	virtual void bombKeyPressed() {}
+	virtual void hitTetris() {}
 
 	friend class Ball;
 };
