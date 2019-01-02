@@ -4,12 +4,19 @@
 #include "windows.h"
 #include "Screen.h"
 #include "Point.h"
-#include "BallState.h"
 #include <vector>
 #include <math.h>
+
 #include "RegularState.h"
-#include "bombState.h"
-#include "BecomingAbombState.h"
+//#include "bombState.h"
+//#include "BecomingAbombState.h"
+//#include "BallState.h"
+
+//class bombState;
+//class BecomingAbombState;
+class BallState;
+
+
 enum { NUM_POINTS = 8 };
 const char BALL_SHAPE = 'O';
 
@@ -18,9 +25,10 @@ class Ball {
 	vector <Point> ballPoints;				//save points for all the ball points .
 	int dir_x, dir_y;
 	
-	BombState bomb_s;
+	//BombState bomb_s;
+	//BecomingAbombState BecomingABomb_s;
+
 	RegularState regular_s;
-	BecomingAbombState BecomingABomb_s;
 
 	BallState* theState; 
 
@@ -39,14 +47,7 @@ class Ball {
 
 	}
 
-	void returnTodefault(int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2))
-	{
-		dir_x = dir_x1;
-		dir_y = dir_y1;
-
-		theState = regular_s;
-
-	}
+	
 
 	void setDir() {
 		setDirY();
@@ -58,20 +59,20 @@ class Ball {
 			dir_y *= -1;
 	}
 
+	
+public:
+	Ball(Screen *the_screen , int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) :theScreen(the_screen), dir_x(dir_x1), dir_y(dir_y1),
+		regular_s(*this, *the_screen)				//,BecomingABomb_s(*this, *the_screen) bomb_s(*this,*the_screen)
+	{
+		initalizeBall();
+		theState = &regular_s;
+
+	}
 	void animationHitPaddleRight();
 	void animationHitPaddleLeft();
 
-	
-public:
-	Ball(Screen *the_screen , int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) :theScreen(the_screen), dir_x(dir_x1), dir_y(dir_y1)
-		,bomb_s(*this,*the_screen),regular_s(*this, *the_screen),BecomingABomb_s(*this, *the_screen)
-	{
-		initalizeBall();
-		theState = regular_s;
-
-	}
-	void setDirY(int y){dir_y = y}
-	void setDirX(int X) { dir_x = x }
+	void setDirY(int y) { dir_y = y; }
+	void setDirX(int x) { dir_x = x; }
 
 	int getY() 
 	{
@@ -88,7 +89,7 @@ public:
 		draw();
 	}
 	void draw(); 
-
+	RegularState* getRegular();
 	void move()
 	{
 		eraseBall();
@@ -101,23 +102,29 @@ public:
 
 	void eraseBall();
 
-	BallState& getBcomingBomb() const
+	//BecomingAbombState& getBcomingBomb()
+	//{
+	//	return BecomingABomb_s;
+	//}
+//	BombState& getBomb() 
+	//{
+	//	return bomb_s;
+	//}
+	
+	void returnToDefault(int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2))
 	{
-		return BecomingABomb_s;
-	}
-	BallState& getBomb() const
-	{
-		return bomb_s;
-	}
-	BallState& getRegular() const
-	{
-		return regular_s;
-	}
+		dir_x = dir_x1;
+		dir_y = dir_y1;
+		initalizeBall();
+		theState =&regular_s;
 
+	}
+	BallState& getCurrState() { return *theState; }
 	void setTheState(BallState& newState)
 	{
-		theState = newState;
+		theState = &newState;
 	}
+
 	friend class Screen;
 };
 

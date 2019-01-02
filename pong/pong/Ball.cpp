@@ -1,6 +1,7 @@
 #include "Ball.h"
 
 #include "Screen.h"
+#include "RegularState.h"
 
 void Ball::draw() {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -16,9 +17,9 @@ void Ball:: setDirX()
 {
 	if (dir_x == 1)
 	{
-		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))			//bomb
+		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))			
 		{
-			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))	//hit paddle 
+			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))	 
 			{
 				theState->hitPaddle();
 			}
@@ -40,10 +41,7 @@ void Ball:: setDirX()
 		{
 			if (theScreen->isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x, dir_y))   //hit paddle
 			{
-				int temp = dir_y;
-				animationHitPaddleLeft();
-				dir_y = temp;
-				dir_x = 1;
+				theState->hitPaddle();
 			}
 			else if (theScreen->isOnYCornerofTheLeftPaddle(ballPoints.at(2).getY() + dir_y, dir_y))
 			{
@@ -52,9 +50,8 @@ void Ball:: setDirX()
 			}
 			else                      //miss paddle
 			{
-				//ball.
-				theScreen->pushPaddle(dir_x);
-				theScreen->setPointLost(true);
+				theState->missedPaddle();
+
 			}
 		}
 	}
@@ -236,3 +233,9 @@ void Ball::eraseBall()
 		for (int i = 0; i < NUM_POINTS; i++)
 			ballPoints.at(i).erase();
 	}
+
+//states methods
+RegularState* Ball::getRegular()
+{
+	return &regular_s;
+}

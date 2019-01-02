@@ -103,7 +103,6 @@ void Game::initializeGame()
 {
 	screen.freeTetris();
 	returnToDefault();
-	ball.returnTodefault();
 	updateKbManager();
 	screen.setLife();
 }
@@ -111,7 +110,8 @@ void Game::returnToDefault()
 {
 	*rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
 	*leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
-	
+	ball.returnToDefault();
+
 }
 // this function set the flag that says that one player miss the ball , and check if game over ,and
 bool Game:: LoseOnePoint()
@@ -129,7 +129,7 @@ bool Game:: LoseOnePoint()
 
 	ball.eraseBall();
 
-	ball = Ball(&screen);
+	ball.returnToDefault();
 
 	screen.setPointLost(false);
 
