@@ -44,25 +44,27 @@ void Screen::printBoard() const
 	SetConsoleTextAttribute(h, FOREGROUND_RED);
 
 	cout << "life " << lifeLeft;
-	lifeLeft == 9 ? cout << " " : cout << "";
+	lifeLeft <= 9 ? cout << " " : cout << "";
 
 	gotoxy(50, 1);
 
 	cout << "life " << lifeRight;
-	lifeRight == 9 ? cout << " " : cout << "";
+	lifeRight <= 9 ? cout << " " : cout << "";
 
 	SetConsoleTextAttribute(h, 15);
 }
 
-bool Screen::ballHitTetris(int dirx,int diry,int ballx,int bally)//ball x holds the leftest/rightest x val
+bool Screen::ballHitTetris(int dirx,int diry,int ballx,int bally,int *ind)//ball x holds the leftest/rightest x val
 {
 	int arrInd;
+	*ind = 15;
 	if (dirx == 1)//right side of the screen
 	{
 		arrInd = 79 - ballx;
 		arrInd = 15 - arrInd + 1;
 		if (arrInd == 15)
 			return true;
+		*ind = arrInd;
 		return rightTetris.collisionMade(arrInd, bally + diry);
 	}
 	else
@@ -71,6 +73,8 @@ bool Screen::ballHitTetris(int dirx,int diry,int ballx,int bally)//ball x holds 
 		arrInd = 15 - arrInd + 1;
 		if (arrInd == 15)
 			return true;
+		*ind = arrInd;
+
 		return leftTetris.collisionMade(arrInd, bally + diry);
 	}
 }

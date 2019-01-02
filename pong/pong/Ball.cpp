@@ -15,6 +15,7 @@ void Ball::draw() {
 
 void Ball::setDirX()
 {
+		int ind;
 	if (dir_x == 1)
 	{
 		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))
@@ -39,8 +40,8 @@ void Ball::setDirX()
 			if (ballPoints.at(0).getY() + dir_y <= Screen::TOP_BORDER || ballPoints.at(7).getY() + dir_y >= Screen::BOTTOM_BORDER)
 				theState->hitBorder();
 			//check tetris collision
-			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(5).getX(), ballPoints.at(5).getY()))
-				theState->hitTetris();
+			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(5).getX(), ballPoints.at(5).getY(),&ind))
+				theState->hitTetris(ind);
 		}
 	}
 
@@ -68,8 +69,8 @@ void Ball::setDirX()
 			if (ballPoints.at(0).getY() + dir_y <= Screen::TOP_BORDER || ballPoints.at(7).getY() + dir_y >= Screen::BOTTOM_BORDER)
 				theState->hitBorder();
 			//check tetris collision
-			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(2).getX(), ballPoints.at(2).getY()))
-				theState->hitTetris();
+			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(2).getX(), ballPoints.at(2).getY(),&ind))
+				theState->hitTetris(ind);
 		}
 	}
 }

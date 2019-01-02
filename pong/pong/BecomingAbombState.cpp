@@ -7,7 +7,7 @@ void BecomingAbombState::hitPaddle()
 	ball.setTheState(ball.getRegular());
 	ball.getCurrState().hitPaddle();
 }
-void BecomingAbombState::hitTetris()
+void BecomingAbombState::hitTetris(int x)
 {
 	hitBorder();
 }

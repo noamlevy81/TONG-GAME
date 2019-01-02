@@ -91,7 +91,7 @@ bool Game::run()
 			drawGame();
 			ball.draw();
 		}
-		Sleep(200);
+		Sleep(80);
 	}
 }
 

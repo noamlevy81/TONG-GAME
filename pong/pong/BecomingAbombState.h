@@ -13,7 +13,7 @@ public:
 	virtual void hitPaddle() override;
 	virtual void bombKeyPressed() override;
 	virtual void hitBorder()override;
-	virtual void hitTetris() override;
+	virtual void hitTetris(int x) override;
 	virtual void timeEvent()override;
 };
 

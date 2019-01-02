@@ -19,7 +19,7 @@ public:
 	virtual void hitBorder() {}
 	virtual void hitCorner() {}
 	virtual void bombKeyPressed() {}
-	virtual void hitTetris() {}
+	virtual void hitTetris(int x) {}
 	virtual void timeEvent(){}
 	friend class Ball;
 };

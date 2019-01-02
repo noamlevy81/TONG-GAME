@@ -30,7 +30,7 @@ class Screen
 	}
 
 public:
-	bool ballHitTetris(int dirx, int diry, int ballx, int bally);
+	bool ballHitTetris(int dirx, int diry, int ballx, int bally,int *ind);
 	Screen(Tetris& left_tetris, Tetris& right_tetris) : leftTetris(left_tetris), rightTetris(right_tetris) {}
 
 	void addToTetris(int dirX)
@@ -57,6 +57,9 @@ public:
 	}
 	void pushPaddle(int ballDirX, int numOfTimes)					// this method update the x value of the paddle in case of lose one point 
 	{
+
+		leftPaddle->erase();
+		rightPaddle->erase();
 		if (ballDirX == 1)
 		{
 			rightPaddle->up.setX(rightPaddle->up.getX() - numOfTimes);
