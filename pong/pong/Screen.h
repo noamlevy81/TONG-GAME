@@ -51,8 +51,6 @@ public:
 		else
 			this->leftTetris.addToTetris(*leftPaddle, ballDirX);//rightTetris.addToRightTetris(*rightPaddle);
 
-			//leftTetris.addToLeftTetris(*leftPaddle);
-
 		leftPaddle->erase();
 		rightPaddle->erase();
 

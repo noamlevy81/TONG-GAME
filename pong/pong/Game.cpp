@@ -18,7 +18,7 @@ void Game::start()
 
 		switch (option)
 		{
-		case 1:
+		case 1: //case multiple players
 			leftPlayer = &hplayerLeft;
 			rightPlayer = &hplayerRight;
 			run();
@@ -103,7 +103,7 @@ void Game::initializeGame()
 {
 	screen.freeTetris();
 	returnToDefault();
-	ball = Ball(&screen);
+	ball.returnTodefault();
 	updateKbManager();
 	screen.setLife();
 }

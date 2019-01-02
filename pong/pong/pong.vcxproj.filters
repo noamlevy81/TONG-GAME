@@ -51,6 +51,18 @@
     <ClCompile Include="kbListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BallState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RegularState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BecomingAbombState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BombState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h">
@@ -90,6 +102,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="kbListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BallState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RegularState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BecomingAbombState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BombState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

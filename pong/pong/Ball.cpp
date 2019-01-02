@@ -18,23 +18,18 @@ void Ball:: setDirX()
 	{
 		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))			//bomb
 		{
-			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))
+			if (theScreen->isOnYOfThePaddles(ballPoints.at(5).getY(), dir_x, dir_y))	//hit paddle 
 			{
-				int temp = dir_y;
-				animationHitPaddleRight();
-				dir_y = temp;
-				dir_x = -1;
+				theState->hitPaddle();
 			}
 
 			else if (theScreen->isOnYCornerofTheRightPaddle(ballPoints.at(5).getY() + dir_y, dir_y))
 			{
-				dir_x *= -1;
-				dir_y *= -1;
+				theState->hitCorner();
 			}
-			else
+			else                            //miss paddle 
 			{
-				theScreen->pushPaddle(dir_x);
-				theScreen->setPointLost(true);
+				theState->missedPaddle();		
 			}
 		}
 	}
@@ -43,7 +38,7 @@ void Ball:: setDirX()
 	{
 		if (theScreen->isOnXBorder(ballPoints.at(2).getX() + dir_x, dir_x))
 		{
-			if (theScreen->isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x, dir_y))
+			if (theScreen->isOnYOfThePaddles(ballPoints.at(2).getY(), dir_x, dir_y))   //hit paddle
 			{
 				int temp = dir_y;
 				animationHitPaddleLeft();
@@ -55,8 +50,9 @@ void Ball:: setDirX()
 				dir_x *= -1;
 				dir_y *= -1;
 			}
-			else
+			else                      //miss paddle
 			{
+				//ball.
 				theScreen->pushPaddle(dir_x);
 				theScreen->setPointLost(true);
 			}
