@@ -178,11 +178,15 @@ int Menu ::printMenu(bool pause)
 	gotoxy(x, y + 2);
 	cout << "Choose one of the following:";
 	gotoxy(x, y + 4);
-	cout << "1.Start new game";
-
+	cout << "1.Start new game human Vs human";
+	gotoxy(x, y + 2);
+	cout << "2.Start new game human Vs computer";
+	gotoxy(x, y + 2);
+	cout << "3.Start new game computer Vs computer";
+	gotoxy(x, y + 2);
 	if (pause == true) {
 		gotoxy(x, y + 6);
-		cout << "2.to continue";
+		cout << "4.to continue";
 		y += 2;
 	}
 	gotoxy(x, y + 6);

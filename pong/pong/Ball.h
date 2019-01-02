@@ -7,10 +7,11 @@
 #include <vector>
 #include <math.h>
 #include "kbListener.h"
+
 #include "RegularState.h"
-//#include "bombState.h"
+#include "BombState.h"
 #include "BecomingAbombState.h"
-//#include "BallState.h"
+
 const char BALL_SHAPE = 'O';
 enum { NUM_POINTS = 8 };
 
@@ -20,6 +21,7 @@ class Ball : public kbListener {
 	int dir_x, dir_y;
 
 	size_t gameLoopCount;
+
 	//BombState bomb_s;
 	BecomingAbombState BecomingABomb_s;
 	RegularState regular_s;
@@ -43,19 +45,20 @@ class Ball : public kbListener {
 
 	}
 	void setDir() {
-		setDirY();
 		setDirX();
+		setDirY();
 	}
 	void setDirX();
 	void setDirY() {
 		if (ballPoints.at(0).getY() + dir_y <= Screen::TOP_BORDER || ballPoints.at(7).getY() + dir_y >= Screen::BOTTOM_BORDER)
 			dir_y *= -1;
 	}
+	void changePointsByDir();
 
 
 public:
 	Ball(Screen *the_screen, int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) :theScreen(the_screen), dir_x(dir_x1), dir_y(dir_y1),
-		regular_s(*this, *the_screen), BecomingABomb_s(*this, *the_screen) //bomb_s(*this,*the_screen)
+		regular_s(*this, *the_screen), BecomingABomb_s(*this, *the_screen),bomb_s(*this,*the_screen)
 	{
 		initalizeBall();
 		theState = &regular_s;
@@ -68,11 +71,11 @@ public:
 	void setDirY(int y) { dir_y = y; }
 	void setDirX(int x) { dir_x = x; }
 
-	int getY()
+	int getDirY() const
 	{
 		return dir_y;
 	}
-	int getX()
+	int getDirX() const
 	{
 		return dir_x;
 	}
@@ -82,7 +85,6 @@ public:
 		initalizeBall();
 		draw();
 	}
-	void draw();
 
 	void move()
 	{
@@ -92,17 +94,17 @@ public:
 		draw();
 	}
 
-	void changePointsByDir();
-
 	void eraseBall();
+
 	void returnToDefault(int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2))
 	{
+		initalizeBall();
 		dir_x = dir_x1;
 		dir_y = dir_y1;
-		initalizeBall();
 		theState = &regular_s;
 
 	}
+	void draw();
 
 	const char * getChars()
 	{
@@ -112,6 +114,7 @@ public:
 	void changeCurrentKey(char key)
 	{
 		bombPressed = true;
+		theState->bombKeyPressed();
 	}
 	void setGameLoopCounter(int x = 0) {
 		if (x)
@@ -120,12 +123,14 @@ public:
 			gameLoopCount = 0;
 	}
 	BallState& getCurrState() { return *theState; }
-	BecomingAbombState& getBcomingBomb();
-	RegularState& getRegular();
 	void setTheState(BallState& newState)
 	{
 		theState = &newState;
+		setGameLoopCounter(1);
 	}
+
+	BecomingAbombState& getBcomingBomb();
+	RegularState& getRegular();
 
 	friend class Screen;
 };

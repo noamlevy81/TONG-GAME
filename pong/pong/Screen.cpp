@@ -61,12 +61,16 @@ bool Screen::ballHitTetris(int dirx,int diry,int ballx,int bally)//ball x holds 
 	{
 		arrInd = 79 - ballx;
 		arrInd = 15 - arrInd + 1;
+		if (arrInd == 15)
+			return true;
 		return rightTetris.collisionMade(arrInd, bally + diry);
 	}
 	else
 	{
 		arrInd =ballx-1;
 		arrInd = 15 - arrInd + 1;
+		if (arrInd == 15)
+			return true;
 		return leftTetris.collisionMade(arrInd, bally + diry);
 		
 	}

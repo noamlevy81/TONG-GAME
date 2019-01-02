@@ -20,3 +20,8 @@ void BecomingAbombState::hitBorder() {
 	ball.setTheState(ball.getRegular());
 	ball.getCurrState().missedPaddle();
 }
+
+void BecomingAbombState::hitCorner() {
+	ball.setTheState(ball.getRegular());
+	ball.getCurrState().hitCorner();
+}

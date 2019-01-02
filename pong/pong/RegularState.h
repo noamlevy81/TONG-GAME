@@ -9,13 +9,11 @@ public:
 	RegularState(Ball& b,Screen& s) : BallState(b,s) {}
 	//~RegularState();
 
-
-	//void hitBorder();
-	virtual void missedPaddle() override;
 	virtual void hitPaddle() override;
 	virtual void hitCorner() override;
-	virtual void bombKeyPressed()override;
+	virtual void missedPaddle() override;
 	virtual void hitBorder() override {}
+	virtual void bombKeyPressed()override;
 };
 
 #endif 

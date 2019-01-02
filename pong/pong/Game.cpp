@@ -18,23 +18,23 @@ void Game::start()
 
 		switch (option)
 		{
-		case 1: //case multiple players
+		case 1:							//case multiple players
 			leftPlayer = &hplayerLeft;
 			rightPlayer = &hplayerRight;
-			run();
+			if (!run())
+				return;
 			break;
 		case 2:
-			
 			leftPlayer = &hplayerLeft;
 			rightPlayer = &pcPlayerRight;
-			run();
+			if (!run())
+				return;
 			break;
 		case 3 :
 			leftPlayer = &pcPlayerLeft;
 			rightPlayer = &pcPlayerRight;
 			run();
 			break;
-	
 		case 8:
 			menu.instructions();
 			break;
@@ -54,7 +54,6 @@ bool Game::run()
 
 	while (true)
 	{
-		
 		int choice = kbManager.handleKb(menu);	
 		moveManager();				
 
@@ -62,11 +61,11 @@ bool Game::run()
 			choice = 6; 
 		if (choice >=1 && choice <= 9 )
 		{
-			if (choice == 1)
+			if (choice == 1 )	//to add 2 and 3 
 			{
 				initializeGame();
 			}
-			//if (choice == 3)// set keys and continue 
+			//if (choice == 4)// set keys and continue 
 			//{
 			//	menu.setUpKeys(leftPlayer, rightPlayer);
 			//	updateKbManager();
@@ -92,11 +91,7 @@ bool Game::run()
 			drawGame();
 			ball.draw();
 		}
-		ball.move();		//in this function we could know about miss . 
-		//what  could be here ??
-
 		Sleep(80);
-
 	}
 }
 
@@ -108,13 +103,8 @@ void Game::initializeGame()
 	updateKbManager();
 	screen.setLife();
 }
-void Game::returnToDefault()
-{
-	*rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
-	*leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
-	ball.returnToDefault();
 
-}
+
 // this function set the flag that says that one player miss the ball , and check if game over ,and
 bool Game:: LoseOnePoint()
 {

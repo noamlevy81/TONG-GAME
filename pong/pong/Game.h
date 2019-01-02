@@ -22,12 +22,17 @@ class Game
 	Tetris left, right;					
 	Screen screen;
 	Menu menu;
-	void returnToDefault();
+	void returnToDefault()
+	{
+		*rightPlayer = Paddle({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
+		*leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
+		ball.returnToDefault();
+	}
+	
 public:
-	Game():screen(left ,right ) , ball(&screen) ,left(&screen),right(&screen) {}
+	Game():screen(left ,right ), ball(&screen) ,left(&screen),right(&screen) {}
 
 	void start();
-
 	bool run();
 
 	//this method initailzie the default paramater of the objects 
@@ -40,6 +45,7 @@ public:
 		screen.printTetris();
 		leftPlayer->drawPaddle();
 		rightPlayer->drawPaddle();
+
 	}
 
 	//update players keys
@@ -55,9 +61,11 @@ public:
 
 	void moveManager()
 	{
+		ball.move();		
 		leftPlayer->move();
 		rightPlayer->move();
 	}
+
 	void gameOver(int side)
 	{
 		menu.gameOver(side);
@@ -65,8 +73,6 @@ public:
 
 	// this function check if game over ,and set the flag that says that one player miss the ball . 
 	bool LoseOnePoint();
-
 };
-
 
 #endif // ! Game_h

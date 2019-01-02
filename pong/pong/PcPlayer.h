@@ -14,7 +14,7 @@ public:
 
 	virtual void move() override
 	{
-		setDirY(balling->getY());
+		setDirY(balling->getDirY());
 		Paddle::move();
 	}
 
