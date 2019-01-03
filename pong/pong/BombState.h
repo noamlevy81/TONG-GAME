@@ -18,6 +18,5 @@ public:
 	virtual void hitTetris(int x) override;
 	virtual void hitBorder()override;
 	virtual void timeEvent() override;
-	//virtual void bombKeyPressed() override;
 };
 #endif

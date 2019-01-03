@@ -45,14 +45,16 @@ void BombState::hitTetris(int x)
 	 
 	 if (ball.getLoopGameCounter() == 4)
 	 {
-		 int ballXcoord = ball.getCenterX();
-		 if (ballXcoord <= screen.getRPaddleX()
-			 && ballXcoord >= screen.getLPaddleX())
-			 ball.setTheState(ball.getRegular());
+		 int ballXcoord = ball.getXFromArr(5);
+		 if (ballXcoord <= screen.getRPaddleX()&& ballXcoord >= screen.getLPaddleX())
+		 {
+			 ballXcoord = ball.getXFromArr(2);
+			 if (ballXcoord <= screen.getRPaddleX() && ballXcoord >= screen.getLPaddleX())
+				ball.setTheState(ball.getRegular());
+		 }
+		 else
+			 ball.setTheState(ball.getBomb());
+		 
 	 }
  }
 
- void bombKeyPressed() 
- {
-	 //do nothing
- }

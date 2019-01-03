@@ -26,9 +26,8 @@ class Ball : public kbListener {
 	BecomingAbombState BecomingABomb_s;
 	RegularState regular_s;
 	BallState* theState;
-
+	int bombPressedLeft, bombPressedRight;
 	char bombKeys[MAX_KEYS] = { 's','k' };
-	bool bombPressed;
 	//private methods:
 	void initalizeBall()
 	{
@@ -44,6 +43,7 @@ class Ball : public kbListener {
 		ballPoints.push_back({ 40,13,BALL_SHAPE });
 
 	}
+
 	void setDir() {
 		setDirX();
 		setDirY();
@@ -54,16 +54,25 @@ class Ball : public kbListener {
 			dir_y *= -1;
 	}
 	void changePointsByDir();
-
+	void setBombPressed() {
+		if (ballPoints.at(5).getX() == 40)
+		{
+			bombPressedLeft++;
+			bombPressedRight++;
+		}
+	}
 
 public:
 	Ball(Screen *the_screen, int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2)) :theScreen(the_screen), dir_x(dir_x1), dir_y(dir_y1),
 		regular_s(*this, *the_screen), BecomingABomb_s(*this, *the_screen),bomb_s(*this,*the_screen)
 	{
 		initalizeBall();
+		bombPressedRight = bombPressedLeft = 4;// when game started player can use bomb
 		setTheState(regular_s);
 
 	}
+	void resetBombPressedLeft() { bombPressedLeft = 0; }
+	void resetBombPressedRight() { bombPressedRight = 0; }
 
 	void animationHitPaddleRight();
 	void animationHitPaddleLeft();
@@ -94,7 +103,9 @@ public:
 		draw();
 		gameLoopCount++;
 		theState->timeEvent();
+		setBombPressed();
 	}
+
 
 	void eraseBall();
 
@@ -106,9 +117,9 @@ public:
 		setTheState(regular_s);
 	}
 	void draw();
-	int getCenterX()
+	int getXFromArr(int x) const
 	{
-		return ballPoints.at(3).getX();
+		return ballPoints.at(x).getX();
 	}
 	size_t getLoopGameCounter()
 	{
@@ -121,8 +132,7 @@ public:
 	//one of the players press bomb key 
 	void changeCurrentKey(char key)
 	{
-		bombPressed = true;
-		theState->bombKeyPressed();
+		theState->bombKeyPressed(key);
 	}
 	void setGameLoopCounter(int x = 0) {
 		if (x)
@@ -139,6 +149,8 @@ public:
 		gotoxy(10, 10);
 		std::cout << typeid(*theState).name() <<" "<< gameLoopCount;
 	}
+	int getBombPressedLeft() { return bombPressedLeft; }
+	int getBombPressedRight() { return bombPressedRight; }
 
 	BecomingAbombState& getBcomingBomb();
 	RegularState& getRegular();

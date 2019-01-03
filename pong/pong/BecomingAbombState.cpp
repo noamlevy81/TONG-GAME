@@ -11,10 +11,7 @@ void BecomingAbombState::hitTetris(int x)
 {
 	hitBorder();
 }
-void  BecomingAbombState::bombKeyPressed()
-{
-	//do nothing
-}
+
 
 void BecomingAbombState::hitBorder() {
 	ball.setTheState(ball.getRegular());
