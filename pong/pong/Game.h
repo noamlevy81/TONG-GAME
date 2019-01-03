@@ -15,6 +15,7 @@
 
 class Game
 {
+	enum LEVELS{NOVICE,GOOD,BEST};
 	Paddle* leftPlayer ;
 	Paddle* rightPlayer;
 	Ball ball;
@@ -28,7 +29,26 @@ class Game
 		*leftPlayer = Paddle({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE });
 		ball.returnToDefault();
 	}
-	
+	void setPcLevel() {
+		int rightLevel = menu.getLevelRight();
+		if (rightLevel == NOVICE)
+			((PcPlayer*)rightPlayer)->setLevel(10);
+		else if(rightLevel == GOOD)
+			((PcPlayer*)rightPlayer)->setLevel(40);
+		else
+			((PcPlayer*)rightPlayer)->setLevel(1);
+		int leftLevel;
+		if (!strcmp(typeid(*leftPlayer).name(), typeid(PcPlayer).name()))
+		{
+			leftLevel = menu.getLevelLeft();
+			if (leftLevel == NOVICE)
+				((PcPlayer*)leftPlayer)->setLevel(10);
+			else if (leftLevel == GOOD)
+				((PcPlayer*)leftPlayer)->setLevel(40);
+			else
+				((PcPlayer*)leftPlayer)->setLevel(1);
+		}
+	}
 public:
 	Game():screen(left ,right ), ball(&screen) ,left(&screen),right(&screen) {}
 

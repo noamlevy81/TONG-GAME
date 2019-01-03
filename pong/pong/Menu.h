@@ -22,6 +22,8 @@ public:
 	void printFace();
 
 	void printHeader();
+	int getLevelRight();
+	int getLevelLeft();
 
 };
 

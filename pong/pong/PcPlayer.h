@@ -13,7 +13,7 @@ class PcPlayer : public Paddle
 	int goTo = 14;
 	int center; //will be the relevant ball point for calculations
 	int myDir;// will hold the dir of the ball when moving toards player
-	
+	int level;
 	void calculateLocation()
 	{
 		if (ball->getDirY() == -1)
@@ -39,6 +39,11 @@ class PcPlayer : public Paddle
 			{
 				goTo = ball->getYFromArr(center) + 9;
 			}
+		}
+		if (std::rand() % level == 1)
+		{
+			int x = rand() % 5+3;
+			goTo +=x*pow(-1,x%2);
 		}
 	}
 
@@ -90,6 +95,7 @@ public:
 			goTo = 14;
 		}
 	}
+	void setLevel(int l) { level = l; }
 };
 
 #endif 
