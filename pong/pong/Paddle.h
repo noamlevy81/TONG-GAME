@@ -8,12 +8,17 @@ const char PADDLE_SHAPE = '#';
 class Paddle
 {
 	int dir_y = 1;
-	Point down, up;
-
-	void movePad(Point &first, Point & second);
 
 protected:
+	Point down, up;
 	void setDirY(int diry){	dir_y = diry;}
+	void movePad(Point &first, Point & second);
+
+	int getUpYPoint()
+	{
+		return up.getY();
+	}
+
 public:
 	Paddle(const Point& up1,const Point& down1) : up(up1), down(down1) {};
 
@@ -24,8 +29,6 @@ public:
 
 
 	void drawPaddle(char figure = PADDLE_SHAPE) const ;
-	
-
 	
 	virtual void move()
 	{

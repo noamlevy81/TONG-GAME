@@ -16,7 +16,7 @@ const char BALL_SHAPE = 'O';
 enum { NUM_POINTS = 8 };
 
 class Ball : public kbListener {
-	Screen *theScreen;						//we hold a reference to screen, because we want to call screen functions inside ball functions
+	Screen *theScreen;						//hold a reference to screen, because we want to call screen functions inside ball functions
 	vector <Point> ballPoints;				//save points for all the ball points .
 	int dir_x, dir_y;
 

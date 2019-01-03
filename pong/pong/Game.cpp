@@ -10,6 +10,10 @@ void Game::start()
 	PcPlayer pcPlayerLeft({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } ,&ball);
 	PcPlayer pcPlayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE },&ball);
 
+	/*void takeComputersToCenter()
+	{
+
+	}*/
 	ShowConsoleCursor(false);
 	int option;
 	while (true)
