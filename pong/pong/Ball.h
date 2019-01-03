@@ -121,6 +121,10 @@ public:
 	{
 		return ballPoints.at(x).getX();
 	}
+	int getYFromArr(int x) const
+	{
+		return ballPoints.at(x).getY();
+	}
 	size_t getLoopGameCounter()
 	{
 		return gameLoopCount;
