@@ -7,13 +7,9 @@ void Game::start()
 	HumanPlayer hplayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
 		hplayerLeft.setKeys('q', 'a');
 		hplayerRight.setKeys('p', 'l');
-	PcPlayer pcPlayerLeft({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } ,&ball);
-	PcPlayer pcPlayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE },&ball);
+	PcPlayer pcPlayerLeft({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } ,&ball,-1,2);
+	PcPlayer pcPlayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE },&ball,1,5);
 
-	/*void takeComputersToCenter()
-	{
-
-	}*/
 	ShowConsoleCursor(false);
 	int option;
 	while (true)
