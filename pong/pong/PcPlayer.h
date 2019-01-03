@@ -11,9 +11,9 @@ class PcPlayer : public Paddle
 	Ball* ball;
 	bool isInCenter = false;
 	int goTo = 14;
-	int center;				//will be the relevant ball point for calculations
-	int myDir;				// will hold the dir of the ball when moving toards player
-	
+	int center; //will be the relevant ball point for calculations
+	int myDir;// will hold the dir of the ball when moving toards player
+	int level;
 	void calculateLocation()
 	{
 		if (ball->getDirY() == -1)
@@ -39,6 +39,11 @@ class PcPlayer : public Paddle
 			{
 				goTo = ball->getYFromArr(center) + 9;
 			}
+		}
+		if (std::rand() % level == 1)
+		{
+			int x = rand() % 5+3;
+			goTo +=x*pow(-1,x%2);
 		}
 	}
 
@@ -70,7 +75,7 @@ public:
 		}
 
 		//move the paddle to hit the ball . 
-		else if (up.getY() + 1 != goTo) 
+		else if (up.getY() + 1 != goTo)
 		{
 			if (up.getY() + 1 > goTo)
 			{
@@ -84,13 +89,13 @@ public:
 			}
 		}
 
-		
 		if (abs(up.getX() - ball->getXFromArr(center)) == 1)
 		{
 			isInCenter = false;
 			goTo = 14;
 		}
 	}
+	void setLevel(int l) { level = l; }
 };
 
 #endif 

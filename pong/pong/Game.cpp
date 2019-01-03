@@ -27,13 +27,16 @@ void Game::start()
 		case 2:
 			leftPlayer = &hplayerLeft;
 			rightPlayer = &pcPlayerRight;
+			setPcLevel();
 			if (!run())
 				return;
 			break;
 		case 3 :
 			leftPlayer = &pcPlayerLeft;
 			rightPlayer = &pcPlayerRight;
-			run();
+			setPcLevel();
+			if (!run())
+				return;
 			break;
 		case 8:
 			menu.instructions();
@@ -92,7 +95,7 @@ bool Game::run()
 			drawGame();
 			ball.draw();
 		}
-		Sleep(80);
+		Sleep(5);
 	}
 }
 

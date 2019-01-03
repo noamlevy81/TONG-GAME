@@ -172,7 +172,41 @@ void Menu:: printHeader()
 
 	SetConsoleTextAttribute(h, 15);
 }
+int Menu::getLevelRight()
+{
+	system("cls");
+	int x = 30;
+	int y = 12;
+	gotoxy(x, y);
+	cout << "Enter level for right pc player:0 for novice,";
+	gotoxy(x, y + 2);
+	cout<< "1 for good and 2 for expert ";
+	gotoxy(x, y + 4);
 
+	int z;
+	cin >> z;
+	system("cls");
+	return z;
+
+}
+int Menu::getLevelLeft()
+{
+	system("cls");
+	int x = 30;
+	int y = 12;
+	gotoxy(x, y);
+	cout << "Enter level for left pc player:0 for novice,";
+	gotoxy(x, y + 2);
+	cout <<"1 for good and 2 for expert ";
+	gotoxy(x, y + 4);
+
+	int z;
+	cin >> z;
+	system("cls");
+
+	return z;
+
+}
 int Menu ::printMenu(bool pause)
 {
 	int x = 30;
