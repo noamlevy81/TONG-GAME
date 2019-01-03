@@ -11,7 +11,6 @@ public:
 	virtual void missedPaddle(){}
 	virtual void hitCorner() override;
 	virtual void hitPaddle() override;
-	virtual void bombKeyPressed() override;
 	virtual void hitBorder()override;
 	virtual void hitTetris(int x) override;
 	virtual void timeEvent()override;

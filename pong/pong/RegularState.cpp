@@ -21,7 +21,21 @@ void RegularState::missedPaddle()
 	screen.pushPaddle(ball.getDirX(),ONE_POINT);
 	screen.setPointLost(true);
 }
-void RegularState::bombKeyPressed()
+void RegularState::bombKeyPressed(char key)
 {
-	ball.setTheState(ball.getBcomingBomb());
+	if (key == ball.getChars()[0])// case 's' pressed
+	{
+		if (ball.getBombPressedLeft() >= 4)
+		{
+			ball.resetBombPressedLeft();
+			ball.setTheState(ball.getBcomingBomb());
+		}
+	}
+	else {// key == 'k'
+		if (ball.getBombPressedRight() >= 4)
+		{
+			ball.resetBombPressedRight();
+			ball.setTheState(ball.getBcomingBomb());
+		}
+	}
 }

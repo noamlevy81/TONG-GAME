@@ -58,7 +58,3 @@ void BombState::hitTetris(int x)
 	 }
  }
 
- void bombKeyPressed() 
- {
-	 //do nothing
- }
