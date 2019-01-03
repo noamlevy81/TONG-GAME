@@ -21,6 +21,7 @@ public:
 	virtual void bombKeyPressed(char key) {}
 	virtual void hitTetris(int x) {}
 	virtual void timeEvent(){}
+	virtual int getColor() { return 8; }//default color
 	friend class Ball;
 };
 

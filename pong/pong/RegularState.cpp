@@ -15,6 +15,13 @@ void RegularState::hitCorner()
 	ball.setDirX(ball.getDirX()*-1);
 	ball.setDirY(ball.getDirY()*-1);
 }
+int RegularState::getColor() { return 8; }//grey
+void RegularState::missedPaddle()
+{
+	screen.addToTetris(ball.getDirX());
+	screen.pushPaddle(ball.getDirX(),ONE_POINT);
+	screen.setPointLost(true);
+}
 void RegularState::bombKeyPressed(char key)
 {
 	if (key == ball.getChars()[0])// case 's' pressed
@@ -32,11 +39,4 @@ void RegularState::bombKeyPressed(char key)
 			ball.setTheState(ball.getBcomingBomb());
 		}
 	}
-}
-
-void RegularState::missedPaddle()
-{
-	screen.addToTetris(ball.getDirX());
-	screen.pushPaddle(ball.getDirX(),ONE_POINT);
-	screen.setPointLost(true);
 }

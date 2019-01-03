@@ -18,5 +18,6 @@ public:
 	virtual void hitTetris(int x) override;
 	virtual void hitBorder()override;
 	virtual void timeEvent() override;
+	virtual int getColor()override;
 };
 #endif
