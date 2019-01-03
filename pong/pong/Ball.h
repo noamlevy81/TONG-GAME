@@ -31,6 +31,7 @@ class Ball : public kbListener {
 	//private methods:
 	void initalizeBall()
 	{
+		bombPressedRight = bombPressedLeft = 4;// when game started player can use bomb
 		gameLoopCount = 0;
 		ballPoints.clear();
 		ballPoints.push_back({ 39,11,BALL_SHAPE });
@@ -67,7 +68,6 @@ public:
 		regular_s(*this, *the_screen), BecomingABomb_s(*this, *the_screen),bomb_s(*this,*the_screen)
 	{
 		initalizeBall();
-		bombPressedRight = bombPressedLeft = 4;// when game started player can use bomb
 		setTheState(regular_s);
 
 	}
@@ -146,8 +146,6 @@ public:
 	{
 		theState = &newState;
 		setGameLoopCounter();
-		gotoxy(10, 10);
-		std::cout << typeid(*theState).name() <<" "<< gameLoopCount;
 	}
 	int getBombPressedLeft() { return bombPressedLeft; }
 	int getBombPressedRight() { return bombPressedRight; }

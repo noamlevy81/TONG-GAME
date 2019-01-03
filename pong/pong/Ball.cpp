@@ -5,7 +5,8 @@
 
 void Ball::draw() {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h, 8);
+	int color = theState->getColor();
+	SetConsoleTextAttribute(h, color);
 
 	for (int i = 0; i < NUM_POINTS; i++)
 		ballPoints.at(i).draw();

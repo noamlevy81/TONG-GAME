@@ -14,6 +14,7 @@ public:
 	virtual void missedPaddle() override;
 	virtual void hitBorder() override {}
 	virtual void bombKeyPressed(char key)override;
+	virtual int getColor()override;
 };
 
 #endif 

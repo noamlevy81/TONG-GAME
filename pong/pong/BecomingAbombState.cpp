@@ -11,7 +11,7 @@ void BecomingAbombState::hitTetris(int x)
 {
 	hitBorder();
 }
-
+int BecomingAbombState::getColor() { return 9; }//
 
 void BecomingAbombState::hitBorder() {
 	ball.setTheState(ball.getRegular());

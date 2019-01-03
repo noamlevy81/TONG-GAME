@@ -14,6 +14,7 @@ void BombState::missedPaddle()
 {
 	//do nothing
 }
+int BombState::getColor() { return 4; }//red
 void BombState::hitTetris(int x) 
 {
 	int dirX = ball.getDirX();
