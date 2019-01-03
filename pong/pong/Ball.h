@@ -111,6 +111,7 @@ public:
 
 	void returnToDefault(int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2))
 	{
+		eraseBall();
 		initalizeBall();
 		dir_x = dir_x1;
 		dir_y = dir_y1;

@@ -57,7 +57,6 @@ public:
 	}
 	void pushPaddle(int ballDirX, int numOfTimes)					// this method update the x value of the paddle in case of lose one point 
 	{
-
 		leftPaddle->erase();
 		rightPaddle->erase();
 		if (ballDirX == 1)

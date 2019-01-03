@@ -55,21 +55,22 @@ bool Game::run()
 	while (true)
 	{
 		int choice = kbManager.handleKb(menu);	
+
 		moveManager();				
 
 		if (screen.ispointLost())
 			choice = 6; 
 		if (choice >=1 && choice <= 9 )
 		{
-			if (choice == 1 )	//to add 2 and 3 
+			if (choice >=1 && choice <=3 )	//to add 2 and 3 
 			{
 				initializeGame();
 			}
-			//if (choice == 4)// set keys and continue 
-			//{
-			//	menu.setUpKeys(leftPlayer, rightPlayer);
-			//	updateKbManager();
-			//}
+			if (choice == 5)// set keys and continue 
+			{
+				menu.setUpKeys(leftPlayer, rightPlayer);
+				updateKbManager();
+			}
 			if (choice == 6)
 			{
 				if (LoseOnePoint())

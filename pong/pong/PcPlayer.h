@@ -11,8 +11,8 @@ class PcPlayer : public Paddle
 	Ball* ball;
 	bool isInCenter = false;
 	int goTo = 14;
-	int center; //will be the relevant ball point for calculations
-	int myDir;// will hold the dir of the ball when moving toards player
+	int center;				//will be the relevant ball point for calculations
+	int myDir;				// will hold the dir of the ball when moving toards player
 	
 	void calculateLocation()
 	{
@@ -70,7 +70,7 @@ public:
 		}
 
 		//move the paddle to hit the ball . 
-		else if (up.getY() + 1 != goTo)
+		else if (up.getY() + 1 != goTo) 
 		{
 			if (up.getY() + 1 > goTo)
 			{
@@ -84,6 +84,7 @@ public:
 			}
 		}
 
+		
 		if (abs(up.getX() - ball->getXFromArr(center)) == 1)
 		{
 			isInCenter = false;

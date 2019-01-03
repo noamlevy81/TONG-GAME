@@ -1,5 +1,5 @@
 #include "Menu.h"
-
+#include "HumanPlayer.h"
 
 void Menu ::instructions()
 {
@@ -28,40 +28,47 @@ void Menu ::instructions()
 
 }
 
-void Menu:: setUpKeys(Paddle& l, Paddle& r)
-{}
-//{
-//	char temp[2];
-//	int wantL;
-//	int wantR;
-//
-//	cout << "if you want to change key for the left player press 1 else press 0 ";
-//	cin >> wantL;
-//
-//	if (wantL == 1) {
-//		cout << "Enter key to move up:\n\n";
-//		cin >> temp[0];
-//		cout << "Enter key to move down:\n\n";
-//		cin >> temp[1];
-//		l.setKeys(temp[0], temp[1]);
-//	}
-//
-//	cout << "if you want to change key for the right player press 1 else press 0 ";
-//	cin >> wantR;
-//
-//	if (wantR == 1) {
-//		cout << "Enter key to move up:\n\n";
-//		cin >> temp[0];
-//		cout << "Enter key to move down:\n\n";
-//		cin >> temp[1];
-//		r.setKeys(temp[0], temp[1]);
-//	}
-//
-//
-//	cout << "keys changed succesfully ";
-//	Sleep(250);
-//	system("cls");
-//}
+void Menu:: setUpKeys(Paddle* l, Paddle* r)
+{
+	system("cls");
+
+	char temp[2];
+	int wantL;
+	int wantR;
+
+	if (strcmp(typeid(*l).name(), typeid(HumanPlayer).name()) == 0)
+	{
+		cout << "if you want to change key for the left player press 1 else press 0 ";
+		cin >> wantL;
+
+		if (wantL == 1) {
+			cout << "Enter key to move up:\n\n";
+			cin >> temp[0];
+			cout << "Enter key to move down:\n\n";
+			cin >> temp[1];
+			((HumanPlayer*)l)->setKeys(temp[0], temp[1]) ;
+
+		}
+	}
+
+	if (strcmp(typeid(*r).name(), typeid(HumanPlayer).name()) == 0)
+	{
+		cout << "if you want to change key for the right player press 1 else press 0 ";
+		cin >> wantR;
+
+		if (wantR == 1) {
+			cout << "Enter key to move up:\n\n";
+			cin >> temp[0];
+			cout << "Enter key to move down:\n\n";
+			cin >> temp[1];
+			((HumanPlayer*)r)->setKeys(temp[0], temp[1]);
+		}
+	}
+	
+	cout << "keys changed succesfully ";
+	Sleep(250);
+	system("cls");
+}
 
 void Menu :: printFace() {
 	int x = 2, y = 7;
@@ -173,29 +180,25 @@ int Menu ::printMenu(bool pause)
 	system("cls");
 	printHeader();
 	int choice;
-	gotoxy(x, y);
-	cout << "MENU:";
 	gotoxy(x, y + 2);
 	cout << "Choose one of the following:";
 	gotoxy(x, y + 4);
 	cout << "1.Start new game human Vs human";
-	gotoxy(x, y + 2);
-	cout << "2.Start new game human Vs computer";
-	gotoxy(x, y + 2);
-	cout << "3.Start new game computer Vs computer";
-	gotoxy(x, y + 2);
-	if (pause == true) {
-		gotoxy(x, y + 6);
-		cout << "4.to continue";
-		y += 2;
-	}
 	gotoxy(x, y + 6);
-	cout << "3.Set up keys";
+	cout << "2.Start new game human Vs computer";
 	gotoxy(x, y + 8);
-	cout << "8.How to play?";
+	cout << "3.Start new game computer Vs computer";
 	gotoxy(x, y + 10);
-	cout << "9.Exit";
+	if (pause == true) {
+		cout << "4.to continue";
+	}
 	gotoxy(x, y + 12);
+	cout << "5.Set up keys";
+	gotoxy(x, y + 14);
+	cout << "8.How to play?";
+	gotoxy(x, y + 16);
+	cout << "9.Exit";
+	gotoxy(x, y + 18);
 
 	cin >> choice;
 	system("cls");

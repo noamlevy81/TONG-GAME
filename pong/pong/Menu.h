@@ -15,7 +15,7 @@ public:
 
 	void instructions();
 
-	void setUpKeys(Paddle& l, Paddle& r);
+	void setUpKeys(Paddle* l, Paddle* r);
 
 	void gameOver(int side);
 
