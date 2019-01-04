@@ -129,7 +129,7 @@ void Menu:: gameOver(int side)
 {
 	system("cls");
 	printFace();
-	if (side == LEFT)
+	if (side == LEFTS)
 	{
 		gotoxy(50, 10);
 		cout << "right player win !! ";
@@ -214,20 +214,26 @@ int Menu ::printMenu(bool pause)
 	system("cls");
 	printHeader();
 	int choice;
-	gotoxy(x, y + 2);
-	cout << "Choose one of the following:";
-	gotoxy(x, y + 4);
-	cout << "1.Start new game human Vs human";
-	gotoxy(x, y + 6);
-	cout << "2.Start new game human Vs computer";
-	gotoxy(x, y + 8);
-	cout << "3.Start new game computer Vs computer";
-	gotoxy(x, y + 10);
-	if (pause == true) {
-		cout << "4.to continue";
+	if (pause == false)
+	{
+		gotoxy(x, y + 2);
+		cout << "Choose one of the following:";
+		gotoxy(x, y + 4);
+		cout << "1.Start new game human Vs human";
+		gotoxy(x, y + 6);
+		cout << "2.Start new game human Vs computer";
+		gotoxy(x, y + 8);
+		cout << "3.Start new game computer Vs computer";
 	}
-	gotoxy(x, y + 12);
-	cout << "5.Set up keys";
+	else
+	{
+		gotoxy(x, y + 8);
+		cout << "1.start a new game ";
+		gotoxy(x, y + 10);
+		cout << "4.to continue";
+		gotoxy(x, y + 12);
+		cout << "5.Set up keys";
+	}
 	gotoxy(x, y + 14);
 	cout << "8.How to play?";
 	gotoxy(x, y + 16);

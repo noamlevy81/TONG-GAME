@@ -3,6 +3,7 @@
 
 #include "Point.h"
 
+enum Sides { LEFTS, RIGHTS };
 const char PADDLE_SHAPE = '#';
 
 class Paddle

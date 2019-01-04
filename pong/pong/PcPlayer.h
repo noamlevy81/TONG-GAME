@@ -5,6 +5,7 @@
 #include "Ball.h"
 #include "Point.h"
 #include "Screen.h"
+#include "Utils.h"
 
 class PcPlayer : public Paddle
 {
@@ -16,28 +17,28 @@ class PcPlayer : public Paddle
 	int level;
 	void calculateLocation()
 	{
-		if (ball->getDirY() == -1)
+		if (ball->getDirY() == ballDirection::LEFT)
 		{
-			if (abs(ball->getYFromArr(center) - 3) < 9)
+			if (abs(ball->getYFromArr(center) - yBorders::UPPER_Y) < MAXFORMISS)
 			{
-				goTo = ball->getYFromArr(center) - 1 - 1 - 3;	//3 is top border , -1 -1 because we look at the middle . 
-				goTo = 3 + 2 + (9 - goTo);
+				goTo = ball->getYFromArr(center) - 1 - 1 - yBorders::UPPER_Y ;	//3 is top border , -1 -1 because we look at the middle . 
+				goTo = 3 + 2 + (MAXFORMISS - goTo);
 			}
 			else
 			{
-				goTo = ball->getYFromArr(center) - 9;
+				goTo = ball->getYFromArr(center) - MAXFORMISS;
 			}
 		}
 		else
 		{
-			if (abs(25 - ball->getYFromArr(center)) < 9)
+			if (abs(25 - ball->getYFromArr(center)) < MAXFORMISS)
 			{
-				goTo = 25 - ball->getYFromArr(center) - 1 - 1;	//3 is top border , -1 -1 because we look at the middle . 
-				goTo = 25 - 2 - (9 - goTo);
+				goTo = yBorders::BUTTOM_Y - ball->getYFromArr(center) - 1 - 1;	//3 is top border , -1 -1 because we look at the middle . 
+				goTo = yBorders::BUTTOM_Y - 2 - (MAXFORMISS - goTo);			    //-2 because we look at the middle . 
 			}
 			else
 			{
-				goTo = ball->getYFromArr(center) + 9;
+				goTo = ball->getYFromArr(center) + MAXFORMISS;
 			}
 		}
 		if (std::rand() % level == 1)
@@ -54,22 +55,22 @@ public:
 	{
 		if (!isInCenter)			//return the paddle to hte ceneter . 
 		{
-			if (up.getY() > 13)
+			if (up.getY() > CENTERFORPADDLE)
 			{
-				setDirY(-1);
+				setDirY(ballDirection::LEFT);
 				Paddle::move();
 			}
 			else
 			{
-				setDirY(1);
+				setDirY(ballDirection::RIGHT);
 				Paddle::move();
 			}
 
-			if (up.getY() == 13)
+			if (up.getY() == CENTERFORPADDLE)
 				isInCenter = true;
 		}
 
-		else if (abs(up.getX() - ball->getXFromArr(center)) == 9 && ball->getDirX() == myDir)
+		else if (abs(up.getX() - ball->getXFromArr(center)) == MAXFORMISS && ball->getDirX() == myDir)
 		{
 			 calculateLocation();
 		}
@@ -79,12 +80,12 @@ public:
 		{
 			if (up.getY() + 1 > goTo)
 			{
-				setDirY(-1);
+				setDirY(ballDirection::LEFT);
 				Paddle::move();
 			}
 			else
 			{
-				setDirY(1);
+				setDirY(ballDirection::RIGHT);
 				Paddle::move();
 			}
 		}
@@ -92,7 +93,7 @@ public:
 		if (abs(up.getX() - ball->getXFromArr(center)) == 1)
 		{
 			isInCenter = false;
-			goTo = 14;
+			goTo = CENTERFORPADDLE+1;
 		}
 	}
 	void setLevel(int l) { level = l; }

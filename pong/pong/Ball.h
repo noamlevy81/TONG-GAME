@@ -56,7 +56,7 @@ class Ball : public kbListener {
 	}
 	void changePointsByDir();
 	void setBombPressed() {
-		if (ballPoints.at(5).getX() == 40)
+		if (ballPoints.at(5).getX() == ArenaCenter::ARENA_CENTER)
 		{
 			bombPressedLeft++;
 			bombPressedRight++;
@@ -134,7 +134,7 @@ public:
 	{
 		return bombKeys;
 	}
-	//one of the players press bomb key 
+	//one of the players pressed bomb key 
 	void changeCurrentKey(char key)
 	{
 		theState->bombKeyPressed(key);

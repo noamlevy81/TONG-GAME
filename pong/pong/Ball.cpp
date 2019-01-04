@@ -1,5 +1,5 @@
 #include "Ball.h"
-
+#include "Utils.h"
 #include "Screen.h"
 #include "RegularState.h"
 
@@ -17,7 +17,7 @@ void Ball::draw() {
 void Ball::setDirX()
 {
 		int ind;
-	if (dir_x == 1)
+	if (dir_x == ballDirection::RIGHT)
 	{
 		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))
 		{
@@ -46,7 +46,7 @@ void Ball::setDirX()
 		}
 	}
 
-	else      //dir_x is -1 means that we goes left . 
+	else      //dir_x is -1 means that we go left . 
 	{
 		if (theScreen->isOnXBorder(ballPoints.at(2).getX() + dir_x, dir_x))
 		{
@@ -90,7 +90,7 @@ void Ball::animationHitPaddleLeft()
 	dir_y = 0;
 	changePointsByDir();
 
-	if (direction != 1)
+	if (direction != ballDirection::RIGHT)
 		ballPoints.at(1).draw();
 	else
 		ballPoints.at(7).draw();
@@ -106,7 +106,7 @@ void Ball::animationHitPaddleLeft()
 	SetConsoleTextAttribute(h, 15);
 	////////////////////////////////////////////
 
-	if (direction != 1)
+	if (direction != ballDirection::RIGHT)
 		ballPoints.at(1).erase();
 	else
 		ballPoints.at(7).erase();
@@ -125,7 +125,7 @@ void Ball::animationHitPaddleLeft()
 
 	int point1, point2;
 
-	if (direction == -1)
+	if (direction == ballDirection::LEFT)
 	{
 		point1 = 6;
 		point2 = 7;
@@ -171,7 +171,7 @@ void Ball::animationHitPaddleRight()
 	dir_y = 0;
 	changePointsByDir();
 
-	if (direction != 1)
+	if (direction != ballDirection::RIGHT)
 		ballPoints.at(0).draw();
 	else
 		ballPoints.at(6).draw();
@@ -187,7 +187,7 @@ void Ball::animationHitPaddleRight()
 	SetConsoleTextAttribute(h, 15);
 	////////////////////////////////////////////
 
-	if (direction != 1)
+	if (direction != ballDirection::RIGHT)
 		ballPoints.at(0).erase();
 	else
 		ballPoints.at(6).erase();
@@ -205,7 +205,7 @@ void Ball::animationHitPaddleRight()
 
 	int point1, point2;
 
-	if (direction == -1)
+	if (direction == ballDirection::LEFT)
 	{
 		point1 = 6;
 		point2 = 7;

@@ -7,8 +7,8 @@ void Game::start()
 	HumanPlayer hplayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE });
 		hplayerLeft.setKeys('q', 'a');
 		hplayerRight.setKeys('p', 'l');
-	PcPlayer pcPlayerLeft({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } ,&ball,-1,2);
-	PcPlayer pcPlayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE },&ball,1,5);
+	PcPlayer pcPlayerLeft({ LEFT_X,LEFT_UP_Y,PADDLE_SHAPE }, { LEFT_X,LEFT_DOWN_Y,PADDLE_SHAPE } ,&ball,ballDirection::LEFT,2);
+	PcPlayer pcPlayerRight({ RIGHT_X, RIGHT_UP_Y  ,PADDLE_SHAPE }, { RIGHT_X , RIGHT_DOWN_Y,PADDLE_SHAPE },&ball, ballDirection::RIGHT,5);
 
 	ShowConsoleCursor(false);
 	int option;
@@ -67,7 +67,7 @@ bool Game::run()
 		{
 			if (choice >=1 && choice <=3 )	//to add 2 and 3 
 			{
-				initializeGame();
+				return true;
 			}
 			if (choice == 5)// set keys and continue 
 			{
@@ -95,7 +95,7 @@ bool Game::run()
 			drawGame();
 			ball.draw();
 		}
-		Sleep(5);
+		Sleep(100);
 	}
 }
 
@@ -114,12 +114,12 @@ bool Game:: LoseOnePoint()
 {
 	if (leftPlayer->up.getX() == 20)
 	{
-		gameOver(LEFT);
+		gameOver(LEFTS);
 		return true;
 	}
 	else if (rightPlayer->up.getX() == 60)
 	{
-		gameOver(RIGHT);
+		gameOver(RIGHTS);
 		return true;
 	}
 
