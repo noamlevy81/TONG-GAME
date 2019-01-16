@@ -29,21 +29,9 @@ class Ball : public kbListener {
 	int bombPressedLeft, bombPressedRight;
 	char bombKeys[MAX_KEYS] = { 's','k' };
 	//private methods:
-	void initalizeBall()
-	{
-		bombPressedRight = bombPressedLeft = 4;// when game started player can use bomb
-		gameLoopCount = 0;
-		ballPoints.clear();
-		ballPoints.push_back({ 39,11,BALL_SHAPE });
-		ballPoints.push_back({ 40,11,BALL_SHAPE });
-		ballPoints.push_back({ 38,12,BALL_SHAPE });
-		ballPoints.push_back({ 39,12,BALL_SHAPE });
-		ballPoints.push_back({ 40,12,BALL_SHAPE });
-		ballPoints.push_back({ 41,12,BALL_SHAPE });
-		ballPoints.push_back({ 39,13,BALL_SHAPE });
-		ballPoints.push_back({ 40,13,BALL_SHAPE });
 
-	}
+	void initalizeBall();
+	
 
 	void setDir() {
 		setDirX();
@@ -74,11 +62,9 @@ public:
 	void resetBombPressedLeft() { bombPressedLeft = 0; }
 	void resetBombPressedRight() { bombPressedRight = 0; }
 
-	void animationHitPaddleRight();
-	void animationHitPaddleLeft();
-
 	void setDirY(int y) { dir_y = y; }
 	void setDirX(int x) { dir_x = x; }
+
 
 	int getDirY() const
 	{
@@ -88,6 +74,12 @@ public:
 	{
 		return dir_x;
 	}
+	
+	void draw();
+
+	void animationHitPaddleRight();
+	void animationHitPaddleLeft();
+
 	//draw the ball for the first time . 
 	void drawBall()
 	{
@@ -106,7 +98,6 @@ public:
 		setBombPressed();
 	}
 
-
 	void eraseBall();
 
 	void returnToDefault(int dir_x1 = pow(-1, rand() % 2), int dir_y1 = pow(-1, rand() % 2))
@@ -117,7 +108,7 @@ public:
 		dir_y = dir_y1;
 		setTheState(regular_s);
 	}
-	void draw();
+
 	int getXFromArr(int x) const
 	{
 		return ballPoints.at(x).getX();
@@ -145,7 +136,6 @@ public:
 		else
 			gameLoopCount = 0;
 	}
-	BallState& getCurrState() { return *theState; }
 
 	void setTheState(BallState& newState)
 	{
@@ -155,11 +145,11 @@ public:
 	int getBombPressedLeft() { return bombPressedLeft; }
 	int getBombPressedRight() { return bombPressedRight; }
 
+	BallState& getCurrState() { return *theState; }
 	BecomingAbombState& getBcomingBomb();
 	RegularState& getRegular();
 	BombState& getBomb();
 
-	
 
 	friend class Screen;
 };

@@ -116,11 +116,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="BallState.cpp" />
     <ClCompile Include="BecomingAbombState.cpp" />
     <ClCompile Include="BombState.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="HumanPlayer.cpp" />
     <ClCompile Include="kbListener.cpp" />
     <ClCompile Include="KeyBoardManager.cpp" />
     <ClCompile Include="main.cpp" />

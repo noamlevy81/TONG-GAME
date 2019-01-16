@@ -95,10 +95,31 @@ bool Game::run()
 			drawGame();
 			ball.draw();
 		}
-		Sleep(100);
+		Sleep(10);
 	}
 }
 
+void Game:: setPcLevel()
+{
+	int rightLevel = menu.getLevelRight();
+	if (rightLevel == NOVICE)
+		((PcPlayer*)rightPlayer)->setLevel(10);
+	else if (rightLevel == GOOD)
+		((PcPlayer*)rightPlayer)->setLevel(40);
+	else
+		((PcPlayer*)rightPlayer)->setLevel(2);
+	int leftLevel;
+	if (!strcmp(typeid(*leftPlayer).name(), typeid(PcPlayer).name()))
+	{
+		leftLevel = menu.getLevelLeft();
+		if (leftLevel == NOVICE)
+			((PcPlayer*)leftPlayer)->setLevel(10);
+		else if (leftLevel == GOOD)
+			((PcPlayer*)leftPlayer)->setLevel(40);
+		else
+			((PcPlayer*)leftPlayer)->setLevel(1);
+	}
+}
 //this fucntion initalize all the game objects to their default . 
 void Game::initializeGame()
 {

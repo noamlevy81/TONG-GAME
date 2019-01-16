@@ -30,8 +30,10 @@ class Screen
 	}
 
 public:
-	bool ballHitTetris(int dirx, int diry, int ballx, int bally,int *ind);
 	Screen(Tetris& left_tetris, Tetris& right_tetris) : leftTetris(left_tetris), rightTetris(right_tetris) {}
+
+
+	bool ballHitTetris(int dirx, int diry, int ballx, int bally,int *ind);
 
 	void addToTetris(int dirX)
 	{
@@ -44,6 +46,7 @@ public:
 		rightPaddle->erase();
 
 	}
+
 	void setLife()
 	{
 		lifeLeft = 16;
@@ -55,54 +58,20 @@ public:
 		leftPaddle = left;
 		rightPaddle = right;
 	}
-	void pushPaddle(int ballDirX, int numOfTimes)					// this method update the x value of the paddle in case of lose one point 
-	{
-		leftPaddle->erase();
-		rightPaddle->erase();
-		if (ballDirX == 1)
-		{
-			rightPaddle->up.setX(rightPaddle->up.getX() - numOfTimes);
-			rightPaddle->down.setX(rightPaddle->down.getX() - numOfTimes);
-			lifeRight -= numOfTimes;
-		}
-		else
-		{
-			leftPaddle->up.setX(leftPaddle->up.getX() + numOfTimes);
-			leftPaddle->down.setX(leftPaddle->down.getX() + numOfTimes);
-			lifeLeft -= numOfTimes;
-		}
 
-		returnYPaddlesToDeafult();
-	}
+	void pushPaddle(int ballDirX, int numOfTimes);			// this method update the x value of the paddle in case of lose one point 
 
-	void pushFiveSteps(int to)
-	{
-		if (to == 1)
-		{
-			rightPaddle->erase();
-			rightPaddle->up.setX(rightPaddle->up.getX() + 5);
-			rightPaddle->down.setX(rightPaddle->down.getX() + 5);
-			lifeRight += 5;
-		}
-		else
-		{
-			leftPaddle->erase();
-			leftPaddle->up.setX(leftPaddle->up.getX() - 5);
-			leftPaddle->down.setX(leftPaddle->down.getX() - 5);
-			lifeLeft += 5;
-		}
-	}
+	void pushFiveSteps(int to);
 
 	Tetris& getRTetris() { return rightTetris; }
 	Tetris& getLTetris() { return leftTetris; }
+
 	int getRPaddleX() { 
 		return rightPaddle->up.getX(); 
 	}
 	int getLPaddleX() {
 		return leftPaddle->up.getX();
 	}
-
-
 
 	bool ispointLost()
 	{

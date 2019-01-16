@@ -6,7 +6,6 @@ class BecomingAbombState:public BallState
 {
 public:
 	BecomingAbombState(Ball& b,Screen& s) : BallState(b,s)  {}
-	//~BecomingAbombState();
 
 	virtual void missedPaddle(){}
 	virtual void hitCorner() override;

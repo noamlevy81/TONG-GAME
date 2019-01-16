@@ -10,7 +10,6 @@ class BombState : public BallState
 {
 public:
 	BombState(Ball& b, Screen& s) : BallState(b, s) {}
-	//virtual ~BombState();
 
 	virtual void hitPaddle() override;
 	virtual void hitCorner() override;

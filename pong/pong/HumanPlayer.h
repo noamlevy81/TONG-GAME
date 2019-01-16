@@ -15,7 +15,7 @@ private:
 		if (currentKey == 0)
 			return;
 		if (currentKey == keys[0])				//move up 
-			setDirY(-1);					//make consts !!!!!!!!!#!@#
+			setDirY(ballDirection::LEFT);					
 		else if (currentKey == keys[1])
 			setDirY(1);
 	}

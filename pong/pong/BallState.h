@@ -12,9 +12,8 @@ protected :
 	Screen& screen;
 public:
 	BallState(Ball& b,Screen& s) : ball(b),screen(s) {}
-	virtual ~BallState() {}
 
-	virtual void missedPaddle() {}
+	virtual void missedPaddle() = 0;
 	virtual void hitPaddle() {}
 	virtual void hitBorder() {}
 	virtual void hitCorner() {}
@@ -22,6 +21,8 @@ public:
 	virtual void hitTetris(int x) {}
 	virtual void timeEvent(){}
 	virtual int getColor() { return 8; }//default color
+
+	virtual ~BallState() {}
 	friend class Ball;
 };
 

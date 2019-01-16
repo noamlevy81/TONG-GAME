@@ -1,7 +1,7 @@
 #include "Menu.h"
 #include "HumanPlayer.h"
 
-void Menu ::instructions()
+void Menu ::instructions() const
 {
 	int x = 1;
 	int y = 7;
@@ -28,7 +28,7 @@ void Menu ::instructions()
 
 }
 
-void Menu:: setUpKeys(Paddle* l, Paddle* r)
+void Menu:: setUpKeys(Paddle* l, Paddle* r) const 
 {
 	system("cls");
 
@@ -70,7 +70,7 @@ void Menu:: setUpKeys(Paddle* l, Paddle* r)
 	system("cls");
 }
 
-void Menu :: printFace() {
+void Menu :: printFace()  const  {
 	int x = 2, y = 7;
 	gotoxy(x, y++);
 	cout << "´´´´´´´´´´´´´´´´´´´´´´¶¶¶¶¶¶¶¶¶";
@@ -125,7 +125,7 @@ void Menu :: printFace() {
 
 }
 
-void Menu:: gameOver(int side)
+void Menu:: gameOver(int side) const
 {
 	system("cls");
 	printFace();
@@ -143,7 +143,7 @@ void Menu:: gameOver(int side)
 	char ch = _getch();
 }
 
-void Menu:: printHeader()
+void Menu:: printHeader()const 
 {
 	int x = 0, y = 2;
 	gotoxy(x, y++);
@@ -172,7 +172,8 @@ void Menu:: printHeader()
 
 	SetConsoleTextAttribute(h, 15);
 }
-int Menu::getLevelRight()
+
+int Menu::getLevelRight() const
 {
 	system("cls");
 	int x = 30;
@@ -189,7 +190,8 @@ int Menu::getLevelRight()
 	return z;
 
 }
-int Menu::getLevelLeft()
+
+int Menu::getLevelLeft() const
 {
 	system("cls");
 	int x = 30;
@@ -207,10 +209,11 @@ int Menu::getLevelLeft()
 	return z;
 
 }
-int Menu ::printMenu(bool pause)
+
+int Menu ::printMenu(bool pause) const
 {
 	int x = 30;
-	int y = 12;
+	int y = 8;
 	system("cls");
 	printHeader();
 	int choice;

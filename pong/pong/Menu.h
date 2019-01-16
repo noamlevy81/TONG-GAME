@@ -9,21 +9,16 @@ using namespace std;
 
 class Menu
 {
+	void printFace() const ;
+	void printHeader() const ;
+
 public:
-
-	int printMenu(bool pause);
-
-	void instructions();
-
-	void setUpKeys(Paddle* l, Paddle* r);
-
-	void gameOver(int side);
-
-	void printFace();
-
-	void printHeader();
-	int getLevelRight();
-	int getLevelLeft();
+	int printMenu(bool pause) const ;
+	void instructions() const ;
+	void setUpKeys(Paddle* l, Paddle* r) const ;
+	void gameOver(int side) const ;
+	int getLevelRight() const;
+	int getLevelLeft() const ;
 
 };
 

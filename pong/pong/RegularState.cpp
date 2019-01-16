@@ -16,6 +16,7 @@ void RegularState::hitCorner()
 	ball.setDirY(ball.getDirY()*-1);
 }
 int RegularState::getColor() { return 8; }//grey
+
 void RegularState::missedPaddle()
 {
 	screen.addToTetris(ball.getDirX());

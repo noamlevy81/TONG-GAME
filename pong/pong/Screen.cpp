@@ -79,4 +79,42 @@ bool Screen::ballHitTetris(int dirx,int diry,int ballx,int bally,int *ind)//ball
 	}
 }
 
+void Screen::pushFiveSteps(int to)
+{
+	if (to == 1)
+	{
+		rightPaddle->erase();
+		rightPaddle->up.setX(rightPaddle->up.getX() + 5);
+		rightPaddle->down.setX(rightPaddle->down.getX() + 5);
+		lifeRight += 5;
+	}
+	else
+	{
+		leftPaddle->erase();
+		leftPaddle->up.setX(leftPaddle->up.getX() - 5);
+		leftPaddle->down.setX(leftPaddle->down.getX() - 5);
+		lifeLeft += 5;
+	}
+}
+
+
+void Screen:: pushPaddle(int ballDirX, int numOfTimes)	// this method update the x value of the paddle in case of lose one point 
+{
+	leftPaddle->erase();
+	rightPaddle->erase();
+	if (ballDirX == 1)
+	{
+		rightPaddle->up.setX(rightPaddle->up.getX() - numOfTimes);
+		rightPaddle->down.setX(rightPaddle->down.getX() - numOfTimes);
+		lifeRight -= numOfTimes;
+	}
+	else
+	{
+		leftPaddle->up.setX(leftPaddle->up.getX() + numOfTimes);
+		leftPaddle->down.setX(leftPaddle->down.getX() + numOfTimes);
+		lifeLeft -= numOfTimes;
+	}
+
+	returnYPaddlesToDeafult();
+}
 

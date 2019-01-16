@@ -7,7 +7,6 @@ class RegularState :public BallState
 {
 public:
 	RegularState(Ball& b,Screen& s) : BallState(b,s) {}
-	//~RegularState();
 
 	virtual void hitPaddle() override;
 	virtual void hitCorner() override;
@@ -15,6 +14,7 @@ public:
 	virtual void hitBorder() override {}
 	virtual void bombKeyPressed(char key)override;
 	virtual int getColor()override;
+
 };
 
 #endif 

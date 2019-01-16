@@ -16,15 +16,17 @@ class Tetris
 	list<Paddle> boards_history[MAX_LOSES];
 	Screen* theScreen;
 
+
 public:
 	Tetris(Screen *screen):theScreen(screen){}
 	~Tetris()
 	{
 		free();
 	}
+
+	bool collisionMade(int index, int toAdd_y_val);
 	void addToTetris(Paddle toAdd, int dir_x);
 	void deleteLine(int ind,int dirX);
-	bool collisionMade(int index, int toAdd_y_val);
 	void printTetris()	const ;
 	void free();
 

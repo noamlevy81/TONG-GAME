@@ -45,13 +45,7 @@
     <ClCompile Include="PcPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HumanPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="kbListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BallState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RegularState.cpp">

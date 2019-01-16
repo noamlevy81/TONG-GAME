@@ -3,6 +3,22 @@
 #include "Screen.h"
 #include "RegularState.h"
 
+void Ball::initalizeBall()
+{
+	bombPressedRight = bombPressedLeft = 4;// when game started player can use bomb
+	gameLoopCount = 0;
+	ballPoints.clear();
+	ballPoints.push_back({ 39,11,BALL_SHAPE });
+	ballPoints.push_back({ 40,11,BALL_SHAPE });
+	ballPoints.push_back({ 38,12,BALL_SHAPE });
+	ballPoints.push_back({ 39,12,BALL_SHAPE });
+	ballPoints.push_back({ 40,12,BALL_SHAPE });
+	ballPoints.push_back({ 41,12,BALL_SHAPE });
+	ballPoints.push_back({ 39,13,BALL_SHAPE });
+	ballPoints.push_back({ 40,13,BALL_SHAPE });
+
+}
+
 void Ball::draw() {
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	int color = theState->getColor();
@@ -16,7 +32,7 @@ void Ball::draw() {
 
 void Ball::setDirX()
 {
-		int ind;
+	int ind;
 	if (dir_x == ballDirection::RIGHT)
 	{
 		if (theScreen->isOnXBorder(ballPoints.at(5).getX() + dir_x, dir_x))
@@ -41,7 +57,7 @@ void Ball::setDirX()
 			if (ballPoints.at(0).getY() + dir_y <= Screen::TOP_BORDER || ballPoints.at(7).getY() + dir_y >= Screen::BOTTOM_BORDER)
 				theState->hitBorder();
 			//check tetris collision
-			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(5).getX(), ballPoints.at(5).getY(),&ind))
+			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(5).getX(), ballPoints.at(5).getY(), &ind))
 				theState->hitTetris(ind);
 		}
 	}
@@ -70,7 +86,7 @@ void Ball::setDirX()
 			if (ballPoints.at(0).getY() + dir_y <= Screen::TOP_BORDER || ballPoints.at(7).getY() + dir_y >= Screen::BOTTOM_BORDER)
 				theState->hitBorder();
 			//check tetris collision
-			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(2).getX(), ballPoints.at(2).getY(),&ind))
+			if (theScreen->ballHitTetris(dir_x, dir_y, ballPoints.at(2).getX(), ballPoints.at(2).getY(), &ind))
 				theState->hitTetris(ind);
 		}
 	}
