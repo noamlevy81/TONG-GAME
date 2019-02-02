@@ -5,7 +5,7 @@ The game made by myself and Ziv Haltzband for school as first object oriented pr
 
 Game instructions:
 
-Pong game requires the player to move a “Board” using the keyboard, in order to hit a ball and “return” it to the other player, as in a tennis game. 
+Tong game requires the player to move a “Board” using the keyboard, in order to hit a ball and “return” it to the other player, as in a tennis game. 
 Note: Board means the line that is controlled by the player to hit the ball.
 In our Pong game, once a player misses the ball a “copy” of his board will “drop” as in tetris game
 to the “lowest” position on his side of the screen 
